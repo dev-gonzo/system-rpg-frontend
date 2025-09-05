@@ -36,6 +36,9 @@
     "TOGGLE": "Alternar",
     "ACTIVE": "Ativo",
     "INACTIVE": "Inativo",
+    "PENDING": "Pendente",
+    "BLOCKED": "Bloqueado",
+    "COMPLETED": "Concluído",
     "CITY": "Cidade",
     "COUNTRY": "País",
     "PLACEHOLDER": {
@@ -90,6 +93,27 @@
       "USUARIOS": "USUÁRIOS",
       "ARQUIVOS": "ARQUIVOS",
       "PROJETOS": "PROJETOS"
+    },
+    "STEPS": {
+      "NEXT": "Próximo",
+      "PREVIOUS_STEP": "Etapa anterior",
+      "NEXT_STEP": "Próxima etapa",
+      "STEP_NUMBER": "Etapa {{number}}",
+      "STEP_COUNTER": "{{current}} de {{total}}",
+      "PROGRESS": "Progresso: {{current}} de {{total}} etapas",
+      "NO_CONTENT": "Nenhum conteúdo definido para esta etapa",
+      "STATUS": {
+        "PENDING": "Pendente",
+        "ACTIVE": "Ativa",
+        "COMPLETED": "Concluída",
+        "INVALID": "Inválida"
+      },
+      "STEP_STATUS": {
+        "PENDING": "Etapa pendente",
+        "ACTIVE": "Etapa ativa",
+        "COMPLETED": "Etapa concluída",
+        "INVALID": "Etapa inválida"
+      }
     }
   }
 }

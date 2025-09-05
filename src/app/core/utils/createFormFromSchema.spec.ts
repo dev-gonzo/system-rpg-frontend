@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { createFormFromSchema } from './createFormFromSchema';
+import { createFormFromSchema, FormStep } from './createFormFromSchema';
 
 describe('createFormFromSchema', () => {
   let onValidSpy: jasmine.Spy;
@@ -14,6 +14,7 @@ describe('createFormFromSchema', () => {
         name: yup.string().required(),
         email: yup.string().email()
       });
+
 
       const handler = createFormFromSchema(schema, onValidSpy);
 
@@ -396,6 +397,86 @@ describe('createFormFromSchema', () => {
       await handler.submit();
       
       expect(onValidSpy).toHaveBeenCalledWith({ name: 'Valid Name' });
+    });
+
+    it('should validate and submit form with steps successfully', async () => {
+      const steps: FormStep[] = [
+        {
+          label: 'Step 1',
+          ativo: true,
+          completado: false,
+          schema: yup.object({
+            name: yup.string().required('Name is required'),
+            email: yup.string().email('Invalid email').required('Email is required')
+          })
+        },
+        {
+          label: 'Step 2',
+          ativo: false,
+          completado: false,
+          schema: yup.object({
+            age: yup.number().required('Age is required').min(18, 'Must be 18 or older')
+          })
+        }
+      ];
+
+      const handler = createFormFromSchema(steps, onValidSpy);
+      
+      
+      handler.form.patchValue({
+        name: 'John Doe',
+        email: 'john@example.com',
+        age: 25
+      });
+
+      const result = await handler.submit();
+      
+      expect(onValidSpy).toHaveBeenCalledWith({
+        name: 'John Doe',
+        email: 'john@example.com',
+        age: 25
+      });
+      expect(result).toEqual({
+        name: 'John Doe',
+        email: 'john@example.com',
+        age: 25
+      });
+    });
+
+    it('should handle validation errors with steps', async () => {
+      const steps: FormStep[] = [
+        {
+          label: 'Step 1',
+          ativo: true,
+          completado: false,
+          schema: yup.object({
+            name: yup.string().required('Name is required')
+          })
+        },
+        {
+          label: 'Step 2',
+          ativo: false,
+          completado: false,
+          schema: yup.object({
+            age: yup.number().required('Age is required').min(18, 'Must be 18 or older')
+          })
+        }
+      ];
+
+      const handler = createFormFromSchema(steps, onValidSpy);
+      
+      
+      handler.form.patchValue({
+        name: '', 
+        age: 16   
+      });
+
+      const result = await handler.submit();
+      
+      expect(onValidSpy).not.toHaveBeenCalled();
+      expect(result).toBeUndefined();
+      expect(handler.form.get('name')?.errors).toEqual({ message: 'Name is required' });
+      expect(handler.form.get('age')?.errors).toEqual({ message: 'Must be 18 or older' });
     });
   });
 });

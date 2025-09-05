@@ -50,6 +50,14 @@
     "ESTADO_REQUIRED": "Estado é obrigatório",
     "ESTADO_MAX_LENGTH": "Estado deve ter no máximo 100 caracteres",
     "UF_REQUIRED": "UF é obrigatória",
-    "UF_LENGTH": "UF deve ter exatamente 2 caracteres"
+    "UF_LENGTH": "UF deve ter exatamente 2 caracteres",
+    "GAME_GROUP_NAME_REQUIRED": "Nome da mesa é obrigatório",
+    "GAME_GROUP_NAME_MIN_LENGTH": "Nome da mesa deve ter pelo menos 3 caracteres",
+    "GAME_GROUP_NAME_MAX_LENGTH": "Nome da mesa deve ter no máximo 100 caracteres",
+    "LOCAL_REQUIRED": "Local é obrigatório",
+    "LOCAL_MIN_LENGTH": "Local deve ter pelo menos 5 caracteres",
+    "LOCAL_MAX_LENGTH": "Local deve ter no máximo 200 caracteres",
+    "HORA_REQUIRED": "Horário é obrigatório",
+    "HORA_PATTERN": "Horário deve estar no formato HH:MM (ex: 14:30)"
   }
 }

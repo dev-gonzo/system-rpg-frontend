@@ -5,6 +5,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { BehaviorSubject, of, Subject } from 'rxjs';
 import * as yup from 'yup';
 import { TranslatedFormService, TranslatedFormComponent, TranslatedFormConfig } from './useTranslatedForm';
+import { FormStep } from '../utils/createFormFromSchema';
 
 @Injectable()
 class TestTranslatedFormComponent extends TranslatedFormComponent {
@@ -341,6 +342,147 @@ describe('TranslatedFormService', () => {
       await new Promise(resolve => setTimeout(resolve, 150));
 
       
+      expect(changeDetectorRefSpy.detectChanges).toHaveBeenCalled();
+    });
+  });
+
+  describe('createForm with steps', () => {
+    let onSubmitSpy: jasmine.Spy;
+    let createStepsSpy: jasmine.Spy;
+    let mockSteps: FormStep[];
+
+    beforeEach(() => {
+      onSubmitSpy = jasmine.createSpy('onSubmit');
+      mockSteps = [
+        {
+          label: 'Step 1',
+          ativo: true,
+          completado: false,
+          schema: yup.object({
+            name: yup.string().required('Nome é obrigatório')
+          })
+        },
+        {
+          label: 'Step 2',
+          ativo: false,
+          completado: false,
+          schema: yup.object({
+            email: yup.string().email('Email inválido').required('Email é obrigatório')
+          })
+        }
+      ];
+      createStepsSpy = jasmine.createSpy('createSteps').and.returnValue(Promise.resolve(mockSteps));
+    });
+
+    it('should create form with steps configuration', async () => {
+      const config = {
+        createSteps: createStepsSpy,
+        onSubmit: onSubmitSpy
+      };
+
+      const result = await service.createForm(config);
+
+      expect(result.form).toBeInstanceOf(FormGroup);
+      expect(result.form$).toBeInstanceOf(BehaviorSubject);
+      expect(result.steps).toEqual(mockSteps);
+      expect(typeof result.submit).toBe('function');
+      expect(typeof result.destroy).toBe('function');
+      expect(createStepsSpy).toHaveBeenCalledWith(translateServiceSpy);
+    });
+
+    it('should throw error when neither createSchema nor createSteps is provided', async () => {
+      const config = {
+        onSubmit: onSubmitSpy
+      };
+
+      await expectAsync(service.createForm(config as TranslatedFormConfig<Record<string, unknown>>))
+        .toBeRejectedWithError('Deve fornecer createSchema ou createSteps');
+    });
+
+    it('should throw error when both createSchema and createSteps are provided', async () => {
+      const mockSchema = yup.object({ name: yup.string() });
+      const createSchemaSpy = jasmine.createSpy('createSchema').and.returnValue(Promise.resolve(mockSchema));
+      
+      const config = {
+        createSchema: createSchemaSpy,
+        createSteps: createStepsSpy,
+        onSubmit: onSubmitSpy
+      };
+
+      await expectAsync(service.createForm(config as TranslatedFormConfig<Record<string, unknown>>))
+        .toBeRejectedWithError('Não é possível fornecer createSchema e createSteps ao mesmo tempo');
+    });
+
+    it('should handle form submission with steps successfully', async () => {
+      const config = {
+        createSteps: createStepsSpy,
+        onSubmit: onSubmitSpy
+      };
+
+      const result = await service.createForm(config);
+      
+      result.form.patchValue({
+        name: 'John Doe',
+        email: 'john@example.com'
+      });
+
+      const submitResult = await result.submit();
+
+      expect(onSubmitSpy).toHaveBeenCalledWith({
+        name: 'John Doe',
+        email: 'john@example.com'
+      });
+      expect(submitResult).toEqual({
+        name: 'John Doe',
+        email: 'john@example.com'
+      });
+    });
+
+    it('should preserve steps and form values on language change', async () => {
+      const config = {
+        createSteps: createStepsSpy,
+        onSubmit: onSubmitSpy,
+        preserveValuesOnLanguageChange: true
+      };
+
+      const result = await service.createForm(config);
+      
+      result.form.patchValue({
+        name: 'John Doe',
+        email: 'john@example.com'
+      });
+      result.form.get('name')?.markAsTouched();
+
+      
+      const newSteps: FormStep[] = [
+        {
+          label: 'Step 1 EN',
+          ativo: true,
+          completado: false,
+          schema: yup.object({
+            name: yup.string().required('Name is required')
+          })
+        },
+        {
+          label: 'Step 2 EN',
+          ativo: false,
+          completado: false,
+          schema: yup.object({
+            email: yup.string().email('Invalid email').required('Email is required')
+          })
+        }
+      ];
+      createStepsSpy.and.returnValue(Promise.resolve(newSteps));
+
+      langChangeSubject.next({ lang: 'en-US', translations: {} });
+      
+      
+      await new Promise(resolve => setTimeout(resolve, 150));
+
+      expect(result.form.get('name')?.value).toBe('John Doe');
+      expect(result.form.get('email')?.value).toBe('john@example.com');
+      expect(result.form.get('name')?.touched).toBeTruthy();
+      expect(result.steps).toEqual(newSteps);
       expect(changeDetectorRefSpy.detectChanges).toHaveBeenCalled();
     });
   });

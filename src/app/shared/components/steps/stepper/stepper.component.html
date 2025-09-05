@@ -1,0 +1,36 @@
+<div class="container-stepper py-3 px-3">
+  <ng-container *ngFor="let step of steps; let i = index">
+    <div
+      class="step"
+      [class.ativo]="step.ativo"
+      [class.completado]="step.completado"
+      [class.bloqueado]="step.bloqueado || i > indiceAtual"
+      [attr.data-status]="getStepStatus(step, i)"
+      (click)="selecionarStep(i)"
+    >
+      <div class="step-icon">
+        <img [src]="getSvgPath(getStepIcon(step, i))" alt="" class="icon-svg" />
+      </div>
+      <div class="step-content">
+        <div class="step-title">{{ step.label | translate }}</div>
+        <div class="step-status">
+          @switch (getStepStatus(step, i)) {
+            @case ('completed') {
+              <span class="status-text completed">{{ 'COMMON.COMPLETED' | translate }}</span>
+            }
+            @case ('blocked') {
+              <span class="status-text blocked">{{ 'COMMON.BLOCKED' | translate }}</span>
+            }
+            @default {
+              <span class="status-text pending">{{ 'COMMON.PENDING' | translate }}</span>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+    @if (i < steps.length - 1) {
+      <div class="step-connector"></div>
+    }
+  </ng-container>
+</div>

@@ -1,0 +1,9 @@
+<h4 class="card-title mb-3">Resumo</h4>
+<div class="alert alert-info">
+  <h5>Resumo da Mesa</h5>
+  <p><strong>Nome da Mesa:</strong> {{ form.get('gameGroupName')?.value || 'Não informado' }}</p>
+  <p><strong>Mestre:</strong> {{ form.get('nome')?.value || 'Não informado' }}</p>
+  <p><strong>Local:</strong> {{ form.get('local')?.value || 'Não informado' }}</p>
+  <p><strong>Horário:</strong> {{ form.get('hora')?.value || 'Não informado' }}</p>
+</div>
+<p class="text-muted">Revise as informações acima e clique em "Criar Mesa" para finalizar.</p>

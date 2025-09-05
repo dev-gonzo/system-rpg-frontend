@@ -11,7 +11,7 @@ export interface ITranslationResource {
 
 export class MultiTranslateHttpLoader implements TranslateLoader {
   private readonly CACHE_KEY_PREFIX = 'ngx-translate-cache';
-  private readonly CACHE_VERSION = '1.0.2'; 
+  private readonly CACHE_VERSION = '1.0.3'; 
   private readonly CACHE_EXPIRY_HOURS = 24; 
 
   constructor(

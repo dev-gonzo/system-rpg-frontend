@@ -240,6 +240,22 @@
         "UPDATE_SUCCESS": "Persona física actualizada exitosamente",
         "CEP_NOT_FOUND": "Código postal no encontrado"
       }
+    },
+    "GAME_GROUP": {
+      "CREATE": {
+        "TITLE": "Crear Grupo de Juego",
+        "DESCRIPTION": "Configura tu nuevo grupo de RPG",
+        "HEADER": {
+          "H1": "Crea tu Grupo de RPG",
+          "H3": "¡La aventura comienza aquí! ⚔️",
+          "P": "Sé el maestro de tu propia historia. Crea un grupo, personaliza la campaña e invita a tus amigos al viaje."
+        },
+        "STEPS": {
+          "ESSENTIAL_INFO": "Información Esencial",
+          "LOCATION_TIME": "Ubicación y Hora",
+          "SUMMARY": "Resumen"
+        }
+      }
     }
   }
 }

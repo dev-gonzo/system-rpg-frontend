@@ -39,9 +39,7 @@ bootstrapApplication(AppComponent, {
         loader: {
           provide: TranslateLoader,
           useFactory: (http: HttpClient) => {
-            return new MultiTranslateHttpLoader(http, [
-              { prefix: './assets/i18n/', suffix: '.json' }
-            ]);
+            return new MultiTranslateHttpLoader(http);
           },
           deps: [HttpClient],
         },

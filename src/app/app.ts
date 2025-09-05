@@ -6,7 +6,7 @@ import { AuthService } from './auth/service/auth.service';
 import { ThemeState } from './design/theme/theme.state';
 import { ToastComponent } from './shared/components/toast/toast.component';
 import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
-import { LanguageService } from './shared/services/language.service';
+import { LanguageService } from '@app/shared/services/language.service';
 
 
 @Component({

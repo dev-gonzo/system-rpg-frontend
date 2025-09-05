@@ -36,6 +36,9 @@
     "TOGGLE": "Alternar",
     "ACTIVE": "Activo",
     "INACTIVE": "Inactivo",
+    "PENDING": "Pendiente",
+    "BLOCKED": "Bloqueado",
+    "COMPLETED": "Completado",
     "CITY": "Ciudad",
     "COUNTRY": "País",
     "PLACEHOLDER": {
@@ -78,12 +81,12 @@
         "MINIMIZE_SIDEBAR": "Minimizar barra lateral",
         "EXPAND_SIDEBAR": "Expandir barra lateral",
         "SETTINGS": "Configuraciones",
-        "PORTAL_VERSION": "System RPG v1.0"
+        "PORTAL_VERSION": "System RPG v2.0"
       },
       "MOBILE_MENU": {
         "CLOSE_MENU": "Cerrar menú",
         "SETTINGS": "Configuraciones",
-        "PORTAL_VERSION": "System RPG v1.0"
+        "PORTAL_VERSION": "System RPG v2.0"
       }
     },
     "AUTH": {
@@ -96,6 +99,27 @@
       "USUARIOS": "USUARIOS",
       "ARQUIVOS": "ARCHIVOS",
       "PROJETOS": "PROYECTOS"
+    },
+    "STEPS": {
+      "NEXT": "Siguiente",
+      "PREVIOUS_STEP": "Paso anterior",
+      "NEXT_STEP": "Siguiente paso",
+      "STEP_NUMBER": "Paso {{number}}",
+      "STEP_COUNTER": "{{current}} de {{total}}",
+      "PROGRESS": "Progreso: {{current}} de {{total}} pasos",
+      "NO_CONTENT": "No hay contenido definido para este paso",
+      "STATUS": {
+        "PENDING": "Pendiente",
+        "ACTIVE": "Activo",
+        "COMPLETED": "Completado",
+        "INVALID": "Inválido"
+      },
+      "STEP_STATUS": {
+        "PENDING": "Paso pendiente",
+        "ACTIVE": "Paso activo",
+        "COMPLETED": "Paso completado",
+        "INVALID": "Paso inválido"
+      }
     }
   }
 }

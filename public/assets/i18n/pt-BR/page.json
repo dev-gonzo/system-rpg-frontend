@@ -288,6 +288,49 @@
         "UPDATE_SUCCESS": "Pessoa física atualizada com sucesso",
         "CEP_NOT_FOUND": "CEP não encontrado"
       }
+    },
+    "GAME_GROUP": {
+      "CREATE": {
+        "TITLE": "Criar Mesa de Jogo",
+        "DESCRIPTION": "Configure sua nova mesa de RPG",
+        "HEADER": {
+          "H1": "Crie sua Mesa de RPG",
+          "H3": "A aventura começa aqui! ⚔️",
+          "P": "Seja o mestre da sua própria história. Crie uma mesa, personalize a campanha e convide seus amigos para a jornada."
+        },
+        "STEPS": {
+          "ESSENTIAL_INFO": "Informações Essenciais",
+          "LOCATION_TIME": "Local e Hora",
+          "SUMMARY": "Resumo"
+        },
+        "FIELDS": {
+          "GAME_GROUP_NAME": "Nome da Mesa",
+          "GAME_GROUP_NAME_PLACEHOLDER": "Digite o nome da sua mesa de jogo",
+          "NOME": "Seu Nome",
+          "NOME_PLACEHOLDER": "Digite seu nome",
+          "LOCAL": "Local",
+          "LOCAL_PLACEHOLDER": "Digite o local onde será realizada a sessão",
+          "HORA": "Horário",
+          "HORA_PLACEHOLDER": "HH:MM"
+        },
+        "VALIDATION": {
+          "GAME_GROUP_NAME_REQUIRED": "Nome da mesa é obrigatório",
+          "GAME_GROUP_NAME_MIN_LENGTH": "Nome da mesa deve ter pelo menos 3 caracteres",
+          "GAME_GROUP_NAME_MAX_LENGTH": "Nome da mesa deve ter no máximo 100 caracteres",
+          "NOME_REQUIRED": "Seu nome é obrigatório",
+          "NOME_MIN_LENGTH": "Nome deve ter pelo menos 2 caracteres",
+          "NOME_MAX_LENGTH": "Nome deve ter no máximo 50 caracteres",
+          "LOCAL_REQUIRED": "Local é obrigatório",
+          "LOCAL_MIN_LENGTH": "Local deve ter pelo menos 5 caracteres",
+          "LOCAL_MAX_LENGTH": "Local deve ter no máximo 200 caracteres",
+          "HORA_REQUIRED": "Horário é obrigatório",
+          "HORA_PATTERN": "Horário deve estar no formato HH:MM (ex: 14:30)"
+        },
+        "SUCCESS": "Mesa de jogo criada com sucesso!",
+        "ERROR": "Erro ao criar mesa de jogo",
+        "FORM_ERROR": "Por favor, corrija os erros no formulário",
+        "STEP_ERROR": "Por favor, corrija os erros neste passo"
+      }
     }
   }
 }

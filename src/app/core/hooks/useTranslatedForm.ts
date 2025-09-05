@@ -4,10 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil, firstValueFrom, BehaviorSubject } from 'rxjs';
 import * as yup from 'yup';
 
-import { createFormFromSchema } from '../utils/createFormFromSchema';
+import { createFormFromSchema, FormStep } from '../utils/createFormFromSchema';
 
 export interface TranslatedFormConfig<T extends yup.Maybe<yup.AnyObject>> {
-  createSchema: (translateService: TranslateService) => Promise<yup.ObjectSchema<T>>;
+  createSchema?: (translateService: TranslateService) => Promise<yup.ObjectSchema<T>>;
+  createSteps?: (translateService: TranslateService) => Promise<FormStep[]>;
   onSubmit: (data: T) => void;
   initialValues?: Partial<T>;
   preserveValuesOnLanguageChange?: boolean;
@@ -16,6 +17,7 @@ export interface TranslatedFormConfig<T extends yup.Maybe<yup.AnyObject>> {
 export interface TranslatedFormResult<T extends yup.Maybe<yup.AnyObject>> {
   form: FormGroup;
   form$: BehaviorSubject<FormGroup>;
+  steps?: FormStep[];
   submit: () => Promise<T | undefined>;
   destroy: () => void;
 }
@@ -33,13 +35,21 @@ export class TranslatedFormService {
 
     const {
       createSchema,
+      createSteps,
       onSubmit,
       initialValues,
       preserveValuesOnLanguageChange = true
     } = config;
+    
+    if (!createSchema && !createSteps) {
+      throw new Error('Deve fornecer createSchema ou createSteps');
+    }
+    if (createSchema && createSteps) {
+      throw new Error('Não é possível fornecer createSchema e createSteps ao mesmo tempo');
+    }
 
     
-    const createSchemaWithTranslations = async () => {
+    const createSchemaOrStepsWithTranslations = async () => {
       
       const currentLang = this.translateService.getCurrentLang();
       if (!currentLang) {
@@ -50,12 +60,20 @@ export class TranslatedFormService {
       
       await new Promise(resolve => setTimeout(resolve, 100));
       
-      return await createSchema(this.translateService);
+      if (createSchema) {
+        return await createSchema(this.translateService);
+      } else if (createSteps) {
+        return await createSteps(this.translateService);
+      }
+      
+      throw new Error('Nenhum createSchema ou createSteps fornecido');
     };
 
     
-    const initialSchema = await createSchemaWithTranslations();
-    let currentFormHandler = createFormFromSchema(initialSchema, onSubmit, initialValues);
+    const initialSchemaOrSteps = await createSchemaOrStepsWithTranslations();
+    let currentFormHandler = Array.isArray(initialSchemaOrSteps) 
+      ? createFormFromSchema(initialSchemaOrSteps, onSubmit as (data: Record<string, unknown>) => void, initialValues)
+      : createFormFromSchema(initialSchemaOrSteps, onSubmit, initialValues);
     
     
     const form$ = new BehaviorSubject<FormGroup>(currentFormHandler.form);
@@ -82,8 +100,10 @@ export class TranslatedFormService {
             currentErrors[key] = control?.errors;
           });
           
-          const updatedSchema = await createSchemaWithTranslations();
-          const newFormHandler = createFormFromSchema(updatedSchema, onSubmit, currentValues);
+          const updatedSchemaOrSteps = await createSchemaOrStepsWithTranslations();
+          const newFormHandler = Array.isArray(updatedSchemaOrSteps)
+            ? createFormFromSchema(updatedSchemaOrSteps, onSubmit as (data: Record<string, unknown>) => void, currentValues)
+            : createFormFromSchema(updatedSchemaOrSteps, onSubmit, currentValues);
           
           
           Object.keys(newFormHandler.form.controls).forEach(key => {
@@ -103,7 +123,21 @@ export class TranslatedFormService {
             
             setTimeout(() => {
               try {
-                updatedSchema.validateSync(newFormHandler.form.value, { abortEarly: false });
+          
+                let validationSchema: yup.ObjectSchema<Record<string, unknown>>;
+                
+                if (Array.isArray(updatedSchemaOrSteps)) {
+                  const mergedSchemaShape: Record<string, unknown> = {};
+                  for (const step of updatedSchemaOrSteps) {
+                    const stepShape = step.schema.describe().fields;
+                    Object.assign(mergedSchemaShape, stepShape);
+                  }
+                  validationSchema = yup.object(mergedSchemaShape as yup.ObjectShape);
+                } else {
+                  validationSchema = updatedSchemaOrSteps as yup.ObjectSchema<Record<string, unknown>>;
+                }
+                
+                validationSchema.validateSync(newFormHandler.form.value, { abortEarly: false });
                 
                 Object.keys(newFormHandler.form.controls).forEach(key => {
                   newFormHandler.form.get(key)?.setErrors(null);
@@ -136,8 +170,11 @@ export class TranslatedFormService {
         return form$.value;
       },
       form$,
+      get steps() {
+        return currentFormHandler.steps;
+      },
       get submit() {
-        return currentSubmit;
+        return currentSubmit as () => Promise<T | undefined>;
       },
       destroy
     };

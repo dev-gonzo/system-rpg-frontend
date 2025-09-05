@@ -1,12 +1,54 @@
-<app-section-wrapper title="Crie sua Mesa de RPG">
-  <h3 class=" fw-bold text-primary pt-4">A aventura começa aqui! ⚔️</h3>
-  <p class="mt-2 fs-5 py-4">Seja o mestre da sua própria história. Crie uma mesa, personalize a campanha e convide seus amigos para a jornada. Você decide se a mesa será privada (apenas para convidados) ou pública (aberta para que outros jogadores possam se juntar).
+<app-section-wrapper [title]="'PAGE.GAME_GROUP.CREATE.HEADER.H1' | translate">
+  <form [formGroup]="form" *ngIf="form">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="fw-bold text-primary pt-4">{{ 'PAGE.GAME_GROUP.CREATE.HEADER.H3' | translate }}</h3>
+      <p class="mt-2 fs-5 py-4">
+        {{ 'PAGE.GAME_GROUP.CREATE.HEADER.P' | translate }}
+      </p>
+    </div>
 
-Organize personagens, anotações e sessões em um só lugar. Abrace o destino, a lenda te espera!</p>
-  
-<div class="d-grid gap-2">
+    <div class="col-12 mb-4">
+      <app-stepper [steps]="steps" [indiceAtual]="stepAtual" (trocarStep)="trocarStep($event)"></app-stepper>
+    </div>
 
-  <button class="btn btn-secondary btn-lg py-3 fs-3">Criar Mesa</button>
-</div>
+    <div class="col-12">
+      <div class="card theme-surface border-0">
+        <div class="card-body ">
+          <app-essential-info-step 
+            *ngIf="stepAtual === 0" 
+            [form]="form">
+          </app-essential-info-step>
 
-</app-section-wrapper>
+          <app-location-time-step 
+            *ngIf="stepAtual === 1" 
+            [form]="form">
+          </app-location-time-step>
+
+          <app-summary-step 
+            *ngIf="stepAtual === 2" 
+            [form]="form">
+          </app-summary-step>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-4">
+      <app-stepper-navigation
+        [atual]="stepAtual"
+        [total]="steps.length"
+        (voltar)="voltar()"
+        (proximo)="proximo()"
+        (enviar)="onSubmit()"
+      ></app-stepper-navigation>
+    </div>
+   </div>
+   </form>
+
+   <div *ngIf="!form" class="text-center py-5">
+     <div class="spinner-border text-primary" role="status">
+       <span class="visually-hidden">Carregando...</span>
+     </div>
+     <p class="mt-2">Preparando formulário...</p>
+   </div>
+ </app-section-wrapper>
