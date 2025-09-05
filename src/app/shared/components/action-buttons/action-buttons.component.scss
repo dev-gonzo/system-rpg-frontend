@@ -1,0 +1,63 @@
+:host {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+
+  .d-flex {
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  app-tooltip {
+    position: relative;
+    z-index: 1050;
+  }
+
+  .btn {
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 0.5rem !important;
+    transition: all 0.2s ease-in-out !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 2.5rem !important;
+    height: 2.5rem !important;
+    border: none !important;
+    box-shadow: none !important;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+      border: none !important;
+      z-index: 1051;
+    }
+
+    &:active {
+      transform: translateY(0) !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    &:focus {
+      outline: 2px solid var(--bs-primary);
+      outline-offset: 2px;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    mat-icon {
+      font-size: 1.125rem !important;
+      width: 1.125rem !important;
+      height: 1.125rem !important;
+    }
+  }
+
+  .gap-1 {
+    gap: 0.25rem;
+  }
+}

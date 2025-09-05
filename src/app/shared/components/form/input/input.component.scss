@@ -1,0 +1,8 @@
+.form-control {
+  &.is-invalid {
+    &::placeholder {
+      color: var(--color-error) !important;
+      opacity: 1;
+    }
+  }
+}

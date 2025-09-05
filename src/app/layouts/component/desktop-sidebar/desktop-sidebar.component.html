@@ -1,0 +1,107 @@
+<aside 
+  class="desktop-sidebar" 
+  [class.expanded]="isExpanded"
+  [class.collapsed]="!isExpanded">
+  
+
+  <div class="sidebar-header">
+    <div class="logo-container" *ngIf="isExpanded">
+      <img 
+        src="assets/img/logo-white.png" 
+        alt="System RPG" 
+        class="w-60">
+    </div>
+    
+  
+    <app-tooltip 
+      [text]="(isExpanded ? 'COMMON.LAYOUT.SIDEBAR.MINIMIZE_SIDEBAR' : 'COMMON.LAYOUT.SIDEBAR.EXPAND_SIDEBAR') | translate"
+      position="right"
+      [delay]="300">
+      <button 
+        class="btn-toggle-sidebar" 
+        (click)="toggleExpansion()"
+        [attr.aria-label]="(isExpanded ? 'COMMON.LAYOUT.SIDEBAR.MINIMIZE_SIDEBAR' : 'COMMON.LAYOUT.SIDEBAR.EXPAND_SIDEBAR') | translate">
+        <mat-icon style="font-size: 1.5rem;">{{ isExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+      </button>
+    </app-tooltip>
+  </div>
+
+
+  <nav class="sidebar-nav">
+    <ul class="menu-list">
+      <li 
+        *ngFor="let item of menuItems" 
+        class="menu-item">
+        <app-tooltip 
+          *ngIf="!isExpanded"
+          [text]="item.label | translate"
+          position="right"
+          [delay]="300">
+          <a 
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="menu-link"
+            (click)="onMenuItemClick(item)">
+            <div class="menu-icon">
+              <mat-icon>{{item.icon}}</mat-icon>
+            </div>
+          </a>
+        </app-tooltip>
+        
+        <a 
+          *ngIf="isExpanded"
+          [routerLink]="item.route"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="menu-link"
+          (click)="onMenuItemClick(item)">
+          <div class="menu-icon">
+            <mat-icon>{{item.icon}}</mat-icon>
+          </div>
+          <span class="menu-label">{{ item.label | translate }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="sidebar-settings">
+      <app-tooltip 
+        *ngIf="!isExpanded"
+        [text]="'COMMON.LAYOUT.SIDEBAR.SETTINGS' | translate"
+        position="right"
+        [delay]="300">
+        <a 
+          routerLink="/configuracoes"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="menu-link settings-link"
+          (click)="onSettingsClick()">
+          <div class="menu-icon">
+            <mat-icon>settings</mat-icon>
+          </div>
+        </a>
+      </app-tooltip>
+      
+      <a 
+        *ngIf="isExpanded"
+        routerLink="/configuracoes"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="menu-link settings-link"
+        (click)="onSettingsClick()">
+        <div class="menu-icon">
+          <mat-icon>settings</mat-icon>
+        </div>
+        <span class="menu-label">{{ 'COMMON.LAYOUT.SIDEBAR.SETTINGS' | translate }}</span>
+      </a>
+    </div>
+
+
+  <div class="sidebar-footer" *ngIf="isExpanded">
+    <div class="sidebar-version">
+      <small>{{ 'COMMON.LAYOUT.SIDEBAR.PORTAL_VERSION' | translate }}</small>
+    </div>
+  </div>
+</aside>

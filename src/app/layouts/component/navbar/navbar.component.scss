@@ -1,0 +1,218 @@
+.navbar {
+  background: linear-gradient(45deg, var(--color-menu) 0%, var(--color-menu-hover) 100%) !important;
+  color: var(--color-menu-contrast) !important;
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--color-menu-hover) 0%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease-out;
+}
+
+.hamburger-btn {
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  display: none !important;
+
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  mat-icon {
+    transition: transform 0.2s ease;
+  }
+
+  &.menu-open mat-icon {
+    transform: rotate(90deg);
+  }
+}
+
+.navbar-logo {
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 1px 2px color-mix(in srgb, var(--color-foreground) 10%, transparent));
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.logo-container {
+  transition: all 0.2s ease;
+  
+
+}
+
+
+
+.accessibility-controls {
+  .btn {
+    transition: all 0.2s ease;
+    border-radius: 6px;
+    
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-menu-contrast) 10%, transparent);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+
+.btn-sm {
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-menu-contrast) 15%, transparent);
+    transform: scale(1.1);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+
+.dropdown {
+  position: relative;
+  
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    outline: none !important;
+    box-shadow: none !important;
+    
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-menu-contrast) 10%, transparent);
+    }
+    
+    &:focus,
+    &:active {
+      outline: none !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+    
+    &::after {
+      display: none;
+    }
+  }
+  
+  .user-avatar {
+    border: 2px solid color-mix(in srgb, var(--color-menu-contrast) 20%, transparent);
+    transition: all 0.2s ease;
+    
+    &:hover {
+      border-color: color-mix(in srgb, var(--color-menu-contrast) 40%, transparent);
+    }
+  }
+  
+  .user-name {
+    font-size: 0.9rem;
+    line-height: 1.1;
+    color: white !important;
+  }
+
+  .user-role {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    line-height: 1.1;
+    color: white !important;
+  }
+  
+  .dropdown-menu {
+    background: linear-gradient(45deg, var(--color-menu) 0%, var(--color-menu-hover) 100%);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-menu) 30%, transparent);
+    margin-top: 0.5rem;
+    min-width: 200px;
+    right: 0;
+    left: auto;
+    
+    .dropdown-item {
+      color: white !important;
+      
+      mat-icon {
+        width: 16px;
+        opacity: 0.7;
+        font-size: 1.2rem;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: transparent !important;
+        color: white !important;
+      }
+    }
+    
+    .dropdown-divider {
+      border-color: color-mix(in srgb, var(--color-menu-contrast) 15%, transparent);
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+@media (width <= 860px) {
+
+  
+  .navbar-logo {
+    height: 28px !important;
+  }
+  
+  .hamburger-btn {
+    padding: 0.375rem !important;
+    display: block !important;
+  }
+  
+  .unit-info {
+    display: none !important;
+  }
+  
+  .dropdown {
+    .user-name::after {
+      content: ' - 70 DP Tatuapé';
+      font-weight: normal;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (width <= 576px) {
+
+  
+  .logo-container {
+    gap: 0.5rem !important;
+  }
+  
+  .dropdown {
+    .user-name::after {
+      font-weight: normal;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.hamburger-btn:focus,
+.accessibility-controls .btn:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-menu-contrast) 50%, transparent);
+  outline-offset: 2px;
+}
+
+

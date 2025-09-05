@@ -1,0 +1,88 @@
+<div
+  class="animated-gradient-bg vh-100 overflow-hidden w-100 vh-100 fixed-top position-fixed z-n1"
+></div>
+<div class="row justify-content-center vh-100">
+  <div class="col-12 d-flex justify-content-end p-4 flex-grow-1">
+    <app-accessibility-controls />
+  </div>
+
+  <div class="col-10 col-md-6">
+    <div class="p-4 theme-surface rounded-3 mb-4">
+      <div class="text-center px-md-5">
+        <img
+          [src]="
+            theme.theme() === 'light'
+              ? 'assets/img/lobo-gray.png'
+        : 'assets/img/logo-white.png'
+          "
+          alt="System RPG"
+          class="w-40 mb-3"
+        />
+        <p class="text-muted mb-4">{{ 'PAGE.REGISTER.WELCOME_MESSAGE' | translate }}</p>
+
+         <h2 class="h5 fw-bold text-primary mb-3">{{ 'PAGE.REGISTER.FORM_TITLE' | translate }}</h2>
+      </div>
+
+      <app-form-wrapper
+        *ngIf="form"
+        [formGroup]="form"
+        (formSubmit)="onSubmit()"
+        (formReset)="onReset()"
+        [submitButtonText]="'PAGE.REGISTER.REGISTER_BUTTON' | translate"
+        resetButtonText="Cancelar"
+        [showResetButton]="true"
+      >
+        <app-form-input
+            [label]="'PAGE.REGISTER.FIRST_NAME_LABEL' | translate"
+            [placeholder]="'PAGE.REGISTER.FIRST_NAME_PLACEHOLDER' | translate"
+            [control]="$any(form.get('firstName'))"
+            col="6"
+          />
+
+          <app-form-input
+            [label]="'PAGE.REGISTER.LAST_NAME_LABEL' | translate"
+            [placeholder]="'PAGE.REGISTER.LAST_NAME_PLACEHOLDER' | translate"
+            [control]="$any(form.get('lastName'))"
+            col="6"
+          />
+
+          <app-form-input
+            [label]="'PAGE.REGISTER.EMAIL_LABEL' | translate"
+            [placeholder]="'PAGE.REGISTER.EMAIL_PLACEHOLDER' | translate"
+            type="email"
+            [control]="$any(form.get('email'))"
+            fieldName="email"
+            (blurEvent)="validateFieldOnBlur($event)"
+            col="12"
+          />
+
+          <app-form-input
+            [label]="'PAGE.REGISTER.USERNAME_LABEL' | translate"
+            [placeholder]="'PAGE.REGISTER.USERNAME_PLACEHOLDER' | translate"
+            [control]="$any(form.get('username'))"
+            fieldName="username"
+            (blurEvent)="validateFieldOnBlur($event)"
+            col="12"
+          />
+
+        <app-form-password
+            [passwordLabel]="'PAGE.REGISTER.PASSWORD_LABEL' | translate"
+            [confirmPasswordLabel]="'PAGE.REGISTER.CONFIRM_PASSWORD_LABEL' | translate"
+            [passwordPlaceholder]="'PAGE.REGISTER.PASSWORD_PLACEHOLDER' | translate"
+            [confirmPasswordPlaceholder]="'PAGE.REGISTER.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
+            [passwordControl]="$any(form.get('password'))"
+            [confirmPasswordControl]="$any(form.get('confirmPassword'))"
+            col="12"
+          />
+        </app-form-wrapper>
+
+      </div>
+      <div class="text-center">
+        <small
+          >{{ 'PAGE.REGISTER.ALREADY_HAVE_ACCOUNT' | translate }}
+          <a class="btn-link text-decoration-none" [routerLink]="['/auth/login']"
+            >{{ 'PAGE.REGISTER.LOGIN_LINK' | translate }}</a
+          ></small
+        >
+      </div>
+</div>

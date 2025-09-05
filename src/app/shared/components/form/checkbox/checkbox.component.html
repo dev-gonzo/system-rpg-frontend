@@ -1,0 +1,24 @@
+<app-form-wrapper
+  [label]="label"
+  [error]="error"
+  [inputId]="checkboxId"
+  [helper]="helper"
+>
+  <div class="form-check">
+    <input
+      [id]="checkboxId"
+      type="checkbox"
+      class="form-check-input"
+      [formControl]="control"
+    />
+    <label
+      class="form-check-label"
+      [for]="checkboxId"
+      [ngClass]="{
+        'text-danger': error
+      }"
+    >
+      {{ label }}
+    </label>
+  </div>
+</app-form-wrapper>

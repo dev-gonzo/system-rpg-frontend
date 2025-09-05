@@ -1,0 +1,84 @@
+<div
+  class="animated-gradient-bg vh-100 overflow-hidden w-100 vh-100 fixed-top position-fixed z-n1"
+></div>
+<div class="row justify-content-center vh-100">
+  <div class="col-12 d-flex justify-content-end p-4 flex-grow-1">
+    <app-accessibility-controls buttonClass=" text-white" />
+  </div>
+
+  <div class="col-10 col-sm-8 col-md-6 col-lg-4 z-0">
+    <div class="p-4 theme-surface rounded-3">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-7 col-md-8">
+            <img
+              [src]="
+                theme.theme() === 'light'
+                  ? 'assets/img/lobo-gray.png'
+        : 'assets/img/logo-white.png'
+              "
+              alt="System RPG"
+              class="w-100 mb-3"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="text-center px-md-5">
+        <p class="text-muted mb-4">
+          {{ 'PAGE.LOGIN.WELCOME_MESSAGE' | translate }}
+        </p>
+
+        <h2 class="h5 fw-bold text-primary mb-3">
+          {{ 'PAGE.LOGIN.ACCESS_DATA' | translate }}
+        </h2>
+      </div>
+
+      <ng-container *ngIf="form">
+        <app-form-wrapper
+          [formGroup]="form"
+          (formSubmit)="handleSubmit()"
+          [submitButtonText]="'PAGE.LOGIN.LOGIN_BUTTON' | translate"
+          [showResetButton]="false"
+          [disabled]="isSubmitting"
+          submitButtonClass="btn btn-primary w-100"
+        >
+          <app-form-input
+            [label]="'PAGE.LOGIN.USERNAME_LABEL' | translate"
+            [placeholder]="'PAGE.LOGIN.USERNAME_PLACEHOLDER' | translate"
+            [control]="$any(form.get('username'))"
+            col="12"
+          />
+
+          <app-form-input
+            [label]="'PAGE.LOGIN.PASSWORD_LABEL' | translate"
+            [placeholder]="'PAGE.LOGIN.PASSWORD_PLACEHOLDER' | translate"
+            type="password"
+            [control]="$any(form.get('password'))"
+            col="12"
+          />
+        </app-form-wrapper>
+      </ng-container>
+      <div class="col-12 text-center mt-3">
+        <small
+          >{{ 'PAGE.LOGIN.FORGOT_PASSWORD' | translate }}
+          <a
+            class="btn-link text-decoration-none"
+            [routerLink]="['/auth/recuperar-senha']"
+            >{{ 'PAGE.LOGIN.CLICK_HERE' | translate }}</a
+          ></small
+        >
+      </div>
+      <div class="col-12 text-center mt-2">
+        <hr class="mb-1" />
+        <button
+          type="button"
+          class="btn btn-link text-decoration-none"
+          [routerLink]="['/auth/register']"
+        >
+          {{ 'PAGE.LOGIN.CREATE_ACCOUNT' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12"></div>
+</div>

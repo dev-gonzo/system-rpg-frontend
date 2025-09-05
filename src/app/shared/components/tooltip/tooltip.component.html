@@ -1,0 +1,11 @@
+<ng-content></ng-content>
+
+<div 
+  class="tooltip-content"
+  [class.visible]="isVisible"
+  [attr.role]="'tooltip'"
+  [attr.aria-hidden]="!isVisible"
+>
+  {{ text }}
+  <div class="tooltip-arrow"></div>
+</div>

@@ -1,0 +1,30 @@
+<div class="d-flex">
+  <app-mobile-menu [isOpen]="isSidebarOpen" (closeMenu)="closeMobileMenu()">
+  </app-mobile-menu>
+
+
+  <div class="fixed-top w-auto w-0">
+    <app-desktop-sidebar (sidebarStateChange)="onSidebarStateChange($event)">
+    </app-desktop-sidebar>
+  </div>
+
+  <main class="main-layout main-pushed flex-grow-1">
+    <div class="d-flex flex-grow-1 min-vh-100">
+      <app-spacer-sidebar [isExpanded]="isSidebarExpanded"></app-spacer-sidebar>
+
+      <div class="d-flex flex-column flex-grow-1">
+        <app-navbar
+          (toggleSidebar)="toggleMobileMenu()"
+          [isSidebarOpen]="isSidebarOpen"
+        >
+        </app-navbar>
+        <div class="flex-grow-1 p-3 d-flex flex-column ">
+          <app-alert></app-alert>
+          <app-toast />
+          <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </main>
+</div>

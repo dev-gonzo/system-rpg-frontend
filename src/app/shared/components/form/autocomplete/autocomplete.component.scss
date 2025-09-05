@@ -1,0 +1,25 @@
+.form-control {
+  &.is-invalid {
+    &::placeholder {
+      color: var(--color-error) !important;
+      opacity: 1;
+    }
+  }
+}
+
+.form-control.is-invalid + .autocomplete-arrow {
+  color: var(--color-error) !important;
+}
+
+.autocomplete-arrow {
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.2s ease;
+  color: var(--color-muted);
+  
+  &.rotated {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}

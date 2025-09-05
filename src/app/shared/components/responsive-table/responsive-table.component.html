@@ -1,0 +1,161 @@
+<div *ngIf="loading" class="text-center py-4">
+  <output class="spinner-border text-primary">
+    <span class="visually-hidden">{{ "COMMON.LOADING" | translate }}</span>
+  </output>
+</div>
+
+<div
+  *ngIf="!loading && data.length > 0 && !isMobile()"
+  class="table-responsive"
+>
+  <table class="table">
+    <thead [class]="theme === 'light' ? 'table-light' : 'table-dark'">
+      <tr>
+        <th
+          *ngFor="let column of columns"
+          [style.width]="column.width"
+          [class.text-center]="column.align === 'center'"
+          [class.text-end]="column.align === 'right'"
+        >
+          {{ column.label | translate }}
+        </th>
+        <th *ngIf="actions.length > 0" class="text-center">
+          {{ "COMMON.ACTIONS" | translate }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of data; trackBy: trackByFn || trackByIndex"
+        [class]="
+          'table-row-hover ' +
+          (theme === 'dark' ? 'table-row-dark' : 'table-row-light')
+        "
+      >
+        <td
+          *ngFor="let column of columns"
+          [class.text-center]="column.align === 'center'"
+          [class.text-end]="column.align === 'right'"
+        >
+          <ng-container *ngIf="cellTemplate; else defaultCell">
+            <ng-container
+              *ngTemplateOutlet="
+                cellTemplate;
+                context: {
+                  $implicit: item,
+                  column: column,
+                  value: getColumnValue(item, column),
+                }
+              "
+            ></ng-container>
+          </ng-container>
+          <ng-template #defaultCell>
+            {{ getColumnValue(item, column) }}
+          </ng-template>
+        </td>
+        <td *ngIf="actions.length > 0" class="text-center">
+          <ng-container *ngIf="actionTemplate; else defaultActions">
+            <ng-container
+              *ngTemplateOutlet="
+                actionTemplate;
+                context: { $implicit: item, actions: getVisibleActions(item) }
+              "
+            ></ng-container>
+          </ng-container>
+          <ng-template #defaultActions>
+            <fieldset class="btn-group btn-group-sm">
+              <app-tooltip
+                *ngFor="let action of getVisibleActions(item)"
+                [text]="action.label"
+                position="left"
+                [delay]="300"
+              >
+                <button
+                  type="button"
+                  [class]="'btn btn-sm me-1 border-0 '"
+                  (click)="executeAction(action, item)"
+                  [attr.aria-label]="action.label"
+                >
+                  <mat-icon
+                    *ngIf="action.icon"
+                    [class]="getButtonClass(action.icon || '')"
+                    aria-hidden="true"
+                    style="font-size: 1.4rem"
+                  >{{ action.icon }}</mat-icon>
+                  <span *ngIf="!action.icon">{{ action.label }}</span>
+                </button>
+              </app-tooltip>
+            </fieldset>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!loading && data.length > 0 && isMobile()" class="container-fluid">
+  <div
+    *ngFor="let item of data; trackBy: trackByFn || trackByIndex"
+    class="row bg-light mb-4 rounded"
+  >
+    <div *ngFor="let column of columns" class="row">
+      <div class="col-12 d-flex flex-column gap-2 pt-1 pb-3 mb-2 border-bottom">
+        <span class="fw-medium">{{
+          column.mobileLabel || column.label | translate
+        }}</span>
+
+        <ng-container *ngIf="cellTemplate; else defaultMobileCell">
+          <ng-container
+            *ngTemplateOutlet="
+              cellTemplate;
+              context: {
+                $implicit: item,
+                column: column,
+                value: getColumnValue(item, column),
+              }
+            "
+          ></ng-container>
+        </ng-container>
+        <ng-template #defaultMobileCell>
+          {{ getColumnValue(item, column) }}
+        </ng-template>
+      </div>
+    </div>
+
+    <div *ngIf="actions.length > 0" class="row">
+      <div class="col-12 d-flex justify-content-end gap-2 p-3">
+        <ng-container *ngIf="actionTemplate; else defaultMobileActions">
+          <ng-container
+            *ngTemplateOutlet="
+              actionTemplate;
+              context: { $implicit: item, actions: getVisibleActions(item) }
+            "
+          ></ng-container>
+        </ng-container>
+        <ng-template #defaultMobileActions>
+          <app-tooltip
+            *ngFor="let action of getVisibleActions(item)"
+            [text]="action.label"
+            position="left"
+            [delay]="300"
+          >
+            <button
+              type="button"
+              [class]="'btn btn-sm border-0 '"
+              (click)="executeAction(action, item)"
+              [attr.aria-label]="action.label"
+            >
+              <mat-icon
+                *ngIf="action.icon"
+                [class]="getButtonClass(action.icon || '')"
+                aria-hidden="true"
+                style="font-size: 1.4rem"
+              >{{ action.icon }}</mat-icon>
+              <span *ngIf="!action.icon">{{ action.label }}</span>
+            </button>
+          </app-tooltip>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

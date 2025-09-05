@@ -1,0 +1,101 @@
+{
+  "COMMON": {
+    "EMAIL": "Email",
+    "NAME": "Name",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "BACK": "Back",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "UPDATE": "Update",
+    "CREATE": "Create",
+    "SEARCH": "Search",
+    "RESET": "Clear",
+    "SUBMIT": "Submit",
+    "CLOSE": "Close",
+    "YES": "Yes",
+    "NO": "No",
+    "CONFIRM": "Confirm",
+    "ERROR": "Error",
+    "SUCCESS": "Success",
+    "WARNING": "Warning",
+    "INFO": "Information",
+    "LOADING": "Loading...",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout",
+    "REGISTER": "Register",
+    "PASSWORD": "Password",
+    "USERNAME": "Username",
+    "WELCOME": "Welcome",
+    "HOME": "Home",
+    "DASHBOARD": "Dashboard",
+    "SETTINGS": "Settings",
+    "PROFILE": "Profile",
+    "LANGUAGE": "Language",
+    "ACTIONS": "Actions",
+    "TOGGLE": "Toggle",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "CITY": "City",
+    "COUNTRY": "Country",
+    "PLACEHOLDER": {
+      "DATE": "MM/DD/YYYY"
+    },
+    "ACCESSIBILITY": {
+      "SELECT_LANGUAGE": "Select language",
+      "DECREASE_FONT": "Decrease font",
+      "RESET_FONT": "Reset font",
+      "INCREASE_FONT": "Increase font",
+      "SWITCH_TO_LIGHT_THEME": "Switch to light theme",
+      "SWITCH_TO_DARK_THEME": "Switch to dark theme"
+    },
+    "LANGUAGES": {
+      "PT_BR": "Portuguese",
+      "EN_US": "English",
+      "ES_ES": "Spanish"
+    },
+    "PAGINATION": {
+      "PREVIOUS": "Previous",
+      "NEXT": "Next",
+      "PAGE": "Page",
+      "INFO": "Showing {{start}} to {{end}} of {{total}} items"
+    },
+    "LAYOUT": {
+      "NAVBAR": {
+        "CLOSE_MENU": "Close menu",
+        "OPEN_MENU": "Open menu",
+        "YOU_ARE_HERE": "You are here:",
+        "CHANGE_UNIT": "Change operational unit",
+        "ALERTS": "Alerts",
+        "USER_PHOTO": "User photo",
+        "USER_NAME": "User Name",
+        "OPERATIONAL_UNIT": "Operational Unit",
+        "USER_MENU": "User menu",
+        "MY_PROFILE": "My Profile",
+        "LOGOUT": "Logout"
+      },
+      "SIDEBAR": {
+        "MINIMIZE_SIDEBAR": "Minimize sidebar",
+        "EXPAND_SIDEBAR": "Expand sidebar",
+        "SETTINGS": "Settings",
+        "PORTAL_VERSION": "System RPG v2.0"
+      },
+      "MOBILE_MENU": {
+        "CLOSE_MENU": "Close menu",
+        "SETTINGS": "Settings",
+        "PORTAL_VERSION": "System RPG v2.0"
+      }
+    },
+    "AUTH": {
+      "LOGOUT_SUCCESS": "Logout successful!",
+      "SESSION_EXPIRED": "Your session has expired. Please log in again.",
+      "REFRESH_ERROR": "Error refreshing session. Please try again."
+    },
+    "MENU": {
+      "DASHBOARD": "HOME",
+      "USUARIOS": "USERS",
+      "ARQUIVOS": "FILES",
+      "PROJETOS": "PROJECTS"
+    }
+  }
+}

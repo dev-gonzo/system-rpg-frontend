@@ -1,0 +1,15 @@
+# Verificar se está tentando fazer bypass do Husky
+if [ "$HUSKY_SKIP_HOOKS" = "1" ] || [ "$HUSKY_SKIP_INSTALL" = "1" ]; then
+    echo " Bypass do Husky detectado e bloqueado!"
+    echo "Remova HUSKY_SKIP_HOOKS ou HUSKY_SKIP_INSTALL e tente novamente."
+    exit 1
+fi
+
+# Verificar argumentos de bypass no git commit
+if echo "$@" | grep -q "\-\-no-verify\|\-n"; then
+    echo " Flag --no-verify detectada e bloqueada!"
+    echo "Todos os commits devem passar pelas verificações do Husky."
+    exit 1
+fi
+
+npx lint-staged

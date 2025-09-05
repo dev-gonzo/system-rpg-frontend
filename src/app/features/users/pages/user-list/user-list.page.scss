@@ -1,0 +1,16 @@
+.table {
+  td:last-child {
+    overflow: visible !important;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.table-responsive {
+  overflow: visible !important;
+}
+
+.table-container {
+  position: relative;
+  overflow: visible;
+}

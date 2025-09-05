@@ -1,0 +1,30 @@
+<div
+  class="animated-gradient-bg vh-100 overflow-hidden w-100 vh-100 fixed-top position-fixed z-n1"
+></div>
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100 flex-column"
+>
+  <div class="pb-5 mb-5 text-center d-flex gap-4 flex-column">
+    <img
+      [src]="
+        theme.theme() === 'light'
+          ? 'assets/img/lobo-gray.png'
+        : 'assets/img/logo-white.png'
+      "
+      alt="System RPG"
+      style="width: 220px"
+      class="mb-5"
+    />
+    <mat-icon
+      [class]="'display-1 icon-large ' + (theme.theme() === 'light' ? 'text-dark' : 'text-white')"
+    >warning</mat-icon>
+    <h1 class="display-5 fw-bold">{{ 'PAGE.NOT_FOUND.TITLE' | translate }}</h1>
+    <p>{{ 'PAGE.NOT_FOUND.MESSAGE' | translate }}</p>
+    <div class="w-100 text-center">
+      <a
+        class="btn-link text-decoration-none"
+        [routerLink]="['/']"
+        >{{ 'PAGE.NOT_FOUND.BACK_HOME' | translate }}</a>
+    </div>
+  </div>
+</div>

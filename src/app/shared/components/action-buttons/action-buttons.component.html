@@ -1,0 +1,59 @@
+<div class="d-flex gap-1">
+  <ng-container *ngFor="let action of getVisibleActions()">
+    <app-tooltip 
+      *ngIf="action === 'edit'"
+      [text]="getActionConfig('edit')?.tooltipKey | translate"
+      position="left"
+      [delay]="300">
+      <button
+        type="button"
+        [class]="'btn btn-sm ' + getActionConfig('edit')?.buttonClass"
+        (click)="onActionClick('edit')"
+        [attr.aria-label]="getActionConfig('edit')?.tooltipKey | translate">
+        <mat-icon>{{ getActionConfig('edit')?.icon }}</mat-icon>
+      </button>
+    </app-tooltip>
+
+    <app-tooltip 
+      *ngIf="action === 'toggle-status'"
+      [text]="getToggleStatusConfig().tooltipKey | translate"
+      position="left"
+      [delay]="300">
+      <button
+        type="button"
+        [class]="'btn btn-sm ' + getToggleStatusConfig().buttonClass"
+        (click)="onActionClick('toggle-status')"
+        [attr.aria-label]="getToggleStatusConfig().tooltipKey | translate">
+        <mat-icon>{{ getToggleStatusConfig().icon }}</mat-icon>
+      </button>
+    </app-tooltip>
+
+    <app-tooltip 
+      *ngIf="action === 'verify-email' && shouldShowVerifyEmail()"
+      [text]="getActionConfig('verify-email')?.tooltipKey | translate"
+      position="left"
+      [delay]="300">
+      <button
+        type="button"
+        [class]="'btn btn-sm ' + getActionConfig('verify-email')?.buttonClass"
+        (click)="onActionClick('verify-email')"
+        [attr.aria-label]="getActionConfig('verify-email')?.tooltipKey | translate">
+        <mat-icon>{{ getActionConfig('verify-email')?.icon }}</mat-icon>
+      </button>
+    </app-tooltip>
+
+    <app-tooltip 
+      *ngIf="action === 'delete'"
+      [text]="getActionConfig('delete')?.tooltipKey | translate"
+      position="left"
+      [delay]="300">
+      <button
+        type="button"
+        [class]="'btn btn-sm ' + getActionConfig('delete')?.buttonClass"
+        (click)="onActionClick('delete')"
+        [attr.aria-label]="getActionConfig('delete')?.tooltipKey | translate">
+        <mat-icon>{{ getActionConfig('delete')?.icon }}</mat-icon>
+      </button>
+    </app-tooltip>
+  </ng-container>
+</div>

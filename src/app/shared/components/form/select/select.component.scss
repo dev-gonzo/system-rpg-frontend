@@ -1,0 +1,19 @@
+select.form-control.custom-select {
+  &.text-muted {
+    color: var(--color-secondary);
+    opacity: 0.8;
+  }
+  
+  &.is-invalid {
+    color: var(--color-error);
+    border-color: var(--color-error);
+    
+    &.text-muted {
+      color: var(--color-error);
+    }
+  }
+  
+  option[disabled] {
+    color: var(--color-secondary);
+  }
+}

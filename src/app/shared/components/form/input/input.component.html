@@ -1,0 +1,16 @@
+<app-form-wrapper [label]="label" [error]="error" [inputId]="inputId" [helper]="helper">
+  <input
+    #inputElement
+    [id]="inputId"
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    [mask]="mask"
+    [attr.autocomplete]="autocomplete"
+    class="form-control"
+    [ngClass]="{
+      'is-invalid': error,
+    }"
+    (blur)="onBlur()"
+  />
+</app-form-wrapper>

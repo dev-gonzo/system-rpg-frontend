@@ -1,0 +1,9 @@
+# Ignore CSS files from ESLint
+**/*.css
+**/*.scss
+
+# Ignore build and dependency directories
+node_modules/
+dist/
+coverage/
+.angular/

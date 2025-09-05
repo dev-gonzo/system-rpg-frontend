@@ -1,0 +1,126 @@
+<app-form-wrapper [label]="label" [error]="error" [inputId]="inputId" [helper]="helper">
+  <div class="input-group date position-relative" [class.calendar-open]="showCalendar" #datepickerContainer>
+    <input
+      [id]="inputId"
+      type="text"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': error
+      }"
+      [value]="displayValue"
+      [placeholder]="placeholder"
+      autocomplete="off"
+      (input)="onInput($event)"
+      (click)="toggleCalendar()"
+      (blur)="onBlur()"
+    />
+    <div class="input-group-text" tabindex="-1" (click)="toggleCalendar()" (keydown)="onKeyDown($event, 'toggleCalendar')">
+      <mat-icon>calendar_today</mat-icon>
+    </div>
+
+    <div
+      *ngIf="showCalendar"
+      class="datepicker-dropdown dropdown-menu show position-absolute"
+      [class.dropdown-up]="dropdownPosition.up"
+      [class.dropdown-right]="dropdownPosition.right"
+      #dropdownElement
+    >
+  
+      <div class="datepicker-header">
+        <div class="datepicker-nav">
+          <button type="button" class="btn btn-sm btn-link" tabindex="-1" (click)="previousYear($event)" title="Ano anterior">
+            <span>&laquo;</span>
+          </button>
+          <button type="button" class="btn btn-sm btn-link" tabindex="-1" (click)="previousMonth($event)" title="Mês anterior">
+            <span>&lsaquo;</span>
+          </button>
+          <div class="datepicker-title">
+             <span class="month" (click)="switchToMonthView($event)" (keydown)="onKeyDown($event, 'switchToMonthView')" [class.clickable]="currentViewMode === 'days'">{{ currentMonthName }}</span>
+             <span class="year" (click)="switchToYearView($event)" (keydown)="onKeyDown($event, 'switchToYearView')" [class.clickable]="currentViewMode !== 'years'">{{ currentYear }}</span>
+           </div>
+          <button type="button" class="btn btn-sm btn-link" tabindex="-1" (click)="nextMonth($event)" title="Próximo mês">
+            <span>&rsaquo;</span>
+          </button>
+          <button type="button" class="btn btn-sm btn-link" tabindex="-1" (click)="nextYear($event)" title="Próximo ano">
+            <span>&raquo;</span>
+          </button>
+        </div>
+      </div>
+
+  
+       <div *ngIf="currentViewMode === 'days'">
+   
+         <div class="datepicker-weekdays">
+           <span class="dow" *ngFor="let day of weekDays">{{ day }}</span>
+         </div>
+
+   
+         <div class="datepicker-days">
+           <button
+             type="button"
+             *ngFor="let day of calendarDays"
+             class="day"
+             tabindex="-1"
+             [ngClass]="{
+               'old': !day.isCurrentMonth,
+               'new': !day.isCurrentMonth,
+               'today': day.isToday,
+               'active': day.isSelected,
+               'disabled': day.isDisabled
+             }"
+             [disabled]="day.isDisabled"
+             (click)="selectDate(day)"
+           >
+             {{ day.day }}
+           </button>
+         </div>
+       </div>
+
+   
+       <div *ngIf="currentViewMode === 'months'" class="datepicker-months">
+         <button
+           type="button"
+           *ngFor="let month of calendarMonths"
+           class="month"
+           tabindex="-1"
+           [ngClass]="{
+             'active': month.isSelected,
+             'disabled': month.isDisabled
+           }"
+           [disabled]="month.isDisabled"
+           (click)="selectMonth(month)"
+         >
+           {{ month.name }}
+         </button>
+       </div>
+
+
+       <div *ngIf="currentViewMode === 'years'" class="datepicker-years">
+         <button
+           type="button"
+           *ngFor="let year of calendarYears"
+           class="year"
+           tabindex="-1"
+           [ngClass]="{
+             'active': year.isSelected,
+             'disabled': year.isDisabled
+           }"
+           [disabled]="year.isDisabled"
+           (click)="selectYear(year)"
+         >
+           {{ year.year }}
+         </button>
+       </div>
+
+
+      <div class="datepicker-footer">
+        <button type="button" class="btn btn-sm btn-secondary" tabindex="-1" (click)="clearDate()">
+          Limpar
+        </button>
+        <button type="button" class="btn btn-sm btn-primary" tabindex="-1" (click)="selectToday()">
+          Hoje
+        </button>
+      </div>
+    </div>
+  </div>
+</app-form-wrapper>

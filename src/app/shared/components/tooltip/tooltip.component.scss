@@ -1,0 +1,115 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.tooltip-content {
+  position: absolute;
+  z-index: 9999;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+  font-family: var(--bs-font-sans-serif, system-ui, -apple-system, sans-serif);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  line-break: auto;
+  font-size: 0.875rem;
+  word-wrap: break-word;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  border-radius: 0.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  max-width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+:host.tooltip-top .tooltip-content {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-2px);
+  margin-bottom: 8px;
+
+  .tooltip-arrow {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px 6px 0;
+    border-top-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+:host.tooltip-bottom .tooltip-content {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+  margin-top: 8px;
+
+  .tooltip-arrow {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px;
+    border-bottom-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+:host.tooltip-left .tooltip-content {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-2px);
+  margin-right: 8px;
+
+  .tooltip-arrow {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 6px;
+    border-left-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+:host.tooltip-right .tooltip-content {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(2px);
+  margin-left: 12px;
+
+  .tooltip-arrow {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 6px 6px 0;
+    border-right-color: rgba(0, 0, 0, 0.9);
+  }
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

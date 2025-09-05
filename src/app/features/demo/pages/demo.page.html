@@ -1,0 +1,313 @@
+<app-section-wrapper title="Demonstração de Alerts">
+  <div class="mt-4 p-3 theme-surface rounded">
+    <p class="text-muted mb-3">
+      Clique nos botões abaixo para testar os diferentes tipos de alert:
+    </p>
+
+    <div class="row g-2">
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-success w-100"
+          (click)="showSuccessAlert()"
+        >
+          <mat-icon class="me-1">check_circle</mat-icon>
+          Success Alert
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-danger w-100"
+          (click)="showDangerAlert()"
+        >
+          <mat-icon class="me-1">warning</mat-icon>
+          Danger Alert
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-warning w-100"
+          (click)="showWarningAlert()"
+        >
+          <mat-icon class="me-1">warning</mat-icon>
+          Warning Alert
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-info w-100"
+          (click)="showInfoAlert()"
+        >
+          <mat-icon class="me-1">info</mat-icon>
+          Info Alert
+        </button>
+      </div>
+    </div>
+  </div>
+</app-section-wrapper>
+
+<app-section-wrapper title="Demonstração de Toasts">
+  <p class="text-muted mb-3">
+    Clique nos botões abaixo para testar os diferentes tipos de toast:
+  </p>
+
+  <div class="row g-2">
+    <div class="col-md-3">
+      <button
+        type="button"
+        class="btn btn-success w-100"
+        (click)="showSuccessToast()"
+      >
+        <mat-icon class="me-1">check_circle</mat-icon>
+        Success Toast
+      </button>
+    </div>
+
+    <div class="col-md-3">
+      <button
+        type="button"
+        class="btn btn-danger w-100"
+        (click)="showDangerToast()"
+      >
+        <mat-icon class="me-1">warning</mat-icon>
+        Danger Toast
+      </button>
+    </div>
+
+    <div class="col-md-3">
+      <button
+        type="button"
+        class="btn btn-warning w-100"
+        (click)="showWarningToast()"
+      >
+        <mat-icon class="me-1">warning</mat-icon>
+        Warning Toast
+      </button>
+    </div>
+
+    <div class="col-md-3">
+      <button
+        type="button"
+        class="btn btn-info w-100"
+        (click)="showInfoToast()"
+      >
+        <mat-icon class="me-1">info</mat-icon>
+        Info Toast
+      </button>
+    </div>
+  </div>
+</app-section-wrapper>
+
+<app-section-wrapper title="Demonstração de Alerts Não Fecháveis">
+  <div class="mt-4 p-3 theme-surface rounded">
+    <p class="text-muted mb-3">
+      Clique nos botões abaixo para testar alertas que não podem ser fechados manualmente:
+    </p>
+
+    <div class="row g-2">
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-outline-success w-100"
+          (click)="showNonClosableSuccessAlert()"
+        >
+          <mat-icon class="me-1">check_circle</mat-icon>
+          Success (Não Fechável)
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-outline-danger w-100"
+          (click)="showNonClosableDangerAlert()"
+        >
+          <mat-icon class="me-1">warning</mat-icon>
+          Danger (Não Fechável)
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-outline-warning w-100"
+          (click)="showNonClosableWarningAlert()"
+        >
+          <mat-icon class="me-1">warning</mat-icon>
+          Warning (Não Fechável)
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <button
+          type="button"
+          class="btn btn-outline-info w-100"
+          (click)="showNonClosableInfoAlert()"
+        >
+          <mat-icon class="me-1">info</mat-icon>
+          Info (Não Fechável)
+        </button>
+      </div>
+    </div>
+  </div>
+</app-section-wrapper>
+
+<app-section-wrapper title="Demonstração Formulário">
+  <p class="text-muted mb-4">
+    Esta página demonstra todos os componentes de formulário disponíveis no
+    projeto.
+  </p>
+  <app-form-wrapper
+    [formGroup]="form"
+    (formSubmit)="onSubmit()"
+    (formReset)="resetForm()"
+    submitButtonText="Enviar Formulário"
+    resetButtonText="Limpar Formulário"
+    [showResetButton]="true"
+  >
+    <div class="col-12">
+      <h2 class="h5 fw-bold text-primary mb-3">Informações Pessoais</h2>
+    </div>
+
+    <app-form-input
+      label="Nome Completo"
+      placeholder="Digite seu nome completo"
+      [control]="$any(form.get('nome'))"
+      colMd="9"
+      helper="Não é permitido abreviações"
+    />
+
+    <app-form-datepicker
+      label="Data de Nascimento"
+      placeholder="DD/MM/AAAA"
+      [control]="$any(form.get('dataNascimento'))"
+      [maxDate]="today"
+      [showButtonBar]="true"
+      colMd="3"
+      helper="Não pode ser data futura"
+    />
+
+    <app-form-input
+      label="Telefone"
+      placeholder="(00) 00000-0000"
+      mask="(00) 00000-0000"
+      [control]="$any(form.get('telefone'))"
+      colMd="6"
+    />
+
+    <app-form-input
+      label="Idade"
+      placeholder="Digite sua idade"
+      type="number"
+      [control]="$any(form.get('idade'))"
+      colMd="6"
+    />
+
+    <app-form-input
+      label="E-mail"
+      placeholder="Digite seu e-mail"
+      type="email"
+      [control]="$any(form.get('email'))"
+      colMd="6"
+    />
+
+    <app-form-input
+      label="Senha"
+      placeholder="Digite sua senha"
+      type="password"
+      [control]="$any(form.get('senha'))"
+      col="6"
+    />
+
+    <div class="col-12 mt-4">
+      <h2 class="h5 fw-bold text-primary">Localização</h2>
+    </div>
+
+    <app-form-select
+      label="Estado"
+      placeholder="Selecione seu estado"
+      [options]="estadosOptions"
+      [control]="$any(form.get('estado'))"
+      colMd="6"
+    />
+
+    <app-form-autocomplete
+      label="Cidade"
+      placeholder="Digite ou selecione sua cidade"
+      [options]="cidadesOptions"
+      [control]="$any(form.get('cidade'))"
+      colMd="6"
+    />
+
+    <div class="col-12">
+      <h2 class="h5 fw-bold text-primary pt-4 p-2 px-0">Preferências</h2>
+    </div>
+
+    <app-form-radio
+      label="Gênero"
+      [options]="generoOptions"
+      [control]="$any(form.get('genero'))"
+      colMd="12"
+      class="pb-4"
+    />
+
+    <app-form-radio
+      label="Nível de Experiência (Inline)"
+      [options]="experienciaOptions"
+      [control]="$any(form.get('experiencia'))"
+      [inline]="true"
+      col="12"
+      class="pb-4"
+    />
+
+    <app-form-multi-select
+      label="Habilidades Técnicas"
+      placeholder="Selecione suas habilidades"
+      [options]="habilidadesOptions"
+      [control]="$any(form.get('habilidades'))"
+      [maxSelections]="5"
+      col="12"
+      class="pb-4"
+    />
+
+    <app-form-checkbox
+      label="Desejo receber newsletter"
+      [control]="$any(form.get('newsletter'))"
+      col="12"
+    />
+
+    <app-form-checkbox
+      label="Aceito os termos e condições"
+      [control]="$any(form.get('aceitaTermos'))"
+      col="12"
+    />
+  </app-form-wrapper>
+</app-section-wrapper>
+
+<app-section-wrapper title="Debug - Status do Formulário">
+  <div class="row g-2 small">
+    <div class="col-md-4"><strong>Válido:</strong> {{ form.valid }}</div>
+    <div class="col-md-4"><strong>Tocado:</strong> {{ form.touched }}</div>
+    <div class="col-md-4"><strong>Modificado:</strong> {{ form.dirty }}</div>
+  </div>
+
+  <div class="mt-3">
+    <strong>Valores:</strong>
+    <pre class="mt-2 p-2 theme-background rounded small">{{
+      form.value | json
+    }}</pre>
+  </div>
+
+  <div class="mt-3" *ngIf="hasFormErrors">
+    <strong>Erros:</strong>
+    <pre class="mt-2 p-2 theme-background rounded small">{{
+      getFormErrors() | json
+    }}</pre>
+  </div>
+</app-section-wrapper>

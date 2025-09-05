@@ -1,0 +1,23 @@
+<app-form-wrapper [label]="label" [error]="error" [inputId]="selectId" [helper]="helper">
+  <div class="w-100 position-relative">
+    <select
+      [id]="selectId"
+      class="form-control custom-select"
+      [ngClass]="{
+        'text-muted': !error && !control.value,
+        'is-invalid': error
+      }"
+      [formControl]="control"
+      (blur)="onBlur()"
+    >
+      <option value="" disabled [selected]="!control.value">{{ placeholder }}</option>
+      <option
+        *ngFor="let opt of options"
+        [value]="opt.value"
+        [selected]="opt.value === control.value"
+      >
+        {{ opt.label }}
+      </option>
+    </select>
+  </div>
+</app-form-wrapper>

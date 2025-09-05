@@ -1,0 +1,14 @@
+<section class="p-3 theme-surface rounded  flex-grow-1 my-2">
+  <div *ngIf="title" class="d-flex justify-content-between align-items-start pb-2">
+    <h1 class="text-primary mb-0">{{ title }}</h1>
+    <button 
+      *ngIf="showBack"
+      type="button" 
+      class="btn btn-outline-secondary btn-sm" 
+      (click)="onBackClick()"
+    >
+      {{ backButtonText | translate }}
+    </button>
+  </div>
+  <ng-content></ng-content>
+</section>

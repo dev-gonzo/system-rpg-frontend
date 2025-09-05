@@ -1,0 +1,276 @@
+{
+  "PAGE": {
+    "LOGIN": {
+      "TITLE": "System RPG",
+      "WELCOME_MESSAGE": "Welcome to Sytem RPG",
+      "ACCESS_DATA": "Enter your Access Data",
+      "USERNAME_LABEL": "Username",
+      "PASSWORD_LABEL": "Password",
+      "LOGIN_BUTTON": "Login",
+      "FORGOT_PASSWORD": "Forgot your password?",
+      "CLICK_HERE": "Click here.",
+      "CREATE_ACCOUNT": "Create your account",
+      "USERNAME_PLACEHOLDER": "Enter your username",
+      "PASSWORD_PLACEHOLDER": "Enter your password"
+    },
+     "NOT_FOUND": {
+      "TITLE": "OOPS.",
+      "MESSAGE": "Page not found!",
+      "BACK_HOME": "Back to Home"
+    },
+    "HOME": {
+      "WELCOME_TITLE": "Welcome to System RPG",
+      "WELCOME_DESCRIPTION": "Where myths are born and heroes are forged. Begin your saga."
+    },
+    "REGISTER": {
+        "TITLE": "System RPG",
+        "WELCOME_MESSAGE": "Create your account on System RPG.",
+        "FORM_TITLE": "Fill in the data below",
+        "FIRST_NAME_LABEL": "First Name",
+        "FIRST_NAME_PLACEHOLDER": "Enter your first name",
+        "LAST_NAME_LABEL": "Last Name",
+        "LAST_NAME_PLACEHOLDER": "Enter your last name",
+        "EMAIL_LABEL": "Email",
+        "EMAIL_PLACEHOLDER": "youremail@domain.com",
+        "USERNAME_LABEL": "Username",
+        "USERNAME_PLACEHOLDER": "Enter your username",
+        "PASSWORD_LABEL": "Password",
+        "PASSWORD_PLACEHOLDER": "Enter your password",
+        "CONFIRM_PASSWORD_LABEL": "Confirm Password",
+        "CONFIRM_PASSWORD_PLACEHOLDER": "Confirm your password",
+        "REGISTER_BUTTON": "Register",
+        "CANCEL_BUTTON": "Cancel",
+        "ALREADY_HAVE_ACCOUNT": "Already have an account?",
+        "LOGIN_LINK": "Click here.",
+        "SUCCESS": "User registered successfully!",
+        "ERROR": "Error registering user"
+    },
+    "USER_LIST": {
+      "TITLE": "User Management",
+      "DESCRIPTION": "Search and manage system users",
+      "SEARCH_TITLE": "Search Users",
+      "RESULTS_TITLE": "User List",
+      "TABLE": {
+        "NAME": "Name",
+        "USERNAME": "Username",
+        "EMAIL": "Email",
+        "ROLE": "Role",
+        "ROLES": "Roles",
+        "STATUS": "Status",
+        "CREATED_AT": "Created At",
+        "EMAIL_VERIFICATION": "Email Verification",
+        "ACTIONS": "Actions"
+      },
+      "STATUS": {
+        "ACTIVE": "Active",
+        "INACTIVE": "Inactive"
+      },
+      "EMAIL_VERIFICATION": {
+        "VERIFIED": "Verified",
+        "NOT_VERIFIED": "Not Verified"
+      },
+      "EMAIL_NOT_VERIFIED": "Not Verified",
+      "TOTAL_USERS": "Total Users",
+      "LOADING": "Loading users...",
+      "NO_USERS": "No users found",
+      "NO_USERS_DESCRIPTION": "Try adjusting your search criteria",
+      "PAGINATION_INFO": "Showing {{start}} to {{end}} of {{total}} users",
+      "STATES": {
+        "LOADING": "Loading...",
+        "ERROR": "Error loading users",
+        "EMPTY": "No users found"
+      },
+      "PAGINATION": {
+        "PREVIOUS": "Previous",
+        "NEXT": "Next",
+        "FIRST": "First",
+        "LAST": "Last",
+        "PAGE": "Page",
+        "OF": "of",
+        "ITEMS_PER_PAGE": "Items per page"
+      },
+      "MESSAGES": {
+        "DELETE_SUCCESS": "User deleted successfully",
+        "DELETE_ERROR": "Error deleting user",
+        "LOAD_ERROR": "Error loading users",
+        "CONFIRM_DELETE": "Are you sure you want to delete user {{name}}?",
+        "CONFIRM_TOGGLE_STATUS": "Are you sure you want to change this user's status?",
+        "CONFIRM_VERIFY_EMAIL": "Are you sure you want to verify this user's email?"
+      },
+      "ACTIONS": {
+        "VIEW": "View",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "ACTIVATE": "Activate",
+        "DEACTIVATE": "Deactivate"
+      },
+      "EDIT_USER": {
+        "TITLE": "Edit User",
+        "DESCRIPTION": "Edit user information",
+        "FORM_TITLE": "User Data",
+        "FIRST_NAME_LABEL": "First Name",
+        "FIRST_NAME_PLACEHOLDER": "Enter first name",
+        "LAST_NAME_LABEL": "Last Name",
+        "LAST_NAME_PLACEHOLDER": "Enter last name",
+        "EMAIL_LABEL": "Email",
+        "EMAIL_PLACEHOLDER": "Enter email",
+        "USERNAME_LABEL": "Username",
+        "USERNAME_PLACEHOLDER": "Enter username",
+        "ROLE_LABEL": "Role",
+        "ROLE_PLACEHOLDER": "Select a role",
+        "STATUS_LABEL": "Status",
+        "STATUS_PLACEHOLDER": "Select a status",
+        "EMAIL_VERIFIED_LABEL": "Email verified",
+        "SAVE_BUTTON": "Save",
+        "CANCEL_BUTTON": "Cancel",
+        "BACK_TO_LIST": "Back to list",
+        "SUCCESS": "User updated successfully!",
+        "ERROR": "Error updating user",
+        "LOADING": "Loading user data...",
+        "USER_INFO": {
+          "CREATED_AT": "Created at",
+          "UPDATED_AT": "Updated at",
+          "LAST_LOGIN": "Last login",
+          "PASSWORD_CHANGED": "Password changed at"
+        }
+      }
+    },
+    "USER_EDIT": {
+      "TITLE": "Edit User",
+      "LOADING": "Loading user data...",
+      "BUTTONS": {
+        "SAVE": "Save",
+        "CANCEL": "Cancel",
+        "BACK_TO_LIST": "Back to list"
+      },
+      "FORM": {
+        "FIRST_NAME": "First Name",
+        "FIRST_NAME_PLACEHOLDER": "Enter first name",
+        "LAST_NAME": "Last Name",
+        "LAST_NAME_PLACEHOLDER": "Enter last name",
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "Enter email",
+        "USERNAME": "Username",
+        "USERNAME_PLACEHOLDER": "Enter username",
+        "ROLES": "Roles",
+        "ROLES_PLACEHOLDER": "Select roles"
+      },
+      "USER_INFO": {
+        "TITLE": "User Information",
+        "CREATED_AT": "Created at",
+        "UPDATED_AT": "Updated at",
+        "LAST_LOGIN": "Last login",
+        "NO_LOGIN": "Never logged in",
+        "PASSWORD_CHANGED": "Password changed at",
+        "NEVER": "Never"
+      },
+      "MESSAGES": {
+        "LOAD_ERROR": "Error loading user data",
+        "UPDATE_ERROR": "Error updating user",
+        "UPDATE_SUCCESS": "User updated successfully!"
+      }
+    },
+    "PESSOA_FISICA_LIST": {
+      "TITLE": "Individual Person Management",
+      "DESCRIPTION": "Manage individual persons in the system",
+      "RESULTS_TITLE": "Individual Persons List",
+      "SEARCH_TITLE": "Search Individual Persons",
+      "SEARCH_BUTTON": "Search",
+      "CLEAR_BUTTON": "Clear",
+      "TABLE": {
+        "NOME": "Name",
+        "CPF": "CPF",
+        "EMAIL": "Email",
+        "TELEFONE": "Phone",
+        "CIDADE": "City",
+        "STATUS": "Status",
+        "CREATED_AT": "Created at",
+        "ACTIONS": "Actions"
+      },
+      "STATUS": {
+        "ACTIVE": "Active",
+        "INACTIVE": "Inactive"
+      },
+      "ACTIONS": {
+        "EDIT": "Edit",
+        "TOGGLE_STATUS": "Toggle Status",
+        "ACTIVATE": "Activate",
+        "DEACTIVATE": "Deactivate",
+        "DELETE": "Delete"
+      },
+      "STATES": {
+        "LOADING": "Loading individual persons...",
+        "EMPTY": "No individual persons found",
+        "ERROR": "Error loading individual persons"
+      },
+      "TOTAL_PESSOAS": "individual persons found",
+      "LOADING": "Loading individual persons...",
+      "NO_PESSOAS": "No individual persons found",
+      "NO_PESSOAS_DESCRIPTION": "There are no individual persons registered in the system.",
+      "PAGINATION_INFO": "Showing {{start}} to {{end}} of {{total}} individual persons",
+      "CONFIRM": {
+        "TOGGLE_STATUS_TITLE": "Confirm Status Change",
+        "TOGGLE_STATUS_MESSAGE": "Are you sure you want to {{action}} the individual person {{nome}}?",
+        "DELETE_TITLE": "Confirm Deletion",
+        "DELETE_MESSAGE": "Are you sure you want to delete the individual person {{nome}}? This action cannot be undone."
+      },
+      "MESSAGES": {
+        "LOAD_ERROR": "Error loading individual persons",
+        "STATUS_UPDATED": "Status updated successfully",
+        "STATUS_ERROR": "Error changing status",
+        "DELETE_SUCCESS": "Individual person deleted successfully",
+        "DELETE_ERROR": "Error deleting individual person"
+      }
+    },
+    "PESSOA_FISICA_EDIT": {
+      "TITLE_CREATE": "Register Individual Person",
+      "TITLE_EDIT": "Edit Individual Person",
+      "LOADING": "Loading individual person data...",
+      "BUTTONS": {
+        "SAVE": "Save",
+        "CANCEL": "Cancel",
+        "BACK_TO_LIST": "Back to list"
+      },
+      "SECTIONS": {
+        "PERSONAL_DATA": "Personal Data",
+        "ADDRESS": "Address"
+      },
+      "FORM": {
+        "NOME": "Full Name",
+        "NOME_PLACEHOLDER": "Enter full name",
+        "CPF": "CPF",
+        "CPF_PLACEHOLDER": "000.000.000-00",
+        "EMAIL": "Email",
+        "EMAIL_PLACEHOLDER": "youremail@domain.com",
+        "TELEFONE": "Phone",
+        "TELEFONE_PLACEHOLDER": "(00) 00000-0000",
+        "DATA_NASCIMENTO": "Birth Date",
+        "DATA_NASCIMENTO_PLACEHOLDER": "Select date",
+        "CEP": "ZIP Code",
+        "CEP_PLACEHOLDER": "00000-000",
+        "LOGRADOURO": "Street",
+        "LOGRADOURO_PLACEHOLDER": "Street, Avenue, etc.",
+        "NUMERO": "Number",
+        "NUMERO_PLACEHOLDER": "123",
+        "COMPLEMENTO": "Complement",
+        "COMPLEMENTO_PLACEHOLDER": "Apt, Block, etc.",
+        "BAIRRO": "Neighborhood",
+        "BAIRRO_PLACEHOLDER": "Enter neighborhood",
+        "CIDADE": "City",
+        "CIDADE_PLACEHOLDER": "Enter city",
+        "ESTADO": "State",
+        "ESTADO_PLACEHOLDER": "Enter state",
+        "UF": "State Code",
+        "UF_PLACEHOLDER": "SP"
+      },
+      "MESSAGES": {
+        "LOAD_ERROR": "Error loading individual person",
+        "CREATE_ERROR": "Error registering individual person",
+        "CREATE_SUCCESS": "Individual person registered successfully",
+        "UPDATE_ERROR": "Error updating individual person",
+        "UPDATE_SUCCESS": "Individual person updated successfully",
+        "CEP_NOT_FOUND": "ZIP code not found"
+      }
+    }
+  }
+}

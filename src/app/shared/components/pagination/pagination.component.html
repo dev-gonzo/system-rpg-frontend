@@ -1,0 +1,46 @@
+<nav *ngIf="showPagination()" class="mt-4">
+  <ul class="pagination justify-content-center" [attr.data-bs-theme]="isDarkMode() ? 'dark' : 'light'">
+    <li class="page-item" [class.disabled]="isPreviousDisabled()">
+      <button 
+        class="page-link" 
+        (click)="onPreviousPage()"
+        [disabled]="isPreviousDisabled()"
+        [attr.aria-label]="'PAGINATION.PREVIOUS' | translate"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+    </li>
+    
+    <li 
+      *ngFor="let page of pages()" 
+      class="page-item" 
+      [class.active]="isActivePage(page)"
+    >
+      <button 
+        class="page-link" 
+        (click)="onPageChange(page)"
+        [attr.aria-label]="('PAGINATION.PAGE' | translate) + ' ' + (page + 1)"
+        [attr.aria-current]="isActivePage(page) ? 'page' : null"
+      >
+        {{ page + 1 }}
+      </button>
+    </li>
+    
+    <li class="page-item" [class.disabled]="isNextDisabled()">
+      <button 
+        class="page-link" 
+        (click)="onNextPage()"
+        [disabled]="isNextDisabled()"
+        [attr.aria-label]="'PAGINATION.NEXT' | translate"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </li>
+  </ul>
+  
+  <div *ngIf="showInfo()" class="text-center text-muted mt-2">
+    <small>
+      {{ translationKey() | translate: paginationInfo() }}
+    </small>
+  </div>
+</nav>

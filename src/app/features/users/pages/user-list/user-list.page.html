@@ -1,0 +1,93 @@
+<app-section-wrapper [title]="'PAGE.USER_LIST.RESULTS_TITLE' | translate">
+  <div
+    class="d-flex justify-content-between align-items-center mb-3"
+    *ngIf="totalElements() > 0"
+  >
+    <span class="badge bg-primary">
+      <mat-icon class="me-1">group</mat-icon>
+      {{ totalElements() }} {{ "PAGE.USER_LIST.TOTAL_USERS" | translate }}
+    </span>
+  </div>
+  <div *ngIf="isLoading()" class="text-center py-4">
+    <div class="spinner-border text-primary">
+      <span class="visually-hidden">{{ "COMMON.LOADING" | translate }}</span>
+    </div>
+    <output class="mt-2 text-muted">{{ "PAGE.USER_LIST.LOADING" | translate }}</output>
+  </div>
+
+  <div *ngIf="!isLoading() && users().length === 0" class="text-center py-5">
+    <mat-icon class="icon-3x text-muted mb-3">group</mat-icon>
+    <h5 class="text-muted">{{ "PAGE.USER_LIST.NO_USERS" | translate }}</h5>
+  </div>
+
+  <app-responsive-table
+    *ngIf="!isLoading()"
+    [data]="tableData"
+    [columns]="tableColumns"
+    [actions]="tableActions"
+    [loading]="isLoading()"
+    [theme]="theme.theme()"
+    [trackByFn]="trackByUserId"
+  >
+    <ng-template #cellTemplate let-item let-column="column" let-value="value">
+      <div *ngIf="column.key === 'fullName'" class="d-flex align-items-center">
+        <div class="rounded-circle p-2 bg-primary text-white me-2 d-flex justify-content-center align-items-center fs-5" style="width: 40px; height: 40px;">
+          {{ item.firstName.charAt(0) }}{{ item.lastName.charAt(0) }}
+        </div>
+        <div>
+          <div class="fw-medium">{{ value }}</div>
+          <small class="text-muted" *ngIf="!item.isEmailVerified">
+            <mat-icon class="text-warning me-1">warning</mat-icon>
+            {{ "PAGE.USER_LIST.EMAIL_NOT_VERIFIED" | translate }}
+          </small>
+        </div>
+      </div>
+
+      <div *ngIf="column.key === 'roleNames'">
+        <span
+          *ngFor="let role of item.roles; let last = last"
+          class="badge me-1"
+          [class.bg-danger]="role.name === 'ADMIN'"
+          [class.bg-warning]="role.name === 'MANAGER'"
+          [class.bg-info]="role.name === 'USER'"
+        >
+          {{ role.name }}
+        </span>
+      </div>
+
+      <div *ngIf="column.key === 'statusLabel'">
+        <span
+          class="badge"
+          [class.bg-success]="item.isActive"
+          [class.bg-secondary]="!item.isActive"
+        >
+          {{ value }}
+        </span>
+      </div>
+
+      <small *ngIf="column.key === 'formattedDate'">{{ value }}</small>
+
+      <span
+        *ngIf="
+          !['fullName', 'roleNames', 'statusLabel', 'formattedDate'].includes(
+            column.key
+          )
+        "
+        >{{ value }}</span
+      >
+    </ng-template>
+  </app-responsive-table>
+
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    [pageSize]="pageSize"
+    [totalElements]="totalElements"
+    [isLoading]="isLoading"
+    [isDarkMode]="isDarkModeSignal"
+    [translationKey]="paginationTranslationKey"
+    (pageChange)="loadUsers($event)"
+  ></app-pagination>
+</app-section-wrapper>
+
+<app-confirmation-modal></app-confirmation-modal>

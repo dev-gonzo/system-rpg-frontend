@@ -1,0 +1,41 @@
+<form 
+  *ngIf="formGroup" 
+  [formGroup]="formGroup" 
+  [class]="formClass"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="row row-gap-1">
+  
+    <ng-content></ng-content>
+
+  
+    <div [class]="buttonsContainerClass">
+  
+      <ng-container *ngIf="customButtonsTemplate; else defaultButtons">
+        <ng-container *ngTemplateOutlet="customButtonsTemplate"></ng-container>
+      </ng-container>
+
+  
+      <ng-template #defaultButtons>
+        <button
+          *ngIf="showResetButton"
+          type="button"
+          [class]="resetButtonClass"
+          [disabled]="disabled"
+          (click)="onReset()"
+        >
+          {{ resetButtonText }}
+        </button>
+
+        <button
+          *ngIf="showSubmitButton"
+          type="submit"
+          [class]="submitButtonClass"
+          [disabled]="disabled"
+        >
+          {{ submitButtonText }}
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</form>

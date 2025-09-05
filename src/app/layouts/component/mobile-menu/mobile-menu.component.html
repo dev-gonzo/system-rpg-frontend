@@ -1,0 +1,65 @@
+<div
+  class="mobile-menu-backdrop"
+  [class.show]="isOpen"
+  (click)="onBackdropClick()"
+  (keydown)="onKeyDown($event)"
+></div>
+
+<div class="mobile-menu-drawer" [class.show]="isOpen">
+  <div class="mobile-menu-header">
+    <div class="d-flex align-items-center gap-2">
+      <img
+        src="assets/img/logo-white.png"
+        alt="System RPG"
+        class="w-60"
+      />
+    </div>
+    <button
+      class="btn-close-menu text-white"
+      (click)="closeMenu.emit()"
+      [attr.aria-label]="'COMMON.LAYOUT.MOBILE_MENU.CLOSE_MENU' | translate"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <nav class="mobile-menu-nav">
+    <ul class="menu-list">
+      <li *ngFor="let item of menuItems" class="menu-item">
+        <a
+          [routerLink]="item.route"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="menu-link"
+          (click)="onMenuItemClick(item)"
+        >
+          <div class="menu-icon">
+            <mat-icon>{{item.icon}}</mat-icon>
+          </div>
+          <span class="menu-label">{{ item.label | translate }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="mobile-menu-settings">
+    <a
+      routerLink="/configuracoes"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="menu-link settings-link"
+      (click)="onSettingsClick()"
+    >
+      <div class="menu-icon">
+        <mat-icon>settings</mat-icon>
+      </div>
+      <span class="menu-label">{{ 'COMMON.LAYOUT.MOBILE_MENU.SETTINGS' | translate }}</span>
+    </a>
+  </div>
+
+  <div class="mobile-menu-footer">
+    <div class="menu-version">
+      <small>{{ 'COMMON.LAYOUT.MOBILE_MENU.PORTAL_VERSION' | translate }}</small>
+    </div>
+  </div>
+</div>

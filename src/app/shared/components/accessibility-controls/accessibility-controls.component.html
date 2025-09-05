@@ -1,0 +1,94 @@
+<div class="d-flex align-items-center">
+  <div class="position-relative">
+    <app-tooltip 
+      [text]="'COMMON.ACCESSIBILITY.SELECT_LANGUAGE' | translate"
+      position="bottom"
+      [delay]="300">
+      <button 
+        #languageButton
+        type="button" 
+        [class]="'btn btn-sm ' + (buttonClass || '')" 
+        [style.background-color]="!buttonClass ? buttonColor : null"
+        (click)="toggleLanguageDropdown()" 
+        [attr.aria-label]="'COMMON.ACCESSIBILITY.SELECT_LANGUAGE' | translate">
+        <mat-icon >language</mat-icon>
+         <span class="language-badge fw-bold" style="font-size: 8px">{{ languageService.getCurrentLanguageOption().shortCode }}</span>
+      </button>
+    </app-tooltip>
+
+    <div 
+      *ngIf="showLanguageDropdown" 
+      [class]="'language-dropdown position-absolute top-100 mt-1 bg-white border rounded shadow-sm overflow-hidden dropdown-menu-' + dropdownPosition"
+      (click)="$event.stopPropagation()"
+      (keydown)="onKeyDown($event, 'dropdown')">
+      <div 
+        *ngFor="let lang of languageService.availableLanguages" 
+        class="language-option d-flex align-items-center px-3 py-2 cursor-pointer"
+        [class.active]="languageService.language() === lang.code"
+        [attr.data-lang-code]="lang.code"
+        (click)="selectLanguage(lang.code)"
+        (keydown)="onKeyDown($event, 'selectLanguage')">
+        <span class="language-flag me-2">{{ lang.flag }}</span>
+        <span class="language-name">{{ lang.name | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="font-controls d-flex align-items-center ">
+    <app-tooltip 
+      [text]="'COMMON.ACCESSIBILITY.DECREASE_FONT' | translate"
+      position="bottom"
+      [delay]="300">
+      <button 
+        type="button" 
+        [class]="'btn btn-sm ' + (buttonClass || '')" 
+        [style.background-color]="!buttonClass ? buttonColor : null"
+        (click)="decreaseFont()" 
+        [attr.aria-label]="'COMMON.ACCESSIBILITY.DECREASE_FONT' | translate">
+        <mat-icon >text_decrease</mat-icon>
+      </button>
+    </app-tooltip>
+    
+    <app-tooltip 
+      [text]="'COMMON.ACCESSIBILITY.RESET_FONT' | translate"
+      position="bottom"
+      [delay]="300">
+      <button 
+        type="button" 
+        [class]="'btn btn-sm ' + (buttonClass || '')" 
+        [style.background-color]="!buttonClass ? buttonColor : null"
+        (click)="resetFont()" 
+        [attr.aria-label]="'COMMON.ACCESSIBILITY.RESET_FONT' | translate">
+        <mat-icon >text_fields</mat-icon>
+      </button>
+    </app-tooltip>
+    
+    <app-tooltip 
+      [text]="'COMMON.ACCESSIBILITY.INCREASE_FONT' | translate"
+      position="bottom"
+      [delay]="300">
+      <button 
+        type="button" 
+        [class]="'btn btn-sm ' + (buttonClass || '')" 
+        [style.background-color]="!buttonClass ? buttonColor : null"
+        (click)="increaseFont()" 
+        [attr.aria-label]="'COMMON.ACCESSIBILITY.INCREASE_FONT' | translate">
+        <mat-icon >text_increase</mat-icon>
+      </button>
+    </app-tooltip>
+  </div>
+  
+  <app-tooltip 
+    [text]="theme.theme() === 'dark' ? ('COMMON.ACCESSIBILITY.SWITCH_TO_LIGHT_THEME' | translate) : ('COMMON.ACCESSIBILITY.SWITCH_TO_DARK_THEME' | translate)"
+    position="bottom"
+    [delay]="300">
+    <button 
+      type="button" 
+      [class]="'btn btn-sm ' + (buttonClass || '')" 
+      [style.background-color]="!buttonClass ? buttonColor : null"
+      (click)="toggleTheme()" 
+      [attr.aria-label]="theme.theme() === 'dark' ? ('COMMON.ACCESSIBILITY.SWITCH_TO_LIGHT_THEME' | translate) : ('COMMON.ACCESSIBILITY.SWITCH_TO_DARK_THEME' | translate)">
+      <mat-icon >{{ theme.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </app-tooltip>
+</div>

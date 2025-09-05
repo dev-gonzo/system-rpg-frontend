@@ -1,0 +1,101 @@
+{
+  "COMMON": {
+    "EMAIL": "Correo electrónico",
+    "NAME": "Nombre",
+    "SAVE": "Guardar",
+    "CANCEL": "Cancelar",
+    "BACK": "Volver",
+    "DELETE": "Eliminar",
+    "EDIT": "Editar",
+    "UPDATE": "Actualizar",
+    "CREATE": "Crear",
+    "SEARCH": "Buscar",
+    "RESET": "Restablecer",
+    "SUBMIT": "Enviar",
+    "CLOSE": "Cerrar",
+    "YES": "Sí",
+    "NO": "No",
+    "CONFIRM": "Confirmar",
+    "ERROR": "Error",
+    "SUCCESS": "Éxito",
+    "WARNING": "Advertencia",
+    "INFO": "Información",
+    "LOADING": "Cargando...",
+    "LOGIN": "Iniciar sesión",
+    "LOGOUT": "Cerrar sesión",
+    "REGISTER": "Registrarse",
+    "PASSWORD": "Contraseña",
+    "USERNAME": "Usuario",
+    "WELCOME": "Bienvenido",
+    "HOME": "Inicio",
+    "DASHBOARD": "Panel",
+    "SETTINGS": "Configuraciones",
+    "PROFILE": "Perfil",
+    "LANGUAGE": "Idioma",
+    "ACTIONS": "Acciones",
+    "TOGGLE": "Alternar",
+    "ACTIVE": "Activo",
+    "INACTIVE": "Inactivo",
+    "CITY": "Ciudad",
+    "COUNTRY": "País",
+    "PLACEHOLDER": {
+      "DATE": "DD/MM/AAAA"
+    },
+    "ACCESSIBILITY": {
+      "SELECT_LANGUAGE": "Seleccionar idioma",
+      "DECREASE_FONT": "Disminuir fuente",
+      "RESET_FONT": "Restablecer fuente",
+      "INCREASE_FONT": "Aumentar fuente",
+      "SWITCH_TO_LIGHT_THEME": "Cambiar a tema claro",
+      "SWITCH_TO_DARK_THEME": "Cambiar a tema oscuro"
+    },
+    "LANGUAGES": {
+      "PT_BR": "Portugués",
+      "EN_US": "Inglés",
+      "ES_ES": "Español"
+    },
+    "PAGINATION": {
+      "PREVIOUS": "Anterior",
+      "NEXT": "Siguiente",
+      "PAGE": "Página",
+      "INFO": "Mostrando {{start}} a {{end}} de {{total}} elementos"
+    },
+    "LAYOUT": {
+      "NAVBAR": {
+        "CLOSE_MENU": "Cerrar menú",
+        "OPEN_MENU": "Abrir menú",
+        "YOU_ARE_HERE": "Estás aquí:",
+        "CHANGE_UNIT": "Cambiar unidad operacional",
+        "ALERTS": "Alertas",
+        "USER_PHOTO": "Foto del usuario",
+        "USER_NAME": "Nombre del Usuario",
+        "OPERATIONAL_UNIT": "Unidad Operacional",
+        "USER_MENU": "Menú del usuario",
+        "MY_PROFILE": "Mi Perfil",
+        "LOGOUT": "Cerrar Sesión"
+      },
+      "SIDEBAR": {
+        "MINIMIZE_SIDEBAR": "Minimizar barra lateral",
+        "EXPAND_SIDEBAR": "Expandir barra lateral",
+        "SETTINGS": "Configuraciones",
+        "PORTAL_VERSION": "System RPG v1.0"
+      },
+      "MOBILE_MENU": {
+        "CLOSE_MENU": "Cerrar menú",
+        "SETTINGS": "Configuraciones",
+        "PORTAL_VERSION": "System RPG v1.0"
+      }
+    },
+    "AUTH": {
+      "LOGOUT_SUCCESS": "¡Cierre de sesión exitoso!",
+      "SESSION_EXPIRED": "Su sesión ha expirado. Por favor, inicie sesión nuevamente.",
+      "REFRESH_ERROR": "Error al renovar la sesión. Inténtelo de nuevo."
+    },
+    "MENU": {
+      "DASHBOARD": "INICIO",
+      "USUARIOS": "USUARIOS",
+      "ARQUIVOS": "ARCHIVOS",
+      "PROJETOS": "PROYECTOS"
+    }
+  }
+}

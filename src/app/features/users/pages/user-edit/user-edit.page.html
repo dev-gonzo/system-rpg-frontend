@@ -1,0 +1,112 @@
+<app-section-wrapper 
+  [title]="'PAGE.USER_EDIT.TITLE' | translate"
+  [showBack]="true"
+  [backButtonText]="'PAGE.USER_EDIT.BUTTONS.BACK_TO_LIST'"
+  (backClick)="onCancel()"
+>
+
+  <div *ngIf="isLoading()" class="text-center py-4">
+    <div class="spinner-border text-primary">
+      <span class="visually-hidden">{{
+        "PAGE.USER_EDIT.LOADING" | translate
+      }}</span>
+    </div>
+    <output class="mt-2 text-muted">{{ "PAGE.USER_EDIT.LOADING" | translate }}</output>
+  </div>
+
+  <app-form-wrapper
+    *ngIf="!isLoading() && form"
+    [formGroup]="form"
+    (formSubmit)="onSubmit()"
+    (formReset)="onCancel()"
+    [submitButtonText]="'COMMON.SAVE' | translate"
+    [resetButtonText]="'COMMON.CANCEL' | translate"
+    [showResetButton]="true"
+    [disabled]="isSubmitting()"
+  >
+    <app-form-input
+      [label]="'PAGE.USER_EDIT.FORM.FIRST_NAME' | translate"
+      [placeholder]="'PAGE.USER_EDIT.FORM.FIRST_NAME_PLACEHOLDER' | translate"
+      [control]="$any(form.get('firstName'))"
+      col="12"
+      colMd="6"
+    />
+
+    <app-form-input
+      [label]="'PAGE.USER_EDIT.FORM.LAST_NAME' | translate"
+      [placeholder]="'PAGE.USER_EDIT.FORM.LAST_NAME_PLACEHOLDER' | translate"
+      [control]="$any(form.get('lastName'))"
+      col="12"
+      colMd="6"
+    />
+
+    <app-form-input
+      [label]="'PAGE.USER_EDIT.FORM.EMAIL' | translate"
+      [placeholder]="'PAGE.USER_EDIT.FORM.EMAIL_PLACEHOLDER' | translate"
+      type="email"
+      [control]="$any(form.get('email'))"
+      col="12"
+    />
+
+    <app-form-input
+      [label]="'PAGE.USER_EDIT.FORM.USERNAME' | translate"
+      [placeholder]="'PAGE.USER_EDIT.FORM.USERNAME_PLACEHOLDER' | translate"
+      [control]="$any(form.get('username'))"
+      col="12"
+      colMd="6"
+    />
+
+    <app-form-multi-select
+      [label]="'PAGE.USER_EDIT.FORM.ROLES' | translate"
+      [placeholder]="'PAGE.USER_EDIT.FORM.ROLES_PLACEHOLDER' | translate"
+      [control]="$any(form.get('roles'))"
+      [options]="availableRoles()"
+      col="12"
+      colMd="6"
+    />
+
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <h5 class="text-muted mb-3">
+          {{ "PAGE.USER_EDIT.USER_INFO.TITLE" | translate }}
+        </h5>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-2">
+          <strong
+            >{{ "PAGE.USER_EDIT.USER_INFO.CREATED_AT" | translate }}:</strong
+          >
+          <span class="ms-2">{{ formatDate(userData()?.createdAt) }}</span>
+        </div>
+        <div class="mb-2">
+          <strong
+            >{{ "PAGE.USER_EDIT.USER_INFO.UPDATED_AT" | translate }}:</strong
+          >
+          <span class="ms-2">{{ formatDate(userData()?.updatedAt) }}</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-2">
+          <strong
+            >{{ "PAGE.USER_EDIT.USER_INFO.LAST_LOGIN" | translate }}:</strong
+          >
+          <span class="ms-2">{{
+            formatDate(userData()?.lastLoginAt) ||
+              ("PAGE.USER_EDIT.USER_INFO.NO_LOGIN" | translate)
+          }}</span>
+        </div>
+        <div class="mb-2">
+          <strong
+            >{{
+              "PAGE.USER_EDIT.USER_INFO.PASSWORD_CHANGED" | translate
+            }}:</strong
+          >
+          <span class="ms-2">{{
+            formatDate(userData()?.passwordChangedAt) ||
+              ("PAGE.USER_EDIT.USER_INFO.NEVER" | translate)
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </app-form-wrapper>
+</app-section-wrapper>

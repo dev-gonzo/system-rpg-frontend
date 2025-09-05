@@ -1,0 +1,41 @@
+<app-form-wrapper [label]="''" [error]="error" [inputId]="name" [helper]="helper">
+
+    <fieldset>
+      <legend
+        class="fw-medium"
+        [ngClass]="{
+          'text-danger': error,
+        }"
+      >
+        {{ label }}
+      </legend>
+
+      <div
+        [ngClass]="inline ? 'd-flex flex-row gap-3' : 'd-flex flex-column gap-2'"
+      >
+        <div
+          *ngFor="let opt of options"
+          [ngClass]="inline ? 'form-check form-check-inline' : 'form-check'"
+        >
+          <input
+            type="radio"
+            class="form-check-input"
+            [name]="name"
+            [formControl]="control"
+            [value]="opt.value"
+            [id]="name + '_' + opt.value"
+          />
+          <label
+            class="form-check-label small"
+            [for]="name + '_' + opt.value"
+            [ngClass]="{
+              'text-danger': error,
+            }"
+          >
+            {{ opt.label }}
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+</app-form-wrapper>

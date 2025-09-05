@@ -1,0 +1,178 @@
+{
+    "COMMON":  {
+                   "EMAIL":  "E-mail",
+                   "NAME":  "Nome",
+                   "SAVE":  "Salvar",
+                   "CANCEL":  "Cancelar",
+                   "BACK":  "Voltar",
+                   "DELETE":  "Excluir",
+                   "EDIT":  "Editar",
+                   "UPDATE":  "Atualizar",
+                   "CREATE":  "Criar",
+                   "SEARCH":  "Buscar",
+                   "RESET":  "Limpar",
+                   "SUBMIT":  "Enviar",
+                   "CLOSE":  "Fechar",
+                   "YES":  "Sim",
+                   "NO":  "NÃ£o",
+                   "CONFIRM":  "Confirmar",
+                   "ERROR":  "Erro",
+                   "SUCCESS":  "Sucesso",
+                   "WARNING":  "Aviso",
+                   "INFO":  "InformaÃ§Ã£o",
+                   "LOADING":  "Carregando...",
+                   "LOGIN":  "Entrar",
+                   "LOGOUT":  "Sair",
+                   "REGISTER":  "Registrar",
+                   "PASSWORD":  "Senha",
+                   "USERNAME":  "UsuÃ¡rio",
+                   "WELCOME":  "Bem-vindo",
+                   "HOME":  "InÃ­cio",
+                   "DASHBOARD":  "Painel",
+                   "SETTINGS":  "ConfiguraÃ§Ãµes",
+                   "PROFILE":  "Perfil",
+                   "LANGUAGE":  "Idioma",
+                   "ACTIONS":  "AÃ§Ãµes",
+                   "TOGGLE":  "Alternar",
+                   "CITY":  "Cidade",
+                   "COUNTRY":  "PaÃ­s",
+                   "PLACEHOLDER":  {
+                                       "DATE":  "DD/MM/AAAA"
+                                   },
+                   "ACCESSIBILITY":  {
+                                         "SELECT_LANGUAGE":  "Selecionar idioma",
+                                         "DECREASE_FONT":  "Diminuir fonte",
+                                         "RESET_FONT":  "Resetar fonte",
+                                         "INCREASE_FONT":  "Aumentar fonte",
+                                         "SWITCH_TO_LIGHT_THEME":  "Alternar para tema claro",
+                                         "SWITCH_TO_DARK_THEME":  "Alternar para tema escuro"
+                                     },
+                   "LANGUAGES":  {
+                                     "PT_BR":  "PortuguÃªs",
+                                     "EN_US":  "InglÃªs",
+                                     "ES_ES":  "Espanhol"
+                                 },
+                   "PAGINATION":  {
+                                       "PREVIOUS":  "Anterior",
+                                       "NEXT":  "Próximo",
+                                       "PAGE":  "Página",
+                                       "INFO":  "Mostrando {{start}} a {{end}} de {{total}} itens"
+                                   },
+                   "LAYOUT":  {
+                                  "NAVBAR":  {
+                                                 "CLOSE_MENU":  "Fechar menu",
+                                                 "OPEN_MENU":  "Abrir menu",
+                                                 "YOU_ARE_HERE":  "VocÃª estÃ¡ aqui:",
+                                                 "CHANGE_UNIT":  "Alterar unidade operacional",
+                                                 "ALERTS":  "Alertas",
+                                                 "USER_PHOTO":  "Foto do usuÃ¡rio",
+                                                 "USER_NAME":  "Nome do UsuÃ¡rio",
+                                                 "OPERATIONAL_UNIT":  "Unidade Operacional",
+                                                 "USER_MENU":  "Menu do usuÃ¡rio",
+                                                 "MY_PROFILE":  "Meu Perfil",
+                                                 "LOGOUT":  "Sair"
+                                             },
+                                  "SIDEBAR":  {
+                                                  "MINIMIZE_SIDEBAR":  "Minimizar sidebar",
+                                                  "EXPAND_SIDEBAR":  "Expandir sidebar",
+                                                  "SETTINGS":  "ConfiguraÃ§Ãµes",
+                                                  "PORTAL_VERSION":  "System RPG v2.0"
+                                              },
+                                  "MOBILE_MENU":  {
+                                                      "CLOSE_MENU":  "Fechar menu",
+                                                      "SETTINGS":  "ConfiguraÃ§Ãµes",
+                                                      "PORTAL_VERSION":  "System RPG v2.0"
+                                                  }
+                              },
+                   "AUTH":  {
+                                "LOGOUT_SUCCESS":  "Logout realizado com sucesso!",
+                                "SESSION_EXPIRED":  "Sua sessÃ£o expirou. FaÃ§a login novamente.",
+                                "REFRESH_ERROR":  "Erro ao renovar sessÃ£o. Tente novamente."
+                            },
+                   "MENU":  {
+                                "DASHBOARD":  "DASHBOARD",
+                                "EQUIPE":  "EQUIPE",
+                                "ARQUIVOS":  "ARQUIVOS",
+                                "PROJETOS":  "PROJETOS"
+                            }
+               },
+    "VALIDATION":  {
+                       "REQUIRED":  "O campo {{field}} Ã© obrigatÃ³rio",
+                       "EMAIL":  "O campo {{field}} deve ser um e-mail vÃ¡lido",
+                       "MIN_LENGTH":  "O campo {{field}} deve ter pelo menos {{min}} caracteres",
+                       "MAX_LENGTH":  "O campo {{field}} deve ter no mÃ¡ximo {{max}} caracteres",
+                       "MIN":  "O campo {{field}} deve ser maior que {{min}}",
+                       "MAX":  "O campo {{field}} deve ser menor que {{max}}",
+                       "PATTERN":  "O campo {{field}} possui formato invÃ¡lido",
+                       "NUMBER":  "O campo {{field}} deve ser um nÃºmero vÃ¡lido",
+                       "USERNAME_REQUIRED":  "UsuÃ¡rio Ã© obrigatÃ³rio",
+                       "USERNAME_MIN_LENGTH":  "MÃ­nimo de 3 caracteres",
+                       "USERNAME_MAX_LENGTH":  "UsuÃ¡rio deve ter no mÃ¡ximo 100 caracteres",
+                       "PASSWORD_REQUIRED":  "Senha Ã© obrigatÃ³ria",
+                       "PASSWORD_MIN_LENGTH":  "Senha deve ter pelo menos 6 caracteres",
+                       "PASSWORD_MAX_LENGTH":  "Senha deve ter no mÃ¡ximo 50 caracteres",
+                       "FIRST_NAME_REQUIRED":  "Nome Ã© obrigatÃ³rio",
+                       "FIRST_NAME_MIN_LENGTH":  "Nome deve ter pelo menos 2 caracteres",
+                       "FIRST_NAME_MAX_LENGTH":  "Nome deve ter no mÃ¡ximo 100 caracteres",
+                       "LAST_NAME_REQUIRED":  "Sobrenome Ã© obrigatÃ³rio",
+                       "LAST_NAME_MIN_LENGTH":  "Sobrenome deve ter pelo menos 2 caracteres",
+                       "LAST_NAME_MAX_LENGTH":  "Sobrenome deve ter no mÃ¡ximo 100 caracteres",
+                       "EMAIL_REQUIRED":  "Email Ã© obrigatÃ³rio",
+                       "EMAIL_INVALID":  "Email deve ter um formato vÃ¡lido",
+                       "EMAIL_MAX_LENGTH":  "E-mail deve ter no mÃ¡ximo 100 caracteres",
+                       "PASSWORD_MIN_LENGTH_REGISTER":  "Senha deve ter pelo menos 8 caracteres",
+                       "PASSWORD_UPPERCASE":  "Senha deve conter pelo menos uma letra maiÃºscula",
+                       "PASSWORD_LOWERCASE":  "Senha deve conter pelo menos uma letra minÃºscula",
+                       "PASSWORD_NUMBER":  "Senha deve conter pelo menos um nÃºmero",
+                       "PASSWORD_SPECIAL_CHAR":  "Senha deve conter pelo menos um caractere especial",
+                       "CONFIRM_PASSWORD_REQUIRED":  "ConfirmaÃ§Ã£o de senha Ã© obrigatÃ³ria",
+                       "PASSWORDS_MUST_MATCH":  "As senhas devem ser iguais"
+                   },
+    "PAGE":  {
+                 "LOGIN":  {
+                               "TITLE":  "da System RPG",
+                               "WELCOME_MESSAGE":  "Bem-vindo ao System RPG",
+                               "ACCESS_DATA":  "Informe seus dados de Acesso",
+                               "USERNAME_LABEL":  "UsuÃ¡rio",
+                               "PASSWORD_LABEL":  "Senha",
+                               "LOGIN_BUTTON":  "Entrar",
+                               "FORGOT_PASSWORD":  "Esqueceu a senha?",
+                               "CLICK_HERE":  "Clique aqui.",
+                               "CREATE_ACCOUNT":  "Crie sua conta",
+                               "USERNAME_PLACEHOLDER":  "Digite seu usuÃ¡rio",
+                               "PASSWORD_PLACEHOLDER":  "Digite sua senha"
+                           },
+                 "NOT_FOUND":  {
+                                   "TITLE":  "OPS.",
+                                   "MESSAGE":  "PÃ¡gina nÃ£o existe!",
+                                   "BACK_HOME":  "Voltar para Home"
+                               },
+                 "HOME":  {
+                              "WELCOME_TITLE":  "Seja bem-vindo ao  System RPG",
+                              "WELCOME_DESCRIPTION":  "Explore os conteÃºdos e gerencie suas operaÃ§Ãµes."
+                          },
+                 "REGISTER":  {
+                                  "TITLE":  "System RPG",
+                                  "WELCOME_MESSAGE":  "Crie sua conta no System RPG.",
+                                  "FORM_TITLE":  "Preencha os dados abaixo",
+                                  "FIRST_NAME_LABEL":  "Nome",
+                                  "FIRST_NAME_PLACEHOLDER":  "Digite seu nome completo",
+                                  "LAST_NAME_LABEL":  "Sobrenome",
+                                  "LAST_NAME_PLACEHOLDER":  "Digite seu nome completo",
+                                  "EMAIL_LABEL":  "E-mail",
+                                  "EMAIL_PLACEHOLDER":  "seuemail@dominio.com.br",
+                                  "USERNAME_LABEL":  "UsuÃ¡rio",
+                                  "USERNAME_PLACEHOLDER":  "Digite seu usuÃ¡rio",
+                                  "PASSWORD_LABEL":  "Senha",
+                                  "PASSWORD_PLACEHOLDER":  "Digite sua senha",
+                                  "CONFIRM_PASSWORD_LABEL":  "Confirmar Senha",
+                                  "CONFIRM_PASSWORD_PLACEHOLDER":  "Confirme sua senha",
+                                  "REGISTER_BUTTON":  "Registrar",
+                                  "CANCEL_BUTTON":  "Cancelar",
+                                  "ALREADY_HAVE_ACCOUNT":  "JÃ¡ possui cadastro?",
+                                  "LOGIN_LINK":  "Clique aqui.",
+                                  "SUCCESS":  "UsuÃ¡rio registrado com sucesso!",
+                                  "ERROR":  "Erro ao registrar usuÃ¡rio"
+                              }
+             }
+}

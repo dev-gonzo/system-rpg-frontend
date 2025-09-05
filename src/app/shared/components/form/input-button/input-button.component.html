@@ -1,0 +1,30 @@
+<app-form-wrapper [label]="label" [error]="error" [inputId]="inputId" [helper]="helper">
+  <div class="input-group">
+    <input
+      [id]="inputId"
+      [type]="type"
+      [placeholder]="placeholder"
+      [formControl]="control"
+      [mask]="mask"
+      [attr.autocomplete]="autocomplete"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': error,
+      }"
+      (blur)="onBlur()"
+    />
+    <button 
+      class="btn btn-outline-secondary" 
+      type="button"
+      [disabled]="buttonDisabled"
+      (click)="onButtonClick()"
+      [attr.aria-label]="buttonAriaLabel"
+    >
+      <i [class]="buttonIcon" *ngIf="!buttonLoading && buttonIcon"></i>
+      <span *ngIf="!buttonLoading && buttonText && !buttonIcon">{{ buttonText }}</span>
+      <output class="spinner-border spinner-border-sm" *ngIf="buttonLoading">
+        <span class="visually-hidden">Carregando...</span>
+      </output>
+    </button>
+  </div>
+</app-form-wrapper>

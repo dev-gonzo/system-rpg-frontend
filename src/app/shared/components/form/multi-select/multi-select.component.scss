@@ -1,0 +1,204 @@
+.form-control.custom-multi-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  max-height: 2.5rem;
+  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+  appearance: none !important;
+  background: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+  border-color: var(--color-border) !important;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+  &::-ms-expand {
+    display: none;
+  }
+
+  .select-content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    overflow: hidden;
+    
+    .selected-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      max-width: 100%;
+    }
+    
+
+    
+    .select-placeholder {
+      color: var(--color-secondary);
+      opacity: 0.8;
+    }
+    
+    .select-summary {
+      color: var(--color-foreground);
+      font-size: 0.875rem;
+    }
+  }
+  
+
+  
+  &.text-muted .select-content .select-placeholder {
+    color: var(--color-secondary) !important;
+    opacity: 0.8;
+  }
+  
+  &.is-invalid {
+    .select-content .select-placeholder {
+      color: var(--color-error) !important;
+    }
+  }
+  
+  &.show {
+    border-color: color-mix(in srgb, var(--color-primary) 60%, var(--color-primary-contrast));
+    box-shadow: 0 0 0 0.1rem color-mix(in srgb, var(--color-primary) 15%, transparent);
+  }
+}
+
+.form-control.custom-multi-select.is-invalid + .select-arrow {
+  color: var(--color-error) !important;
+}
+
+.select-arrow {
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: transform 0.2s ease;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  
+  &.rotated {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+.custom-multi-select-dropdown {
+  z-index: 1050;
+  max-height: 15rem;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  margin-top: 0.125rem;
+  background-color: var(--color-background) !important;
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 0.75rem;
+    color: var(--color-foreground);
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    padding: 2px 6px;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-left: 8px;
+    
+    &:hover {
+      opacity: 1;
+      background-color: var(--color-muted);
+      color: var(--color-foreground);
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.1rem color-mix(in srgb, var(--color-primary) 25%, transparent);
+    }
+  }
+  
+  .custom-multi-select-option {
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    border-bottom: 1px solid var(--color-surface);
+    color: var(--color-foreground);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &:hover:not(.disabled) {
+      background-color: var(--color-muted);
+      color: var(--color-foreground);
+    }
+    
+    &.selected {
+      background-color: var(--color-primary);
+      color: var(--color-primary-contrast);
+      font-weight: 500;
+      
+      &:hover {
+        background-color: color-mix(in srgb, var(--color-primary) 90%, var(--color-foreground));
+        color: var(--color-primary-contrast);
+      }
+    }
+    
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      
+      &:hover {
+        background-color: transparent;
+        color: var(--color-foreground);
+      }
+    }
+    
+    .checkbox-indicator {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 3px;
+      background-color: var(--color-background);
+      color: transparent;
+      font-size: 12px;
+      transition: all 0.2s ease;
+      
+      &.checked {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        color: var(--color-primary-contrast);
+      }
+    }
+    
+    .form-check-input {
+      margin: 0;
+      
+      &:checked {
+        background-color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+      }
+    }
+  }
+}
+
+
+@media (width <= 576px) {
+  .custom-multi-select {
+    .select-content {
+      .selected-chip {
+        max-width: 80px;
+        
+        .chip-label {
+          max-width: 60px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "PAGE": {
+    "LOGIN": {
+      "TITLE": "System RPG",
+      "WELCOME_MESSAGE": "Bienvenido al de Medios",
+      "ACCESS_DATA": "Ingrese sus credenciales de acceso",
+      "USERNAME_LABEL": "Usuario",
+      "PASSWORD_LABEL": "Contraseña",
+      "LOGIN_BUTTON": "Ingresar",
+      "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+      "CLICK_HERE": "Haz clic aquí.",
+      "CREATE_ACCOUNT": "Crea tu cuenta",
+      "USERNAME_PLACEHOLDER": "Ingrese su usuario",
+      "PASSWORD_PLACEHOLDER": "Ingrese su contraseña"
+    },
+    "NOT_FOUND": {
+      "TITLE": "UPS.",
+      "MESSAGE": "¡Página no existe!",
+      "BACK_HOME": "Volver al Inicio"
+    },
+    "HOME": {
+      "WELCOME_TITLE": "Bienvenido al System RPG",
+      "WELCOME_DESCRIPTION": "Donde nacen los mitos y se forjan los héroes. Comienza tu saga."
+    },
+    "REGISTER": {
+      "TITLE": "System RPG",
+      "WELCOME_MESSAGE": "Crea tu cuenta en el System RPG.",
+      "FORM_TITLE": "Completa los datos a continuación",
+      "FIRST_NAME_LABEL": "Nombre",
+      "FIRST_NAME_PLACEHOLDER": "Ingresa tu nombre",
+      "LAST_NAME_LABEL": "Apellido",
+      "LAST_NAME_PLACEHOLDER": "Ingresa tu apellido",
+      "EMAIL_LABEL": "Correo Electrónico",
+      "EMAIL_PLACEHOLDER": "tucorreo@dominio.com",
+      "USERNAME_LABEL": "Usuario",
+      "USERNAME_PLACEHOLDER": "Ingresa tu nombre de usuario",
+      "PASSWORD_LABEL": "Contraseña",
+      "PASSWORD_PLACEHOLDER": "Ingresa tu contraseña",
+      "CONFIRM_PASSWORD_LABEL": "Confirmar Contraseña",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Confirma tu contraseña",
+      "REGISTER_BUTTON": "Registrar",
+      "CANCEL_BUTTON": "Cancelar",
+      "ALREADY_HAVE_ACCOUNT": "¿Ya tienes una cuenta?",
+      "LOGIN_LINK": "Haz clic aquí.",
+      "SUCCESS": "¡Usuario registrado exitosamente!",
+      "ERROR": "Error al registrar usuario"
+    },
+    "USER_LIST": {
+      "TITLE": "Gestión de Usuarios",
+      "DESCRIPTION": "Buscar y gestionar usuarios del sistema",
+      "SEARCH_TITLE": "Buscar Usuarios",
+      "RESULTS_TITLE": "Lista de Usuarios",
+      "TABLE": {
+        "NAME": "Nombre",
+        "USERNAME": "Nombre de Usuario",
+        "EMAIL": "Correo",
+        "ROLE": "Rol",
+        "ROLES": "Roles",
+        "STATUS": "Estado",
+        "CREATED_AT": "Fecha de Creación",
+        "EMAIL_VERIFICATION": "Verificación de Correo",
+        "ACTIONS": "Acciones"
+      },
+      "STATUS": {
+        "ACTIVE": "Activo",
+        "INACTIVE": "Inactivo"
+      },
+      "EMAIL_VERIFICATION": {
+        "VERIFIED": "Verificado",
+        "NOT_VERIFIED": "No Verificado"
+      },
+      "EMAIL_NOT_VERIFIED": "No Verificado",
+      "TOTAL_USERS": "Total de Usuarios",
+      "LOADING": "Cargando usuarios...",
+      "NO_USERS": "No se encontraron usuarios",
+      "NO_USERS_DESCRIPTION": "Intenta ajustar tus criterios de búsqueda",
+      "PAGINATION_INFO": "Mostrando {{start}} a {{end}} de {{total}} usuarios",
+      "ACTIONS": {
+        "VIEW": "Ver",
+        "EDIT": "Editar",
+        "DELETE": "Eliminar",
+        "ACTIVATE": "Activar",
+        "DEACTIVATE": "Desactivar"
+      },
+      "STATES": {
+        "LOADING": "Cargando...",
+        "ERROR": "Error al cargar usuarios",
+        "EMPTY": "No se encontraron usuarios"
+      },
+      "PAGINATION": {
+        "PREVIOUS": "Anterior",
+        "NEXT": "Siguiente",
+        "FIRST": "Primero",
+        "LAST": "Último",
+        "PAGE": "Página",
+        "OF": "de",
+        "ITEMS_PER_PAGE": "Elementos por página"
+      },
+      "MESSAGES": {
+        "DELETE_SUCCESS": "Usuario eliminado exitosamente",
+        "DELETE_ERROR": "Error al eliminar usuario",
+        "LOAD_ERROR": "Error al cargar usuarios"
+      }
+    },
+    "USER_EDIT": {
+      "TITLE": "Editar Usuario",
+      "DESCRIPTION": "Editar información del usuario",
+      "FORM_TITLE": "Datos del Usuario",
+      "FORM": {
+        "FIRST_NAME": "Nombre",
+        "FIRST_NAME_PLACEHOLDER": "Ingrese el nombre",
+        "LAST_NAME": "Apellido",
+        "LAST_NAME_PLACEHOLDER": "Ingrese el apellido",
+        "EMAIL": "Correo electrónico",
+        "EMAIL_PLACEHOLDER": "Ingrese el correo electrónico",
+        "USERNAME": "Usuario",
+        "USERNAME_PLACEHOLDER": "Ingrese el nombre de usuario",
+        "ROLES": "Roles",
+        "ROLES_PLACEHOLDER": "Seleccione los roles",
+        "STATUS": "Estado",
+        "STATUS_PLACEHOLDER": "Seleccione un estado",
+        "EMAIL_VERIFIED": "Correo verificado"
+      },
+      "BUTTONS": {
+        "SAVE": "Guardar",
+        "CANCEL": "Cancelar",
+        "BACK_TO_LIST": "Volver a la lista"
+      },
+      "USER_INFO": {
+        "TITLE": "Información del Usuario",
+        "CREATED_AT": "Creado en",
+        "UPDATED_AT": "Actualizado en",
+        "LAST_LOGIN": "Último acceso",
+        "PASSWORD_CHANGED": "Contraseña cambiada en"
+      },
+      "MESSAGES": {
+        "UPDATE_SUCCESS": "¡Usuario actualizado exitosamente!",
+        "UPDATE_ERROR": "Error al actualizar usuario",
+        "LOAD_ERROR": "Error al cargar datos del usuario"
+      }
+    },
+    "PESSOA_FISICA_LIST": {
+      "TITLE": "Gestión de Personas Físicas",
+      "DESCRIPTION": "Gestione personas físicas del sistema",
+      "RESULTS_TITLE": "Lista de Personas Físicas",
+      "SEARCH_TITLE": "Buscar Personas Físicas",
+      "SEARCH_BUTTON": "Buscar",
+      "CLEAR_BUTTON": "Limpiar",
+      "TABLE": {
+        "NOME": "Nombre",
+        "CPF": "CPF",
+        "EMAIL": "Correo",
+        "TELEFONE": "Teléfono",
+        "CIDADE": "Ciudad",
+        "STATUS": "Estado",
+        "CREATED_AT": "Creado en",
+        "ACTIONS": "Acciones"
+      },
+      "STATUS": {
+        "ACTIVE": "Activo",
+        "INACTIVE": "Inactivo"
+      },
+      "ACTIONS": {
+        "EDIT": "Editar",
+        "TOGGLE_STATUS": "Cambiar Estado",
+        "ACTIVATE": "Activar",
+        "DEACTIVATE": "Desactivar",
+        "DELETE": "Eliminar"
+      },
+      "STATES": {
+        "LOADING": "Cargando personas físicas...",
+        "EMPTY": "No se encontraron personas físicas",
+        "ERROR": "Error al cargar personas físicas"
+      },
+      "TOTAL_PESSOAS": "personas físicas encontradas",
+      "LOADING": "Cargando personas físicas...",
+      "NO_PESSOAS": "No se encontraron personas físicas",
+      "NO_PESSOAS_DESCRIPTION": "No hay personas físicas registradas en el sistema.",
+      "PAGINATION_INFO": "Mostrando {{start}} a {{end}} de {{total}} personas físicas",
+      "CONFIRM": {
+        "TOGGLE_STATUS_TITLE": "Confirmar Cambio de Estado",
+        "TOGGLE_STATUS_MESSAGE": "¿Está seguro de que desea {{action}} la persona física {{nome}}?",
+        "DELETE_TITLE": "Confirmar Eliminación",
+        "DELETE_MESSAGE": "¿Está seguro de que desea eliminar la persona física {{nome}}? Esta acción no se puede deshacer."
+      },
+      "MESSAGES": {
+        "LOAD_ERROR": "Error al cargar personas físicas",
+        "STATUS_UPDATED": "Estado actualizado exitosamente",
+        "STATUS_ERROR": "Error al cambiar estado",
+        "DELETE_SUCCESS": "Persona física eliminada exitosamente",
+        "DELETE_ERROR": "Error al eliminar persona física"
+      }
+    },
+    "PESSOA_FISICA_EDIT": {
+      "TITLE_CREATE": "Registrar Persona Física",
+      "TITLE_EDIT": "Editar Persona Física",
+      "LOADING": "Cargando datos de la persona física...",
+      "BUTTONS": {
+        "SAVE": "Guardar",
+        "CANCEL": "Cancelar",
+        "BACK_TO_LIST": "Volver a la lista"
+      },
+      "SECTIONS": {
+        "PERSONAL_DATA": "Datos Personales",
+        "ADDRESS": "Dirección"
+      },
+      "FORM": {
+        "NOME": "Nombre Completo",
+        "NOME_PLACEHOLDER": "Ingrese el nombre completo",
+        "CPF": "CPF",
+        "CPF_PLACEHOLDER": "000.000.000-00",
+        "EMAIL": "Correo Electrónico",
+        "EMAIL_PLACEHOLDER": "sucorreo@dominio.com",
+        "TELEFONE": "Teléfono",
+        "TELEFONE_PLACEHOLDER": "(00) 00000-0000",
+        "DATA_NASCIMENTO": "Fecha de Nacimiento",
+        "DATA_NASCIMENTO_PLACEHOLDER": "Seleccione la fecha",
+        "CEP": "Código Postal",
+        "CEP_PLACEHOLDER": "00000-000",
+        "LOGRADOURO": "Dirección",
+        "LOGRADOURO_PLACEHOLDER": "Calle, Avenida, etc.",
+        "NUMERO": "Número",
+        "NUMERO_PLACEHOLDER": "123",
+        "COMPLEMENTO": "Complemento",
+        "COMPLEMENTO_PLACEHOLDER": "Apto, Bloque, etc.",
+        "BAIRRO": "Barrio",
+        "BAIRRO_PLACEHOLDER": "Ingrese el barrio",
+        "CIDADE": "Ciudad",
+        "CIDADE_PLACEHOLDER": "Ingrese la ciudad",
+        "ESTADO": "Estado",
+        "ESTADO_PLACEHOLDER": "Ingrese el estado",
+        "UF": "Código de Estado",
+        "UF_PLACEHOLDER": "SP"
+      },
+      "MESSAGES": {
+        "LOAD_ERROR": "Error al cargar persona física",
+        "CREATE_ERROR": "Error al registrar persona física",
+        "CREATE_SUCCESS": "Persona física registrada exitosamente",
+        "UPDATE_ERROR": "Error al actualizar persona física",
+        "UPDATE_SUCCESS": "Persona física actualizada exitosamente",
+        "CEP_NOT_FOUND": "Código postal no encontrado"
+      }
+    }
+  }
+}

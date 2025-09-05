@@ -1,0 +1,95 @@
+{
+  "COMMON": {
+    "EMAIL": "E-mail",
+    "NAME": "Nome",
+    "SAVE": "Salvar",
+    "CANCEL": "Cancelar",
+    "BACK": "Voltar",
+    "DELETE": "Excluir",
+    "EDIT": "Editar",
+    "UPDATE": "Atualizar",
+    "CREATE": "Criar",
+    "SEARCH": "Buscar",
+    "RESET": "Limpar",
+    "SUBMIT": "Enviar",
+    "CLOSE": "Fechar",
+    "YES": "Sim",
+    "NO": "Não",
+    "CONFIRM": "Confirmar",
+    "ERROR": "Erro",
+    "SUCCESS": "Sucesso",
+    "WARNING": "Aviso",
+    "INFO": "Informação",
+    "LOADING": "Carregando...",
+    "LOGIN": "Entrar",
+    "LOGOUT": "Sair",
+    "REGISTER": "Registrar",
+    "PASSWORD": "Senha",
+    "USERNAME": "Usuário",
+    "WELCOME": "Bem-vindo",
+    "HOME": "Início",
+    "DASHBOARD": "Painel",
+    "SETTINGS": "Configurações",
+    "PROFILE": "Perfil",
+    "LANGUAGE": "Idioma",
+    "ACTIONS": "Ações",
+    "TOGGLE": "Alternar",
+    "ACTIVE": "Ativo",
+    "INACTIVE": "Inativo",
+    "CITY": "Cidade",
+    "COUNTRY": "País",
+    "PLACEHOLDER": {
+      "DATE": "DD/MM/AAAA"
+    },
+    "ACCESSIBILITY": {
+      "SELECT_LANGUAGE": "Selecionar idioma",
+      "DECREASE_FONT": "Diminuir fonte",
+      "RESET_FONT": "Resetar fonte",
+      "INCREASE_FONT": "Aumentar fonte",
+      "SWITCH_TO_LIGHT_THEME": "Alternar para tema claro",
+      "SWITCH_TO_DARK_THEME": "Alternar para tema escuro"
+    },
+    "LANGUAGES": {
+      "PT_BR": "Português",
+      "EN_US": "Inglês",
+      "ES_ES": "Espanhol"
+    },
+    "LAYOUT": {
+      "NAVBAR": {
+        "CLOSE_MENU": "Fechar menu",
+        "OPEN_MENU": "Abrir menu",
+        "YOU_ARE_HERE": "Você está aqui:",
+        "CHANGE_UNIT": "Alterar unidade operacional",
+        "ALERTS": "Alertas",
+        "USER_PHOTO": "Foto do usuário",
+        "USER_NAME": "Nome do Usuário",
+        "OPERATIONAL_UNIT": "Unidade Operacional",
+        "USER_MENU": "Menu do usuário",
+        "MY_PROFILE": "Meu Perfil",
+        "LOGOUT": "Sair"
+      },
+      "SIDEBAR": {
+        "MINIMIZE_SIDEBAR": "Minimizar sidebar",
+        "EXPAND_SIDEBAR": "Expandir sidebar",
+        "SETTINGS": "Configurações",
+        "PORTAL_VERSION": "System RPG v2.0"
+      },
+      "MOBILE_MENU": {
+        "CLOSE_MENU": "Fechar menu",
+        "SETTINGS": "Configurações",
+        "PORTAL_VERSION": "System RPG v2.0"
+      }
+    },
+    "AUTH": {
+      "LOGOUT_SUCCESS": "Logout realizado com sucesso!",
+      "SESSION_EXPIRED": "Sua sessão expirou. Faça login novamente.",
+      "REFRESH_ERROR": "Erro ao renovar sessão. Tente novamente."
+    },
+    "MENU": {
+      "DASHBOARD": "INÍCIO",
+      "USUARIOS": "USUÁRIOS",
+      "ARQUIVOS": "ARQUIVOS",
+      "PROJETOS": "PROJETOS"
+    }
+  }
+}

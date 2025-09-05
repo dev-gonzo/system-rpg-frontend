@@ -1,0 +1,20 @@
+<div class="alert-container">
+  @for (alert of alertService.getAlerts(); track alert.id) {
+    <div 
+      [class]="getAlertClasses(alert.type)"
+      class="alert-item d-flex align-items-center p-3 mb-3 rounded"
+      role="alert"
+    >
+      <mat-icon class="me-2">{{ getIconClass(alert.type) }}</mat-icon>
+      <span class="flex-grow-1">{{ alert.message }}</span>
+      @if (alert.closable) {
+        <button 
+          type="button" 
+          class="btn-close ms-2" 
+          [attr.aria-label]="'Fechar alert'"
+          (click)="closeAlert(alert.id)"
+        ></button>
+      }
+    </div>
+  }
+</div>

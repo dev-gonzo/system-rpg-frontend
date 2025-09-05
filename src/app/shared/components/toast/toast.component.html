@@ -1,0 +1,18 @@
+<div class="toast-container">
+  @for (toast of toastService.getToasts(); track toast.id) {
+    <div 
+      [class]="getToastClasses(toast.type)"
+      class="toast-item d-flex align-items-center p-3 mb-3 rounded"
+      role="alert"
+    >
+      <mat-icon class="me-2">{{ getIconClass(toast.type) }}</mat-icon>
+      <span class="flex-grow-1">{{ toast.message }}</span>
+      <button 
+        type="button" 
+        class="btn-close ms-2" 
+        [attr.aria-label]="'Fechar toast'"
+        (click)="closeToast(toast.id)"
+      ></button>
+    </div>
+  }
+</div>

@@ -1,0 +1,39 @@
+<app-form-wrapper [label]="label" [error]="error" [inputId]="inputId" [helper]="helper">
+  <div class="w-100 position-relative">
+    <div class="position-relative">
+      <input
+        #inputRef
+        [id]="inputId"
+        type="text"
+        class="form-control"
+        [placeholder]="placeholder"
+        autocomplete="off"
+        (input)="onInput($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        [ngClass]="{
+          'is-invalid': error,
+        }"
+        style="padding-right: 2.5rem;"
+      />
+      <span class="autocomplete-arrow position-absolute" 
+            [ngClass]="{'rotated': showDropdown}">
+        ▼
+      </span>
+    </div>
+
+    <ul
+      *ngIf="showDropdown && filteredOptions.length > 0"
+      class="custom-select-dropdown position-absolute w-100 border rounded mt-1 shadow list-unstyled"
+    >
+      <li
+        *ngFor="let opt of filteredOptions"
+        (click)="selectOption(opt)"
+        (keydown)="onKeyDown($event, opt)"
+        class="custom-select-option px-3 py-2"
+      >
+        {{ opt.label }}
+      </li>
+    </ul>
+  </div>
+</app-form-wrapper>

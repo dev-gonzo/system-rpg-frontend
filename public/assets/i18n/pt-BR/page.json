@@ -1,0 +1,293 @@
+{
+  "PAGE": {
+    "LOGIN": {
+      "TITLE": "System RPG",
+      "WELCOME_MESSAGE": "Bem-vindo ao System RPG",
+      "ACCESS_DATA": "Informe seus dados de Acesso",
+      "USERNAME_LABEL": "Usuário",
+      "PASSWORD_LABEL": "Senha",
+      "LOGIN_BUTTON": "Entrar",
+      "FORGOT_PASSWORD": "Esqueceu a senha?",
+      "CLICK_HERE": "Clique aqui.",
+      "CREATE_ACCOUNT": "Crie sua conta",
+      "USERNAME_PLACEHOLDER": "Digite seu usuário",
+      "PASSWORD_PLACEHOLDER": "Digite sua senha"
+    },
+    "NOT_FOUND": {
+      "TITLE": "OPS.",
+      "MESSAGE": "Página não existe!",
+      "BACK_HOME": "Voltar para Home"
+    },
+    "HOME": {
+      "WELCOME_TITLE": "Seja bem-vindo ao System RPG",
+      "WELCOME_DESCRIPTION": "Onde mitos nascem e heróis são forjados. Comece sua saga."
+    },
+    "REGISTER": {
+      "TITLE": "System RPG",
+      "WELCOME_MESSAGE": "Crie sua conta no System RPG.",
+      "FORM_TITLE": "Preencha os dados abaixo",
+      "FIRST_NAME_LABEL": "Nome",
+      "FIRST_NAME_PLACEHOLDER": "Digite seu nome completo",
+      "LAST_NAME_LABEL": "Sobrenome",
+      "LAST_NAME_PLACEHOLDER": "Digite seu nome completo",
+      "EMAIL_LABEL": "E-mail",
+      "EMAIL_PLACEHOLDER": "seuemail@dominio.com.br",
+      "USERNAME_LABEL": "Usuário",
+      "USERNAME_PLACEHOLDER": "Digite seu usuário",
+      "PASSWORD_LABEL": "Senha",
+      "PASSWORD_PLACEHOLDER": "Digite sua senha",
+      "CONFIRM_PASSWORD_LABEL": "Confirmar Senha",
+      "CONFIRM_PASSWORD_PLACEHOLDER": "Confirme sua senha",
+      "REGISTER_BUTTON": "Registrar",
+      "CANCEL_BUTTON": "Cancelar",
+      "ALREADY_HAVE_ACCOUNT": "Já possui cadastro?",
+      "LOGIN_LINK": "Clique aqui.",
+      "SUCCESS": "Usuário registrado com sucesso!",
+      "ERROR": "Erro ao registrar usuário"
+    },
+    "USER_LIST": {
+      "TITLE": "Gerenciamento de Usuários",
+      "DESCRIPTION": "Gerencie usuários do sistema",
+      "RESULTS_TITLE": "Lista de Usuários",
+      "SEARCH_TITLE": "Buscar Usuários",
+      "SEARCH_BUTTON": "Buscar",
+      "CLEAR_BUTTON": "Limpar",
+      "USERNAME_LABEL": "Nome de usuário",
+      "USERNAME_PLACEHOLDER": "Digite o nome de usuário",
+      "EMAIL_LABEL": "E-mail",
+      "EMAIL_PLACEHOLDER": "Digite o e-mail",
+      "FIRST_NAME_LABEL": "Primeiro nome",
+      "FIRST_NAME_PLACEHOLDER": "Digite o primeiro nome",
+      "LAST_NAME_LABEL": "Último nome",
+      "LAST_NAME_PLACEHOLDER": "Digite o último nome",
+      "ROLE_LABEL": "Função",
+      "ROLE_PLACEHOLDER": "Selecione uma função",
+      "STATUS_LABEL": "Status",
+      "STATUS_PLACEHOLDER": "Selecione um status",
+      "EMAIL_VERIFIED_LABEL": "E-mail verificado",
+      "EMAIL_VERIFIED_PLACEHOLDER": "Selecione verificação",
+      "SORT_LABEL": "Ordenar por",
+      "SORT_PLACEHOLDER": "Selecione ordenação",
+      "TABLE": {
+        "NAME": "Nome",
+        "USERNAME": "Usuário",
+        "EMAIL": "E-mail",
+        "ROLE": "Função",
+        "ROLES": "Funções",
+        "STATUS": "Status",
+        "CREATED_AT": "Criado em",
+        "EMAIL_VERIFICATION": "Verificação de E-mail",
+        "ACTIONS": "Ações"
+      },
+      "STATUS": {
+        "ACTIVE": "Ativo",
+        "INACTIVE": "Inativo"
+      },
+      "EMAIL_VERIFICATION": {
+        "VERIFIED": "Verificado",
+        "NOT_VERIFIED": "Não verificado"
+      },
+      "ACTIONS": {
+        "EDIT": "Editar",
+        "TOGGLE_STATUS": "Alternar Status",
+        "ACTIVATE": "Ativar",
+        "DEACTIVATE": "Desativar",
+        "VERIFY_EMAIL": "Verificar E-mail",
+        "DELETE": "Excluir"
+      },
+      "STATES": {
+        "LOADING": "Carregando usuários...",
+        "EMPTY": "Nenhum usuário encontrado",
+        "ERROR": "Erro ao carregar usuários"
+      },
+      "EMAIL_NOT_VERIFIED": "E-mail não verificado",
+      "TOTAL_USERS": "usuários encontrados",
+      "LOADING": "Carregando usuários...",
+      "NO_USERS": "Nenhum usuário encontrado",
+      "NO_USERS_DESCRIPTION": "Não há usuários cadastrados no sistema.",
+      "PAGINATION_INFO": "Mostrando {{start}} a {{end}} de {{total}} usuários",
+      "PAGINATION": {
+        "SHOWING": "Mostrando {{start}} a {{end}} de {{total}} usuários",
+        "PREVIOUS": "Anterior",
+        "NEXT": "Próximo",
+        "PAGE": "Página"
+      },
+      "EDIT_USER": {
+        "TITLE": "Editar Usuário",
+        "DESCRIPTION": "Edite as informações do usuário",
+        "FORM_TITLE": "Dados do Usuário",
+        "FIRST_NAME_LABEL": "Nome",
+        "FIRST_NAME_PLACEHOLDER": "Digite o nome",
+        "LAST_NAME_LABEL": "Sobrenome",
+        "LAST_NAME_PLACEHOLDER": "Digite o sobrenome",
+        "EMAIL_LABEL": "E-mail",
+        "EMAIL_PLACEHOLDER": "Digite o e-mail",
+        "USERNAME_LABEL": "Usuário",
+        "USERNAME_PLACEHOLDER": "Digite o nome de usuário",
+        "ROLE_LABEL": "Função",
+        "ROLE_PLACEHOLDER": "Selecione uma função",
+        "STATUS_LABEL": "Status",
+        "STATUS_PLACEHOLDER": "Selecione um status",
+        "EMAIL_VERIFIED_LABEL": "E-mail verificado",
+        "SAVE_BUTTON": "Salvar",
+        "CANCEL_BUTTON": "Cancelar",
+        "BACK_TO_LIST": "Voltar para lista",
+        "SUCCESS": "Usuário atualizado com sucesso!",
+         "ERROR": "Erro ao atualizar usuário",
+         "LOADING": "Carregando dados do usuário...",
+         "USER_INFO": {
+           "CREATED_AT": "Criado em",
+           "UPDATED_AT": "Atualizado em",
+           "LAST_LOGIN": "Último acesso",
+           "PASSWORD_CHANGED": "Senha alterada em"
+         }
+      },
+      "MESSAGES": {
+        "USER_UPDATED": "Usuário atualizado com sucesso",
+        "USER_DELETED": "Usuário excluído com sucesso",
+        "STATUS_TOGGLED": "Status do usuário alterado com sucesso",
+        "EMAIL_VERIFIED": "E-mail verificado com sucesso",
+        "CONFIRM_DELETE": "Tem certeza que deseja excluir o usuário {{name}}?",
+        "CONFIRM_TOGGLE_STATUS": "Tem certeza que deseja alterar o status deste usuário?",
+        "CONFIRM_VERIFY_EMAIL": "Tem certeza que deseja verificar o e-mail deste usuário?"
+      }
+    },
+    "USER_EDIT": {
+      "TITLE": "Editar Usuário",
+      "LOADING": "Carregando dados do usuário...",
+      "BUTTONS": {
+        "SAVE": "Salvar",
+        "CANCEL": "Cancelar",
+        "BACK_TO_LIST": "Voltar para lista"
+      },
+      "FORM": {
+        "FIRST_NAME": "Nome",
+        "FIRST_NAME_PLACEHOLDER": "Digite o nome",
+        "LAST_NAME": "Sobrenome",
+        "LAST_NAME_PLACEHOLDER": "Digite o sobrenome",
+        "EMAIL": "E-mail",
+        "EMAIL_PLACEHOLDER": "Digite o e-mail",
+        "USERNAME": "Usuário",
+        "USERNAME_PLACEHOLDER": "Digite o nome de usuário",
+        "ROLES": "Funções",
+        "ROLES_PLACEHOLDER": "Selecione as funções"
+      },
+      "USER_INFO": {
+        "TITLE": "Informações do Usuário",
+        "CREATED_AT": "Criado em",
+        "UPDATED_AT": "Atualizado em",
+        "LAST_LOGIN": "Último acesso",
+        "NO_LOGIN": "Nunca acessou",
+        "PASSWORD_CHANGED": "Senha alterada em",
+        "NEVER": "Nunca"
+      },
+      "MESSAGES": {
+          "LOAD_ERROR": "Erro ao carregar usuário",
+          "UPDATE_ERROR": "Erro ao atualizar usuário",
+          "UPDATE_SUCCESS": "Usuário atualizado com sucesso"
+        }
+    },
+    "PESSOA_FISICA_LIST": {
+      "TITLE": "Gerenciamento de Pessoas Físicas",
+      "DESCRIPTION": "Gerencie pessoas físicas do sistema",
+      "RESULTS_TITLE": "Lista de Pessoas Físicas",
+      "SEARCH_TITLE": "Buscar Pessoas Físicas",
+      "SEARCH_BUTTON": "Buscar",
+      "CLEAR_BUTTON": "Limpar",
+      "TABLE": {
+        "NOME": "Nome",
+        "CPF": "CPF",
+        "EMAIL": "E-mail",
+        "TELEFONE": "Telefone",
+        "CIDADE": "Cidade",
+        "STATUS": "Status",
+        "CREATED_AT": "Criado em",
+        "ACTIONS": "Ações"
+      },
+      "STATUS": {
+        "ACTIVE": "Ativo",
+        "INACTIVE": "Inativo"
+      },
+      "ACTIONS": {
+        "EDIT": "Editar",
+        "TOGGLE_STATUS": "Alternar Status",
+        "ACTIVATE": "Ativar",
+        "DEACTIVATE": "Desativar",
+        "DELETE": "Excluir"
+      },
+      "STATES": {
+        "LOADING": "Carregando pessoas físicas...",
+        "EMPTY": "Nenhuma pessoa física encontrada",
+        "ERROR": "Erro ao carregar pessoas físicas"
+      },
+      "TOTAL_PESSOAS": "pessoas físicas encontradas",
+      "LOADING": "Carregando pessoas físicas...",
+      "NO_PESSOAS": "Nenhuma pessoa física encontrada",
+      "NO_PESSOAS_DESCRIPTION": "Não há pessoas físicas cadastradas no sistema.",
+      "PAGINATION_INFO": "Mostrando {{start}} a {{end}} de {{total}} pessoas físicas",
+      "CONFIRM": {
+        "TOGGLE_STATUS_TITLE": "Confirmar Alteração de Status",
+        "TOGGLE_STATUS_MESSAGE": "Tem certeza que deseja {{action}} a pessoa física {{nome}}?",
+        "DELETE_TITLE": "Confirmar Exclusão",
+        "DELETE_MESSAGE": "Tem certeza que deseja excluir a pessoa física {{nome}}? Esta ação não pode ser desfeita."
+      },
+      "MESSAGES": {
+        "LOAD_ERROR": "Erro ao carregar pessoas físicas",
+        "STATUS_UPDATED": "Status atualizado com sucesso",
+        "STATUS_ERROR": "Erro ao alterar status",
+        "DELETE_SUCCESS": "Pessoa física excluída com sucesso",
+        "DELETE_ERROR": "Erro ao excluir pessoa física"
+      }
+    },
+    "PESSOA_FISICA_EDIT": {
+      "TITLE_CREATE": "Cadastrar Pessoa Física",
+      "TITLE_EDIT": "Editar Pessoa Física",
+      "LOADING": "Carregando dados da pessoa física...",
+      "BUTTONS": {
+        "SAVE": "Salvar",
+        "CANCEL": "Cancelar",
+        "BACK_TO_LIST": "Voltar para lista"
+      },
+      "SECTIONS": {
+        "PERSONAL_DATA": "Dados Pessoais",
+        "ADDRESS": "Endereço"
+      },
+      "FORM": {
+        "NOME": "Nome Completo",
+        "NOME_PLACEHOLDER": "Digite o nome completo",
+        "CPF": "CPF",
+        "CPF_PLACEHOLDER": "000.000.000-00",
+        "EMAIL": "E-mail",
+        "EMAIL_PLACEHOLDER": "seuemail@dominio.com.br",
+        "TELEFONE": "Telefone",
+        "TELEFONE_PLACEHOLDER": "(00) 00000-0000",
+        "DATA_NASCIMENTO": "Data de Nascimento",
+        "DATA_NASCIMENTO_PLACEHOLDER": "Selecione a data",
+        "CEP": "CEP",
+        "CEP_PLACEHOLDER": "00000-000",
+        "LOGRADOURO": "Logradouro",
+        "LOGRADOURO_PLACEHOLDER": "Rua, Avenida, etc.",
+        "NUMERO": "Número",
+        "NUMERO_PLACEHOLDER": "123",
+        "COMPLEMENTO": "Complemento",
+        "COMPLEMENTO_PLACEHOLDER": "Apto, Bloco, etc.",
+        "BAIRRO": "Bairro",
+        "BAIRRO_PLACEHOLDER": "Digite o bairro",
+        "CIDADE": "Cidade",
+        "CIDADE_PLACEHOLDER": "Digite a cidade",
+        "ESTADO": "Estado",
+        "ESTADO_PLACEHOLDER": "Digite o estado",
+        "UF": "UF",
+        "UF_PLACEHOLDER": "SP"
+      },
+      "MESSAGES": {
+        "LOAD_ERROR": "Erro ao carregar pessoa física",
+        "CREATE_ERROR": "Erro ao cadastrar pessoa física",
+        "CREATE_SUCCESS": "Pessoa física cadastrada com sucesso",
+        "UPDATE_ERROR": "Erro ao atualizar pessoa física",
+        "UPDATE_SUCCESS": "Pessoa física atualizada com sucesso",
+        "CEP_NOT_FOUND": "CEP não encontrado"
+      }
+    }
+  }
+}

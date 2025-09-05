@@ -1,0 +1,23 @@
+<label
+  [attr.for]="inputId"
+  class="form-label fw-medium mb-1"
+  [ngClass]="{
+    'text-danger': error,
+  }"
+>
+  {{ label }}
+</label>
+
+<ng-content></ng-content>
+
+@if (helper) {
+  <div class="text-muted d-block small mt-1 px-2">
+    {{ helper }}
+  </div>
+}
+
+@if (error) {
+  <div class="invalid-feedback d-block small mt-1 px-2">
+    {{ error }}
+  </div>
+}
