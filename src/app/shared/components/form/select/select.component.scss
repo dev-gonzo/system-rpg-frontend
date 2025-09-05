@@ -1,6 +1,11 @@
 select.form-control.custom-select {
+  &::placeholder {
+    color: var(--color-secondary) !important;
+    opacity: 0.8;
+  }
+  
   &.text-muted {
-    color: var(--color-secondary);
+    color: var(--color-secondary) !important;
     opacity: 0.8;
   }
   
@@ -8,12 +13,27 @@ select.form-control.custom-select {
     color: var(--color-error);
     border-color: var(--color-error);
     
+    &::placeholder {
+      color: var(--color-error) !important;
+      opacity: 1;
+    }
+    
     &.text-muted {
-      color: var(--color-error);
+      color: var(--color-error) !important;
     }
   }
   
   option[disabled] {
-    color: var(--color-secondary);
+    color: var(--color-secondary) !important;
+    opacity: 0.8;
+  }
+  
+  option:first-child[disabled] {
+    color: var(--color-secondary) !important;
+    opacity: 0.8;
+  }
+  
+  option:not([disabled]) {
+    color: var(--color-foreground) !important;
   }
 }

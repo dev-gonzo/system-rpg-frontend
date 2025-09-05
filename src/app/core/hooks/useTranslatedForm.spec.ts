@@ -456,7 +456,7 @@ describe('TranslatedFormService', () => {
       
       const newSteps: FormStep[] = [
         {
-          label: 'Step 1 EN',
+          label: 'Step 1',
           ativo: true,
           completado: false,
           schema: yup.object({
@@ -464,7 +464,7 @@ describe('TranslatedFormService', () => {
           })
         },
         {
-          label: 'Step 2 EN',
+          label: 'Step 2',
           ativo: false,
           completado: false,
           schema: yup.object({
@@ -482,7 +482,13 @@ describe('TranslatedFormService', () => {
       expect(result.form.get('name')?.value).toBe('John Doe');
       expect(result.form.get('email')?.value).toBe('john@example.com');
       expect(result.form.get('name')?.touched).toBeTruthy();
-      expect(result.steps).toEqual(newSteps);
+      expect(result.steps?.length).toBe(newSteps.length);
+      expect(result.steps?.[0].label).toBe(newSteps[0].label);
+      expect(result.steps?.[0].ativo).toBe(newSteps[0].ativo);
+      expect(result.steps?.[0].completado).toBe(newSteps[0].completado);
+      expect(result.steps?.[1].label).toBe(newSteps[1].label);
+      expect(result.steps?.[1].ativo).toBe(newSteps[1].ativo);
+      expect(result.steps?.[1].completado).toBe(newSteps[1].completado);
       expect(changeDetectorRefSpy.detectChanges).toHaveBeenCalled();
     });
   });

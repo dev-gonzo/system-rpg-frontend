@@ -1,18 +1,66 @@
-<h4 class="card-title mb-3">Informações Essenciais</h4>
-<div class="row">
+<h4 class="card-title mb-3">{{ 'PAGE.GAME_GROUP.CREATE.STEPS.ESSENTIAL_INFO' | translate }}</h4>
+<div class="row row-gap-3">
   <app-form-input
-    [label]="'Nome da Mesa'"
-    [placeholder]="'Digite o nome da sua mesa'"
-    [control]="$any(form.get('gameGroupName'))"
-    fieldName="gameGroupName"
-    col="6"
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_NAME' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_NAME_PLACEHOLDER' | translate"
+    [control]="$any(form.get('campaignName'))"
+    fieldName="campaignName"
+    col="12"
   />
 
   <app-form-input
-    [label]="'Seu Nome'"
-    [placeholder]="'Digite seu nome'"
-    [control]="$any(form.get('nome'))"
-    fieldName="nome"
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.GAME_SYSTEM' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.GAME_SYSTEM_PLACEHOLDER' | translate"
+    [control]="$any(form.get('gameSystem'))"
+    fieldName="gameSystem"
+    col="12"
+    colMd="6"
+  />
+
+    <app-form-input
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.SETTING_WORLD' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.SETTING_WORLD_PLACEHOLDER' | translate"
+    [control]="$any(form.get('settingWorld'))"
+    fieldName="settingWorld"
+    col="12"
+    colMd="6"
+  />
+
+  <app-form-textarea
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.SHORT_DESCRIPTION' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.SHORT_DESCRIPTION_PLACEHOLDER' | translate"
+    [control]="$any(form.get('shortDescription'))"
+    fieldName="shortDescription"
+    col="12"
+    [rows]="3"
+  />
+
+
+
+  <app-form-textarea
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_OVERVIEW' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_OVERVIEW_PLACEHOLDER' | translate"
+    [control]="$any(form.get('campaignOverview'))"
+    fieldName="campaignOverview"
+    col="12"
+    [rows]="10"
+  />
+
+  <app-form-input
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.MIN_PLAYERS' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.MIN_PLAYERS_PLACEHOLDER' | translate"
+    [control]="$any(form.get('minPlayers'))"
+    fieldName="minPlayers"
     col="6"
+    type="number"
+  />
+
+  <app-form-input
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.MAX_PLAYERS' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.MAX_PLAYERS_PLACEHOLDER' | translate"
+    [control]="$any(form.get('maxPlayers'))"
+    fieldName="maxPlayers"
+    col="6"
+    type="number"
   />
 </div>

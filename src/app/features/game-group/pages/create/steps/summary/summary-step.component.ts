@@ -4,13 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { TypedFormGroup } from '@app/core/types/forms';
-
-type GameGroupFormData = {
-  gameGroupName: string;
-  nome: string;
-  local: string;
-  hora: string;
-};
+import { GameGroupFormData } from '../../../../types/game-group-form.types';
 
 @Component({
   standalone: true,

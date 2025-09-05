@@ -5,13 +5,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { TypedFormGroup } from '@app/core/types/forms';
 import { InputComponent } from '@app/shared/components/form/input/input.component';
-
-type GameGroupFormData = {
-  gameGroupName: string;
-  nome: string;
-  local: string;
-  hora: string;
-};
+import { TextareaComponent } from '@app/shared/components/form/textarea/textarea.component';
+import { GameGroupFormData } from '../../../../types/game-group-form.types';
 
 @Component({
   standalone: true,
@@ -20,6 +15,7 @@ type GameGroupFormData = {
     CommonModule,
     ReactiveFormsModule,
     InputComponent,
+    TextareaComponent,
     TranslateModule,
   ],
   templateUrl: './essential-info-step.component.html',

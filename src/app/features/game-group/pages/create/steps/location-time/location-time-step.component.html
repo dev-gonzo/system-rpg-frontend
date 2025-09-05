@@ -1,18 +1,71 @@
-<h4 class="card-title mb-3">Local e Hora</h4>
-<div class="row">
-  <app-form-input
-    [label]="'Local'"
-    [placeholder]="'Onde será a sessão?'"
-    [control]="$any(form.get('local'))"
-    fieldName="local"
-    col="6"
+<h4 class="card-title mb-3">{{ 'PAGE.GAME_GROUP.CREATE.STEPS.LOCATION_TIME' | translate }}</h4>
+<div class="row row-gap-3">
+  <app-form-radio
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.VISIBILITY_GAME_GROUP' | translate"
+    [options]="visibilityOptions"
+    [control]="$any(form.get('visibilityGameGroup'))"
+    name="visibilityGameGroup"
+    [inline]="true"
+    col="12"
+    colMd="4"
+  />
+
+  <app-form-select
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.ACCESS_RULE' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.ACCESS_RULE_PLACEHOLDER' | translate"
+    [options]="accessRuleOptions"
+    [control]="$any(form.get('accessRule'))"
+    col="12"
+  />
+
+  <app-form-radio
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.MODALITY' | translate"
+    [options]="modalityOptions"
+    [control]="$any(form.get('modality'))"
+    name="modality"
+    [inline]="true"
+    col="12"
   />
 
   <app-form-input
-    [label]="'Horário'"
-    [placeholder]="'Que horas será a sessão?'"
-    [control]="$any(form.get('hora'))"
-    fieldName="hora"
-    col="6"
+    [label]="locationOrVirtualLabel | translate"
+    [placeholder]="locationOrVirtualPlaceholder | translate"
+    [control]="$any(form.get('locationOrVirtualTabletop'))"
+    fieldName="locationOrVirtualTabletop"
+    col="12"
   />
+
+  <div class="col-12">
+    <h5 class="fw-bold text-secondary mt-3 mb-2">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.LOCATION_INFO' | translate }}</h5>
+    <p class="text-muted small mb-3">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.LOCATION_INFO_DESCRIPTION' | translate }}</p>
+  </div>
+
+  <app-form-input
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.COUNTRY' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.COUNTRY_PLACEHOLDER' | translate"
+    [control]="$any(form.get('country'))"
+    fieldName="country"
+    col="12"
+    colMd="4"
+  />
+
+  <app-form-input
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.STATE' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.STATE_PLACEHOLDER' | translate"
+    [control]="$any(form.get('state'))"
+    fieldName="state"
+    col="12"
+    colMd="4"
+  />
+
+  <app-form-input
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.CITY' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.CITY_PLACEHOLDER' | translate"
+    [control]="$any(form.get('city'))"
+    fieldName="city"
+    col="12"
+    colMd="4"
+  />
+
+
 </div>

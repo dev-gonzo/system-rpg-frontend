@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Injectable, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectorRef, inject, Injectable, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Subject, takeUntil, firstValueFrom, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Subject, takeUntil } from 'rxjs';
 import * as yup from 'yup';
 
 import { createFormFromSchema, FormStep } from '../utils/createFormFromSchema';
@@ -165,19 +165,15 @@ export class TranslatedFormService {
         });
     }
 
-    return {
-      get form() {
-        return form$.value;
-      },
+    const result = {
+      get form() { return form$.value; },
       form$,
-      get steps() {
-        return currentFormHandler.steps;
-      },
-      get submit() {
-        return currentSubmit as () => Promise<T | undefined>;
-      },
+      steps: currentFormHandler.steps,
+      submit: currentSubmit as () => Promise<T | undefined>,
       destroy
     };
+
+    return result;
   }
 }
 

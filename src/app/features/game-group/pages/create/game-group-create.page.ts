@@ -20,13 +20,7 @@ import { EssentialInfoStepComponent } from './steps/essential-info/essential-inf
 import { LocationTimeStepComponent } from './steps/location-time/location-time-step.component';
 import { SummaryStepComponent } from './steps/summary/summary-step.component';
 import { createStepsConfig } from './steps/step-config';
-
-type GameGroupFormData = {
-  gameGroupName: string;
-  nome: string;
-  local: string;
-  hora: string;
-};
+import { GameGroupFormData } from '../../types/game-group-form.types';
 
 @Component({
   standalone: true,

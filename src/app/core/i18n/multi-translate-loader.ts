@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { TranslateLoader } from '@ngx-translate/core';
 import type { TranslationObject } from '@ngx-translate/core';
+import { TranslateLoader } from '@ngx-translate/core';
 import { Observable, forkJoin, of } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 export interface ITranslationResource {
   prefix: string;
