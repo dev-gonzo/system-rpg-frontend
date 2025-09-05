@@ -8,8 +8,9 @@ import { LanguageService } from '@app/shared/services/language.service';
   standalone: true,
   selector: 'app-home-private',
   imports: [CommonModule, SectionWrapperComponent, TranslateModule],
-  templateUrl: './home-private.page.html',
+  templateUrl: './game-group-create.page.html',
 })
-export class HomePrivatePage {
+export class GameGroupCreatePage {
   private readonly languageService = inject(LanguageService);
+
 }

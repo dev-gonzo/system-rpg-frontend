@@ -11,7 +11,7 @@ export interface ITranslationResource {
 
 export class MultiTranslateHttpLoader implements TranslateLoader {
   private readonly CACHE_KEY_PREFIX = 'ngx-translate-cache';
-  private readonly CACHE_VERSION = '1.0.1'; 
+  private readonly CACHE_VERSION = '1.0.2'; 
   private readonly CACHE_EXPIRY_HOURS = 24; 
 
   constructor(
@@ -19,7 +19,8 @@ export class MultiTranslateHttpLoader implements TranslateLoader {
     private readonly resources: ITranslationResource[] = [
       { prefix: '/assets/i18n/', suffix: '/common.json' },
       { prefix: '/assets/i18n/', suffix: '/validation.json' },
-      { prefix: '/assets/i18n/', suffix: '/page.json' }
+      { prefix: '/assets/i18n/', suffix: '/page.json' },
+      { prefix: '/assets/i18n/', suffix: '/rpg.json' }
     ]
   ) {
     this.clearOldCacheVersions();

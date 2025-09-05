@@ -1,7 +1,7 @@
 {
   "RPG": {
     "GAME_CONCEPTS": {
-      "GAME_GROUP": "Game Group / Group",
+      "GAME_GROUP": "Game Group",
       "ADVENTURE": "Adventure",
       "GAME_MASTER": "Game Master (GM) / Dungeon Master (DM)",
       "PLAYER": "Player",

@@ -1,7 +1,7 @@
 {
   "RPG": {
     "GAME_CONCEPTS": {
-      "GAME_GROUP": "Mesa / Grupo de juego",
+      "GAME_GROUP": "Grupo de juego",
       "ADVENTURE": "Aventura",
       "GAME_MASTER": "Director de juego (DJ) / Master",
       "PLAYER": "Jugador",

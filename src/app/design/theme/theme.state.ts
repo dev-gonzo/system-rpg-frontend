@@ -18,7 +18,7 @@ export class ThemeState {
   }
 
   private loadTheme(): ThemeMode {
-    return (localStorage.getItem(this.THEME_KEY) as ThemeMode) || 'light';
+    return (localStorage.getItem(this.THEME_KEY) as ThemeMode) || 'dark';
   }
 
   private loadFontSize(): FontSize {

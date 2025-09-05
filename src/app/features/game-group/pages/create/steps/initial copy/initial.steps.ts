@@ -6,10 +6,11 @@ import { LanguageService } from '@app/shared/services/language.service';
 
 @Component({
   standalone: true,
-  selector: 'app-home-private',
+  selector: 'app-step-initial',
   imports: [CommonModule, SectionWrapperComponent, TranslateModule],
-  templateUrl: './home-private.page.html',
+  templateUrl: './initial.step.html',
 })
-export class HomePrivatePage {
+export class InitialStep {
   private readonly languageService = inject(LanguageService);
+
 }
