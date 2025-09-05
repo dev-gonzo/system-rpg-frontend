@@ -1,0 +1,24 @@
+.form-control {
+  &.is-invalid {
+    &::placeholder {
+      color: var(--color-error) !important;
+      opacity: 1;
+    }
+  }
+
+  &[resize="none"] {
+    resize: none;
+  }
+
+  &[resize="horizontal"] {
+    resize: horizontal;
+  }
+
+  &[resize="vertical"] {
+    resize: vertical;
+  }
+
+  &[resize="both"] {
+    resize: both;
+  }
+}

@@ -1,0 +1,19 @@
+<app-form-wrapper [label]="label" [error]="error" [inputId]="inputId" [helper]="helper">
+  <textarea
+    #textareaElement
+    [id]="inputId"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    [attr.autocomplete]="autocomplete"
+    [rows]="rows"
+    [cols]="cols"
+    [maxlength]="maxlength || null"
+    [minlength]="minlength || null"
+    class="form-control"
+    [ngClass]="{
+      'is-invalid': error,
+    }"
+    [style.resize]="resize"
+    (blur)="onBlur()"
+  ></textarea>
+</app-form-wrapper>
