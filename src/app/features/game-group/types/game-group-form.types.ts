@@ -16,7 +16,7 @@ export type GameGroupFormData = {
   state?: string;
   city?: string;
   
-  // Campos da step de regras e conduta
+  
   conduct: string;
   punctualityAttendance: string;
   houseRole: string;
