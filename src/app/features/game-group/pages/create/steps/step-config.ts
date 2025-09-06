@@ -8,7 +8,7 @@ export const createStepsConfig = async (translate: TranslateService): Promise<Fo
   const translations = await firstValueFrom(translate.get([
     'PAGE.GAME_GROUP.CREATE.STEPS.ESSENTIAL_INFO',
     'PAGE.GAME_GROUP.CREATE.STEPS.LOCATION_TIME',
-    'PAGE.GAME_GROUP.CREATE.STEPS.SUMMARY'
+    'PAGE.GAME_GROUP.CREATE.STEPS.RULES_CONDUCT'
   ]));
   
   
@@ -30,11 +30,11 @@ export const createStepsConfig = async (translate: TranslateService): Promise<Fo
       schema: schemas.accessLocationschemaStep,
     },
     {
-      label: translations['PAGE.GAME_GROUP.CREATE.STEPS.SUMMARY'],
+      label: translations['PAGE.GAME_GROUP.CREATE.STEPS.RULES_CONDUCT'],
       ativo: false,
       completado: false,
       bloqueado: true,
-      schema: schemas.summarySchemaStep,
+      schema: schemas.rulesConductSchemaStep,
     },
   ];
 };

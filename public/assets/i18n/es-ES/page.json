@@ -253,7 +253,7 @@
         "STEPS": {
           "ESSENTIAL_INFO": "Información Esencial",
           "LOCATION_TIME": "Ubicación y Hora",
-          "SUMMARY": "Resumen"
+          "RULES_CONDUCT": "Reglas y Conducta"
         },
         "FIELDS": {
           "CAMPAIGN_NAME": "Nombre de la Campaña",
@@ -302,14 +302,19 @@
           "LOCATION_INFO_DESCRIPTION": "Esta información ayuda a otros jugadores a encontrar tu mesa",
           "SESSION_INFO": "Información de la Sesión"
         },
-        "SUMMARY": {
-          "TITLE": "Resumen de la Campaña",
-          "NOT_INFORMED": "No informado",
-          "PLAYERS": "Jugadores",
-          "ACCESS_SETTINGS": "Configuraciones de Acceso",
-          "LOCATION_INFO": "Información de Ubicación",
-          "GEOGRAPHIC_LOCATION": "Ubicación Geográfica",
-          "REVIEW_MESSAGE": "Revise la información anterior y haga clic en 'Crear Campaña' para finalizar."
+        "RULES_CONDUCT": {
+          "TITLE": "Reglas y Conducta",
+          "CONDUCT_LABEL": "Temas y Contenido",
+          "CONDUCT_PLACEHOLDER": "Lista temas que pueden o no ser abordados en el juego (ej: violencia gráfica, fobias, etc.)",
+          "PUNCTUALITY_ATTENDANCE_LABEL": "Puntualidad y Asistencia",
+          "PUNCTUALITY_ATTENDANCE_PLACEHOLDER": "Describe las expectativas sobre puntualidad y frecuencia de los jugadores",
+          "HOUSE_ROLE_LABEL": "Reglas de la Casa",
+          "HOUSE_ROLE_PLACEHOLDER": "Describe cualquier modificación a las reglas del sistema de juego elegido",
+          "BEHAVIORAL_EXPECTATIONS_LABEL": "Expectativas Comportamentales",
+          "BEHAVIORAL_EXPECTATIONS_PLACEHOLDER": "Reglas sobre respeto mutuo, metagaming, etc.",
+          "COMMITMENT_LABEL": "Yo, como Maestro de Juego, me comprometo a seguir las pautas establecidas y a proporcionar un ambiente seguro y divertido para todos los jugadores.",
+          "INFO_MESSAGE": "Estas reglas ayudan a crear un ambiente seguro y divertido para todos los participantes de la mesa.",
+          "FINISH_BUTTON": "Finalizar Registro"
         },
         "STEP_ERROR": "Por favor, corrige los errores en este paso"
       }

@@ -1,0 +1,50 @@
+<h4 class="card-title mb-3">{{ 'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.TITLE' | translate }}</h4>
+
+<p class="text-muted mb-3">
+  {{ 'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.INFO_MESSAGE' | translate }}
+</p>
+
+<div class="row row-gap-3">
+  <app-form-textarea
+    [label]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.CONDUCT_LABEL' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.CONDUCT_PLACEHOLDER' | translate"
+    [control]="$any(form.get('conduct'))"
+    fieldName="conduct"
+    col="12"
+    [rows]="3"
+  />
+
+  <app-form-textarea
+    [label]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.PUNCTUALITY_ATTENDANCE_LABEL' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.PUNCTUALITY_ATTENDANCE_PLACEHOLDER' | translate"
+    [control]="$any(form.get('punctualityAttendance'))"
+    fieldName="punctualityAttendance"
+    col="12"
+    [rows]="3"
+  />
+
+  <app-form-textarea
+    [label]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.HOUSE_ROLE_LABEL' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.HOUSE_ROLE_PLACEHOLDER' | translate"
+    [control]="$any(form.get('houseRole'))"
+    fieldName="houseRole"
+    col="12"
+    [rows]="4"
+  />
+
+  <app-form-textarea
+    [label]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.BEHAVIORAL_EXPECTATIONS_LABEL' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.BEHAVIORAL_EXPECTATIONS_PLACEHOLDER' | translate"
+    [control]="$any(form.get('behavioralExpectations'))"
+    fieldName="behavioralExpectations"
+    col="12"
+    [rows]="4"
+  />
+
+  <app-form-checkbox
+    [labelFlag]="'PAGE.GAME_GROUP.CREATE.RULES_CONDUCT.COMMITMENT_LABEL' | translate"
+    [control]="$any(form.get('commitment'))"
+    id="commitment"
+    col="12"
+  />
+</div>

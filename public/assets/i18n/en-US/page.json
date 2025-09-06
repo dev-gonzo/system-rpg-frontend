@@ -284,7 +284,7 @@
         "STEPS": {
           "ESSENTIAL_INFO": "Campaign Details",
           "LOCATION_TIME": "Schedule & Location",
-          "SUMMARY": "Review & Launch"
+          "RULES_CONDUCT": "Rules & Conduct"
         },
         "FIELDS": {
           "CAMPAIGN_NAME": "Campaign Name",
@@ -333,14 +333,19 @@
           "LOCATION_INFO_DESCRIPTION": "This information helps other players find your table",
           "SESSION_INFO": "Session Information"
         },
-        "SUMMARY": {
-          "TITLE": "Campaign Summary",
-          "NOT_INFORMED": "Not informed",
-          "PLAYERS": "Players",
-          "ACCESS_SETTINGS": "Access Settings",
-          "LOCATION_INFO": "Location Information",
-          "GEOGRAPHIC_LOCATION": "Geographic Location",
-          "REVIEW_MESSAGE": "Review the information above and click 'Create Campaign' to finish."
+        "RULES_CONDUCT": {
+          "TITLE": "Rules and Conduct",
+          "CONDUCT_LABEL": "Themes and Content",
+          "CONDUCT_PLACEHOLDER": "List themes that may or may not be addressed in the game (e.g., graphic violence, phobias, etc.)",
+          "PUNCTUALITY_ATTENDANCE_LABEL": "Punctuality and Attendance",
+          "PUNCTUALITY_ATTENDANCE_PLACEHOLDER": "Describe expectations about punctuality and player attendance",
+          "HOUSE_ROLE_LABEL": "House Rules",
+          "HOUSE_ROLE_PLACEHOLDER": "Describe any modifications to the chosen game system rules",
+          "BEHAVIORAL_EXPECTATIONS_LABEL": "Behavioral Expectations",
+          "BEHAVIORAL_EXPECTATIONS_PLACEHOLDER": "Rules about mutual respect, metagaming, etc.",
+          "COMMITMENT_LABEL": "I, as Game Master, commit to following the established guidelines and providing a safe and fun environment for all players.",
+          "INFO_MESSAGE": "These rules help create a safe and fun environment for all table participants.",
+          "FINISH_BUTTON": "Finish Registration"
         },
         "STEP_ERROR": "Please correct the errors in this step"
       }

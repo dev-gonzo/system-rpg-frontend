@@ -15,4 +15,11 @@ export type GameGroupFormData = {
   country?: string;
   state?: string;
   city?: string;
+  
+  // Campos da step de regras e conduta
+  conduct: string;
+  punctualityAttendance: string;
+  houseRole: string;
+  behavioralExpectations: string;
+  commitment: boolean;
 };

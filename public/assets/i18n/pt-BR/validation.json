@@ -86,7 +86,21 @@
   "MODALITY_REQUIRED": "Modalidade é obrigatória",
   "MODALITY_INVALID": "Modalidade deve ser online ou presencial",
   "LOCATION_OR_VIRTUAL_REQUIRED": "Local ou mesa virtual é obrigatório",
-  "LOCATION_OR_VIRTUAL_MIN_LENGTH": "Local ou mesa virtual deve ter pelo menos 3 caracteres",
-  "LOCATION_OR_VIRTUAL_MAX_LENGTH": "Local ou mesa virtual deve ter no máximo 200 caracteres"
+    "LOCATION_OR_VIRTUAL_MIN_LENGTH": "Local ou mesa virtual deve ter pelo menos 3 caracteres",
+    "LOCATION_OR_VIRTUAL_MAX_LENGTH": "Local ou mesa virtual deve ter no máximo 200 caracteres",
+    "CONDUCT_REQUIRED": "Conduta é obrigatória",
+    "CONDUCT_MIN_LENGTH": "Conduta deve ter pelo menos 10 caracteres",
+    "CONDUCT_MAX_LENGTH": "Conduta deve ter no máximo 1000 caracteres",
+    "PUNCTUALITY_ATTENDANCE_REQUIRED": "Pontualidade e frequência é obrigatória",
+    "PUNCTUALITY_ATTENDANCE_MIN_LENGTH": "Pontualidade e frequência deve ter pelo menos 10 caracteres",
+    "PUNCTUALITY_ATTENDANCE_MAX_LENGTH": "Pontualidade e frequência deve ter no máximo 1000 caracteres",
+    "HOUSE_ROLE_REQUIRED": "Regras da casa é obrigatório",
+    "HOUSE_ROLE_MIN_LENGTH": "Regras da casa deve ter pelo menos 10 caracteres",
+    "HOUSE_ROLE_MAX_LENGTH": "Regras da casa deve ter no máximo 1000 caracteres",
+    "BEHAVIORAL_EXPECTATIONS_REQUIRED": "Expectativas comportamentais é obrigatório",
+    "BEHAVIORAL_EXPECTATIONS_MIN_LENGTH": "Expectativas comportamentais deve ter pelo menos 10 caracteres",
+    "BEHAVIORAL_EXPECTATIONS_MAX_LENGTH": "Expectativas comportamentais deve ter no máximo 1000 caracteres",
+    "COMMITMENT_REQUIRED": "Compromisso é obrigatório",
+    "COMMITMENT_MUST_BE_TRUE": "Você deve aceitar o compromisso para continuar"
   }
 }

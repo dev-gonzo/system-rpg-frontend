@@ -4,18 +4,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { TypedFormGroup } from '@app/core/types/forms';
+import { CheckboxComponent } from '@app/shared/components/form/checkbox/checkbox.component';
+import { TextareaComponent } from '@app/shared/components/form/textarea/textarea.component';
+
 import { GameGroupFormData } from '../../../../types/game-group-form.types';
 
 @Component({
   standalone: true,
-  selector: 'app-summary-step',
+  selector: 'app-rules-conduct-step',
   imports: [
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
+    TextareaComponent,
+    CheckboxComponent,
   ],
-  templateUrl: './summary-step.component.html',
+  templateUrl: './rules-conduct-step.component.html',
 })
-export class SummaryStepComponent {
+export class RulesConductStepComponent {
   @Input() form!: TypedFormGroup<GameGroupFormData>;
 }

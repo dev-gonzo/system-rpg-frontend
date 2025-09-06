@@ -14,6 +14,7 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 export class CheckboxComponent extends ColumnHostClass {
   @Input({ required: true }) control!: FormControl;
   @Input() label = '';
+  @Input() labelFlag = '';
   @Input() id?: string;
   @Input() helper: string = '';
 

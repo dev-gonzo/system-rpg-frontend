@@ -18,7 +18,7 @@ import { ToastService } from '@app/shared/components/toast/toast.service';
 
 import { EssentialInfoStepComponent } from './steps/essential-info/essential-info-step.component';
 import { LocationTimeStepComponent } from './steps/location-time/location-time-step.component';
-import { SummaryStepComponent } from './steps/summary/summary-step.component';
+import { RulesConductStepComponent } from './steps/summary/rules-conduct-step.component';
 import { createStepsConfig } from './steps/step-config';
 import { GameGroupFormData } from '../../types/game-group-form.types';
 
@@ -33,7 +33,7 @@ import { GameGroupFormData } from '../../types/game-group-form.types';
     StepperNavigationComponent,
     EssentialInfoStepComponent,
     LocationTimeStepComponent,
-    SummaryStepComponent,
+    RulesConductStepComponent,
     TranslateModule,
   ],
   templateUrl: './game-group-create.page.html',

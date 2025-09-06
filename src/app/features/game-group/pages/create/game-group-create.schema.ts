@@ -64,6 +64,31 @@ export const createGameGroupSchema = async (translate: TranslateService) => {
       city: yup.string().optional(),
     }),
 
-    summarySchemaStep: yup.object({}),
+    rulesConductSchemaStep: yup.object({
+      conduct: yup
+        .string()
+        .required(translate.instant('VALIDATION.CONDUCT_REQUIRED'))
+        .min(10, translate.instant('VALIDATION.CONDUCT_MIN_LENGTH'))
+        .max(1000, translate.instant('VALIDATION.CONDUCT_MAX_LENGTH')),
+      punctualityAttendance: yup
+        .string()
+        .required(translate.instant('VALIDATION.PUNCTUALITY_ATTENDANCE_REQUIRED'))
+        .min(10, translate.instant('VALIDATION.PUNCTUALITY_ATTENDANCE_MIN_LENGTH'))
+        .max(1000, translate.instant('VALIDATION.PUNCTUALITY_ATTENDANCE_MAX_LENGTH')),
+      houseRole: yup
+        .string()
+        .required(translate.instant('VALIDATION.HOUSE_ROLE_REQUIRED'))
+        .min(10, translate.instant('VALIDATION.HOUSE_ROLE_MIN_LENGTH'))
+        .max(1000, translate.instant('VALIDATION.HOUSE_ROLE_MAX_LENGTH')),
+      behavioralExpectations: yup
+        .string()
+        .required(translate.instant('VALIDATION.BEHAVIORAL_EXPECTATIONS_REQUIRED'))
+        .min(10, translate.instant('VALIDATION.BEHAVIORAL_EXPECTATIONS_MIN_LENGTH'))
+        .max(1000, translate.instant('VALIDATION.BEHAVIORAL_EXPECTATIONS_MAX_LENGTH')),
+      commitment: yup
+        .boolean()
+        .required(translate.instant('VALIDATION.COMMITMENT_REQUIRED'))
+        .oneOf([true], translate.instant('VALIDATION.COMMITMENT_MUST_BE_TRUE')),
+    }),
   };
 };

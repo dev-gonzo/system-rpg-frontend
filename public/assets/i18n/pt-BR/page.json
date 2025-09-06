@@ -301,7 +301,7 @@
         "STEPS": {
           "ESSENTIAL_INFO": "Informações Essenciais",
           "LOCATION_TIME": "Local e Hora",
-          "SUMMARY": "Resumo"
+          "RULES_CONDUCT": "Regras e Conduta"
         },
         "FIELDS": {
           "CAMPAIGN_NAME": "Nome da Campanha",
@@ -358,6 +358,20 @@
           "LOCATION_INFO": "Informações de Localização",
           "GEOGRAPHIC_LOCATION": "Localização Geográfica",
           "REVIEW_MESSAGE": "Revise as informações acima e clique em 'Criar Campanha' para finalizar."
+        },
+        "RULES_CONDUCT": {
+          "TITLE": "Regras e Conduta",
+          "CONDUCT_LABEL": "Temas e Conteúdo",
+          "CONDUCT_PLACEHOLDER": "Liste temas que podem ou não ser abordados no jogo (ex: violência gráfica, fobias, etc.)",
+          "PUNCTUALITY_ATTENDANCE_LABEL": "Pontualidade e Presença",
+          "PUNCTUALITY_ATTENDANCE_PLACEHOLDER": "Descreva as expectativas sobre pontualidade e frequência dos jogadores",
+          "HOUSE_ROLE_LABEL": "Regras da Casa",
+          "HOUSE_ROLE_PLACEHOLDER": "Descreva quaisquer modificações nas regras do sistema de jogo escolhido",
+          "BEHAVIORAL_EXPECTATIONS_LABEL": "Expectativas Comportamentais",
+          "BEHAVIORAL_EXPECTATIONS_PLACEHOLDER": "Regras sobre respeito mútuo, metagaming, etc.",
+          "COMMITMENT_LABEL": "Eu, como Mestre, comprometo-me a seguir as diretrizes estabelecidas e a proporcionar um ambiente seguro e divertido para todos os jogadores.",
+          "INFO_MESSAGE": "Estas regras ajudam a criar um ambiente seguro e divertido para todos os participantes da mesa.",
+          "FINISH_BUTTON": "Finalizar Cadastro"
         },
         "VALIDATION": {
           "GAME_GROUP_NAME_REQUIRED": "Nome da mesa é obrigatório",
