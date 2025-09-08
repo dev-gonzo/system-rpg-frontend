@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # Verificar se está tentando fazer bypass do Husky
 if [ "$HUSKY_SKIP_HOOKS" = "1" ] || [ "$HUSKY_SKIP_INSTALL" = "1" ]; then
     echo " Bypass do Husky detectado e bloqueado!"
