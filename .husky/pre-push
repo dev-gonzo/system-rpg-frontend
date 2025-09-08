@@ -6,10 +6,14 @@ if [ "$HUSKY_SKIP_HOOKS" = "1" ] || [ "$HUSKY_SKIP_INSTALL" = "1" ]; then
 fi
 
 # Verificar argumentos de bypass no git push
-if echo "$@" | grep -q "\-\-no-verify\|\-\-force\|\-f"; then
-    echo " Flags de bypass (--no-verify, --force, -f) detectadas e bloqueadas!"
-    echo "Todos os pushes devem passar pelas verificações do Husky."
-    exit 1
-fi
+for arg in "$@"; do
+    case "$arg" in
+        --no-verify|--force|-f)
+            echo " Flags de bypass (--no-verify, --force, -f) detectadas e bloqueadas!"
+            echo "Todos os pushes devem passar pelas verificações do Husky."
+            exit 1
+            ;;
+    esac
+done
 
 npm run verify
