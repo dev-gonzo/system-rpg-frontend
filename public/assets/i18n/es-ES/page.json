@@ -242,6 +242,34 @@
       }
     },
     "GAME_GROUP": {
+      "MY_GROUPS": {
+        "TITLE": "Mis Grupos",
+        "DESCRIPTION": "Gestiona tus mesas de RPG",
+        "MY_TABLES": "Mis Mesas",
+        "SEARCH_TABLE": "Buscar Mesa",
+        "CREATE_TABLE": "Crear Mesa",
+        "NO_GROUPS_FOUND": "No se encontraron mesas",
+        "NO_TABLES_FOUND": "No se encontraron mesas",
+        "NO_GROUPS_MESSAGE": "Aún no participas en ninguna mesa. ¿Qué tal crear una nueva aventura?",
+        "CREATE_NEW_GROUP": "Crear Nueva Mesa",
+        "LOADING": "Cargando tus mesas...",
+        "PARTICIPANTS": "Participantes",
+        "ACCESS_RULE": {
+          "PUBLIC": "Pública",
+          "PRIVATE": "Privada",
+          "FRIENDS": "Solo Amigos",
+          "FREE": "Inscripción Libre",
+          "APPROVAL": "Aprobación del Maestro"
+        },
+        "ROLE": {
+          "MASTER": "Maestro",
+          "PLAYER": "Jugador"
+        },
+        "TOOLTIP": {
+          "PARTICIPANT_INFO": "{{username}} ({{role}})",
+          "ACCESS_RULE_INFO": "Mesa {{accessRule}}"
+        }
+      },
       "CREATE": {
         "TITLE": "Crear Grupo de Juego",
         "DESCRIPTION": "Configura tu nuevo grupo de RPG",

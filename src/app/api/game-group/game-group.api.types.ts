@@ -1,4 +1,5 @@
-import { BaseResponse } from '../../core/types';
+import { PageInfo } from '@app/core/types/pageInfo';
+import { BaseResponse, HateoasLink } from '../../core/types';
 
 export interface GameGroupCreateRequest {
   campaignName: string;
@@ -22,22 +23,30 @@ export interface GameGroupCreateRequest {
   behavioralExpectations?: string;
 }
 
+export interface GameGroupMember {
+  id: string;
+  username: string;
+  role: 'MASTER' | 'PLAYER';
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface GameGroupResponseData {
   id: string;
 
   campaignName: string;
-  description?: string;
+  shortDescription: string;
   gameSystem: string;
   settingWorld?: string;
-  shortDescription: string;
 
-  visibility: 'PUBLIC' | 'FRIENDS' | 'PRIVATE';
-  accessRule: 'FREE' | 'FRIENDS' | 'APPROVAL';
-  modality: 'ONLINE' | 'PRESENCIAL';
+  visibility?: 'PUBLIC' | 'FRIENDS' | 'PRIVATE';
+  accessRule: 'PUBLIC' | 'FRIENDS' | 'PRIVATE';
+  modality: 'ONLINE' | 'PRESENTIAL';
 
   minPlayers?: number;
   maxPlayers?: number;
   currentParticipants?: number;
+  participants?: GameGroupMember[];
 
   country?: string;
   state?: string;
@@ -48,12 +57,21 @@ export interface GameGroupResponseData {
   houseRules?: string;
   behavioralExpectations?: string;
 
-  createdBy: string;
+  createdBy?: string;
   isActive: boolean;
 
   createdAt: string;
   updatedAt?: string;
   deletedAt?: string;
+  _links?: HateoasLink[];
 }
 
+export interface GameGroupMyGroupsResponseData {
+  content: GameGroupResponseData[];
+  _links: HateoasLink[];
+  page: PageInfo;
+}
+
+
 export type GameGroupResponse = BaseResponse<GameGroupResponseData>;
+export type GameGroupMyGroupsResponse = BaseResponse<GameGroupMyGroupsResponseData>;

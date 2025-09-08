@@ -34,20 +34,33 @@ export class LayoutMainComponent implements OnInit {
   isSidebarExpanded = true;
   readonly theme = inject(ThemeState);
   private readonly MOBILE_BREAKPOINT = 800;
+  private wasMobile = false;
 
   ngOnInit(): void {
     const savedState = localStorage.getItem('sidebar-expanded');
     if (savedState !== null) {
       this.isSidebarExpanded = savedState === 'true';
     }
+    
+    this.wasMobile = window.innerWidth <= this.MOBILE_BREAKPOINT;
   }
 
   @HostListener('window:resize', ['$event'])
   onWindowResize(event: Event): void {
     const target = event.target as Window;
+    const isMobile = target.innerWidth <= this.MOBILE_BREAKPOINT;
+    
+    
+    if (isMobile && !this.wasMobile) {
+      this.theme.resetFontSize();
+    }
+    
+    
     if (target.innerWidth > this.MOBILE_BREAKPOINT && this.isSidebarOpen) {
       this.closeMobileMenu();
     }
+    
+    this.wasMobile = isMobile;
   }
 
   toggleDesktopSidebar(): void {

@@ -14,10 +14,13 @@ export class TooltipComponent {
   @Input() text = '';
   @Input() position: TooltipPosition = 'top';
   @Input() disabled = false;
-  @Input() delay = 500; 
+  @Input() delay = 500;
+  @Input() autoCloseOnClick = false;
+  @Input() autoCloseDelay = 1500;
 
   isVisible = false;
   private timeoutId?: number;
+  private autoCloseTimeoutId?: number;
 
   @HostBinding('class') get hostClasses() {
     return `tooltip-wrapper tooltip-${this.position}`;
@@ -38,7 +41,32 @@ export class TooltipComponent {
       clearTimeout(this.timeoutId);
       this.timeoutId = undefined;
     }
-    this.isVisible = false;
+    
+    if (!this.autoCloseTimeoutId) {
+      this.isVisible = false;
+    }
+  }
+
+  @HostListener('click')
+  onClick() {
+    if (this.disabled || !this.text.trim() || !this.autoCloseOnClick) return;
+    
+    
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = undefined;
+    }
+    
+    this.isVisible = true;
+    
+    if (this.autoCloseTimeoutId) {
+      clearTimeout(this.autoCloseTimeoutId);
+    }
+    
+    this.autoCloseTimeoutId = window.setTimeout(() => {
+      this.isVisible = false;
+      this.autoCloseTimeoutId = undefined;
+    }, this.autoCloseDelay);
   }
 
   @HostListener('focus')
@@ -49,6 +77,8 @@ export class TooltipComponent {
 
   @HostListener('blur')
   onBlur() {
-    this.isVisible = false;
+    if (!this.autoCloseOnClick) {
+      this.isVisible = false;
+    }
   }
 }

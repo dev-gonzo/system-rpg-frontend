@@ -5,7 +5,7 @@ import { LayoutMainComponent } from '../../layouts/layout-main/layout-main.compo
 
 export const GAME_GROUP_ROUTES: Routes = [
   {
-    path: 'game-group',
+    path: 'game-groups',
     component: LayoutMainComponent,
     canActivate: [AuthGuard],
     children: [

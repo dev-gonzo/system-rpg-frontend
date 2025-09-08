@@ -1,3 +1,4 @@
+import { PageInfo } from '@app/core/types/pageInfo';
 import { BaseResponse, Role } from '../../core/types';
 import { HateoasLink } from '../../core/types/hateoas';
 
@@ -27,17 +28,7 @@ export interface UserData {
   _links: HateoasLink[];
 }
 
-export interface PageInfo {
-  number: number;
-  size: number;
-  totalElements: number;
-  totalPages: number;
-  first: boolean;
-  last: boolean;
-  hasNext: boolean;
-  hasPrevious: boolean;
-  numberOfElements: number;
-}
+
 
 export interface UserSearchResponseData {
   content: UserData[];

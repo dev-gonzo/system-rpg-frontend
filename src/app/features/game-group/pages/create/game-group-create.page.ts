@@ -116,7 +116,7 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
       
       const successMessage = this.translate.instant('PAGE.GAME_GROUP.CREATE.SUCCESS');
       this.toastService.success(successMessage);
-      this.router.navigate(['/game-groups']);
+      this.router.navigate(['/game-groups/my-groups']);
     } catch (error) {
       const apiError = error as ApiErrorResponse;
       this.toastService.danger(

@@ -273,6 +273,33 @@
       }
     },
     "GAME_GROUP": {
+      "MY_GROUPS": {
+        "TITLE": "My Groups",
+        "DESCRIPTION": "Manage your RPG game groups",
+        "MY_TABLES": "My Game Groups",
+          "SEARCH_TABLE": "Search game group...",
+          "CREATE_TABLE": "Create New Game Group",
+          "NO_TABLES_FOUND": "No game groups found",
+          "NO_GROUPS_MESSAGE": "You are not participating in any game group yet. How about creating a new adventure?",
+        "CREATE_NEW_GROUP": "Create New Game Group",
+          "LOADING": "Loading your game groups...",
+        "PARTICIPANTS": "Participants",
+        "ACCESS_RULE": {
+          "PUBLIC": "Public",
+          "PRIVATE": "Private",
+          "FRIENDS": "Friends Only",
+          "FREE": "Free Registration",
+          "APPROVAL": "Master Approval"
+        },
+        "ROLE": {
+          "MASTER": "Master",
+          "PLAYER": "Player"
+        },
+        "TOOLTIP": {
+          "PARTICIPANT_INFO": "{{username}} ({{role}})",
+          "ACCESS_RULE_INFO": "{{accessRule}} Game Group"
+        }
+      },
       "CREATE": {
         "TITLE": "Create a New Campaign",
         "DESCRIPTION": "Set up the details for your new RPG campaign.",
@@ -330,7 +357,7 @@
           "LOCATION": "Location",
           "LOCATION_PLACEHOLDER": "Enter session location",
           "LOCATION_INFO": "Location Information",
-          "LOCATION_INFO_DESCRIPTION": "This information helps other players find your table",
+          "LOCATION_INFO_DESCRIPTION": "This information helps other players find your game group",
           "SESSION_INFO": "Session Information"
         },
         "SUMMARY": {
@@ -353,7 +380,7 @@
           "BEHAVIORAL_EXPECTATIONS_LABEL": "Behavioral Expectations",
           "BEHAVIORAL_EXPECTATIONS_PLACEHOLDER": "Rules about mutual respect, metagaming, etc.",
           "COMMITMENT_LABEL": "I, as Game Master, commit to following the established guidelines and providing a safe and fun environment for all players.",
-          "INFO_MESSAGE": "These rules help create a safe and fun environment for all table participants.",
+          "INFO_MESSAGE": "These rules help create a safe and fun environment for all game group participants.",
           "FINISH_BUTTON": "Finish Registration"
         },
         "VALIDATION": {

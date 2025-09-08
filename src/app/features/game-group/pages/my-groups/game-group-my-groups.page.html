@@ -1,1 +1,98 @@
-<h1>Teste</h1>
+<div class="row justify-content-center mb-3">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card border-0">
+      <div class="card-body">
+        <div class="btn-group w-100">
+          <button
+            type="button"
+            class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center gap-1 active"
+          >
+            <mat-icon svgIcon="mdi-account-group"></mat-icon>
+            <span>{{ 'PAGE.GAME_GROUP.MY_GROUPS.MY_TABLES' | translate }}</span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center gap-1"
+          >
+            <mat-icon svgIcon="mdi-magnify"></mat-icon>
+            <span>{{ 'PAGE.GAME_GROUP.MY_GROUPS.SEARCH_TABLE' | translate }}</span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center gap-1"
+          >
+            <mat-icon svgIcon="mdi-plus"></mat-icon>
+            <span>{{ 'PAGE.GAME_GROUP.MY_GROUPS.CREATE_TABLE' | translate }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="gameGroups().length > 0">
+  <div *ngFor="let gameGroup of gameGroups()" class="col-12 col-md-6 col-lg-4 mb-3">
+    <div class="card border-0 theme-surface">
+      <div class="card-body p-4">
+        <div class="d-flex gap-3 mb-3">
+          <div>
+            <span class="icon-circle icon-circle-xl theme-secondary">
+              <mat-icon svgIcon="mdi-dice-d10"></mat-icon>
+            </span>
+          </div>
+
+          <span class="h4" [title]="gameGroup.campaignName">
+            {{ gameGroup.campaignName }}
+          </span>
+        </div>
+        <p class="card-text text-muted">
+          {{ gameGroup.gameSystem }}
+          |
+          {{ gameGroup.settingWorld }}
+        </p>
+        <p class="card-text">
+          {{ gameGroup.shortDescription }}
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <div class="avatar-group" *ngIf="gameGroup.participants && gameGroup.participants.length > 0">
+          <app-tooltip 
+            *ngFor="let participant of gameGroup.participants" 
+            [text]="('PAGE.GAME_GROUP.MY_GROUPS.TOOLTIP.PARTICIPANT_INFO' | translate: {username: participant.username, role: ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.' + participant.role | translate)})"
+            position="right"
+            [autoCloseOnClick]="true"
+            [autoCloseDelay]="1500"
+            style="cursor: pointer; user-select: none;"
+          >
+            <span class="avatar-circle avatar-circle-sm" style="cursor: pointer; user-select: none;"> 
+              {{ participant.username.substring(0, 2).toUpperCase() }}
+            </span>
+          </app-tooltip>
+        </div>
+        <div class="text-muted">
+          <app-tooltip
+            position="left"
+            [text]="('PAGE.GAME_GROUP.MY_GROUPS.TOOLTIP.ACCESS_RULE_INFO' | translate: {accessRule: ('PAGE.GAME_GROUP.MY_GROUPS.ACCESS_RULE.' + gameGroup.accessRule | translate)})"
+            [autoCloseOnClick]="true"
+            [autoCloseDelay]="1500"
+            style="cursor: pointer; user-select: none;"
+          >
+            <mat-icon [svgIcon]="getAccessRuleIcon(gameGroup.accessRule)" style="cursor: pointer; user-select: none;"></mat-icon>
+          </app-tooltip>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="gameGroups().length === 0 && !isLoading()">
+  <div class="col-12">
+    <div class="card border-0">
+      <div class="card-body">
+        <p class="card-text">{{ 'PAGE.GAME_GROUP.MY_GROUPS.NO_TABLES_FOUND' | translate }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -41,7 +41,7 @@
       [delay]="300">
       <button 
         type="button" 
-        [class]="'btn btn-sm ' + (buttonClass || '')" 
+        [class]="'d-none d-md-block btn btn-sm ' + (buttonClass || '')" 
         [style.background-color]="!buttonClass ? buttonColor : null"
         (click)="decreaseFont()" 
         [attr.aria-label]="'COMMON.ACCESSIBILITY.DECREASE_FONT' | translate">
@@ -55,7 +55,7 @@
       [delay]="300">
       <button 
         type="button" 
-        [class]="'btn btn-sm ' + (buttonClass || '')" 
+        [class]="'d-none d-md-block btn btn-sm ' + (buttonClass || '')" 
         [style.background-color]="!buttonClass ? buttonColor : null"
         (click)="resetFont()" 
         [attr.aria-label]="'COMMON.ACCESSIBILITY.RESET_FONT' | translate">
@@ -69,7 +69,7 @@
       [delay]="300">
       <button 
         type="button" 
-        [class]="'btn btn-sm ' + (buttonClass || '')" 
+        [class]="'d-none d-md-block btn btn-sm ' + (buttonClass || '')" 
         [style.background-color]="!buttonClass ? buttonColor : null"
         (click)="increaseFont()" 
         [attr.aria-label]="'COMMON.ACCESSIBILITY.INCREASE_FONT' | translate">

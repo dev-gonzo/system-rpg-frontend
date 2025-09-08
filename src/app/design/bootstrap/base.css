@@ -1,7 +1,8 @@
-@import url('bootstrap/dist/css/bootstrap.min.css');
-@import url('./bootstrap-tokens.css');
+@import url("bootstrap/dist/css/bootstrap.min.css");
+@import url("./bootstrap-tokens.css");
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -10,30 +11,32 @@ html, body {
   font-size: var(--font-size-base, 14px);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 :root[data-theme="light"] {
-  --color-primary: #5A6D49;
+  --color-primary: #5a6d49;
   --color-primary-rgb: 90, 109, 73;
   --color-primary-contrast: #ffffff;
-  --color-primary-hover: #4B5C3D;
-  --color-primary-light: #EAF0E6;
-  --color-primary-light-hover: #D9E2D2;
-  
-  --color-secondary: #C75E24;
+  --color-primary-hover: #4b5c3d;
+  --color-primary-light: #eaf0e6;
+  --color-primary-light-hover: #d9e2d2;
+
+  --color-secondary: #c75e24;
   --color-secondary-contrast: #ffffff;
 
-  --color-background: #FDFDFB;
+  --color-background: #fdfdfb;
   --color-foreground: #212529;
-  --color-surface: #EAF0E6;
+  --color-surface: #eaf0e6;
   --color-surface-contrast: #212529;
   --color-surface-hover: #f1f3f5;
   --color-border: #ced4da;
   --color-muted: #6c757d;
-  
-  --color-menu: #343A40;
+
+  --color-menu: #343a40;
   --color-menu-contrast: #f8f9fa;
   --color-menu-hover: #495057;
   --color-error: #dc3545;
@@ -41,27 +44,27 @@ html, body {
 }
 
 :root[data-theme="dark"] {
-  --color-primary: #8BA07E;
+  --color-primary: #8ba07e;
   --color-primary-rgb: 139, 160, 126;
   --color-primary-contrast: #1d201a;
-  --color-primary-hover: #A0B596;
-  --color-primary-light: #30382B;
-  --color-primary-light-hover: #3A4234;
-  
-  --color-secondary: #D97941;
+  --color-primary-hover: #a0b596;
+  --color-primary-light: #30382b;
+  --color-primary-light-hover: #3a4234;
+
+  --color-secondary: #d97941;
   --color-secondary-contrast: #1a0f07;
 
-  --color-background: #1B1D1A;
+  --color-background: #1b1d1a;
   --color-foreground: #e0e0e0;
   --color-surface: #222420;
   --color-surface-contrast: #e0e0e0;
-  --color-surface-hover: #2C2F2A;
+  --color-surface-hover: #2c2f2a;
   --color-border: #495057;
   --color-muted: #888c85;
 
   --color-menu: #121212;
   --color-menu-contrast: #e0e0e0;
-  --color-menu-hover: #1B1D1A;
+  --color-menu-hover: #1b1d1a;
   --color-error: #ef4444;
   --color-error-contrast: #ffffff;
 }
@@ -81,7 +84,6 @@ html, body {
 :root[data-font="xl"] {
   --font-size-base: 20px;
 }
-
 
 .theme-primary {
   background-color: var(--color-primary) !important;
@@ -103,12 +105,12 @@ html, body {
   color: var(--color-foreground) !important;
 }
 
-
 .form-control:focus,
 .form-select:focus,
 .form-check-input:focus {
   border-width: 1px !important;
-  box-shadow: 0 0 0 0.1rem color-mix(in srgb, var(--color-primary) 15%, transparent) !important;
+  box-shadow: 0 0 0 0.1rem
+    color-mix(in srgb, var(--color-primary) 15%, transparent) !important;
 }
 
 .form-control,
@@ -130,17 +132,14 @@ html, body {
   border-color: var(--color-primary) !important;
 }
 
-
 .text-muted {
   color: var(--color-muted) !important;
 }
-
 
 .form-control::placeholder {
   color: var(--color-secondary) !important;
   opacity: 0.8;
 }
-
 
 .form-select:not(.custom-select) {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='var(--color-secondary)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e");
@@ -153,7 +152,11 @@ html, body {
 }
 
 .form-select:not(.custom-select):hover {
-  border-color: color-mix(in srgb, var(--color-primary) 60%, var(--color-primary-contrast));
+  border-color: color-mix(
+    in srgb,
+    var(--color-primary) 60%,
+    var(--color-primary-contrast)
+  );
   background-color: var(--color-surface);
 }
 
@@ -166,7 +169,6 @@ html, body {
   padding-right: 0.75rem;
 }
 
-
 .form-control.is-invalid,
 .form-select.is-invalid,
 .was-validated .form-control:invalid,
@@ -174,7 +176,6 @@ html, body {
   background-image: none !important;
   padding-right: 0.75rem !important;
 }
-
 
 .form-control.is-invalid,
 .form-select.is-invalid,
@@ -192,9 +193,9 @@ html, body {
 .was-validated .form-select:invalid:focus,
 .was-validated .form-check-input:invalid:focus {
   border-color: var(--color-error) !important;
-  box-shadow: 0 0 0 0.1rem color-mix(in srgb, var(--color-error) 25%, transparent) !important;
+  box-shadow: 0 0 0 0.1rem
+    color-mix(in srgb, var(--color-error) 25%, transparent) !important;
 }
-
 
 .custom-select {
   display: flex;
@@ -239,8 +240,13 @@ html, body {
 }
 
 .custom-select.show {
-  border-color: color-mix(in srgb, var(--color-primary) 60%, var(--color-primary-contrast));
-  box-shadow: 0 0 0 0.1rem color-mix(in srgb, var(--color-primary) 15%, transparent);
+  border-color: color-mix(
+    in srgb,
+    var(--color-primary) 60%,
+    var(--color-primary-contrast)
+  );
+  box-shadow: 0 0 0 0.1rem
+    color-mix(in srgb, var(--color-primary) 15%, transparent);
 }
 
 .custom-select-dropdown {
@@ -273,10 +279,13 @@ html, body {
 }
 
 .custom-select-option.selected:hover {
-  background-color: color-mix(in srgb, var(--color-primary) 90%, var(--color-background));
+  background-color: color-mix(
+    in srgb,
+    var(--color-primary) 90%,
+    var(--color-background)
+  );
   color: var(--color-primary-contrast);
 }
-
 
 .form-select:not(.custom-select) option {
   padding: 0.5rem 0.75rem;
@@ -295,15 +304,9 @@ html, body {
   color: var(--color-primary-contrast);
 }
 
-
 :root {
   --scrollbar-width: 8px;
 }
-
-
-
-
-
 
 ::-webkit-scrollbar {
   width: var(--scrollbar-width);
@@ -333,7 +336,6 @@ html, body {
   background: var(--scrollbar-track-bg);
 }
 
-
 * {
   scrollbar-width: thin;
 }
@@ -345,7 +347,6 @@ html, body {
 :root[data-theme="dark"] * {
   scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
 }
-
 
 .custom-scrollbar {
   overflow: hidden auto;
@@ -376,7 +377,6 @@ html, body {
   background: var(--scrollbar-thumb-active-bg);
 }
 
-
 .thin-scrollbar::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -395,7 +395,6 @@ html, body {
   background: var(--scrollbar-thumb-hover-bg);
 }
 
-
 .hidden-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -405,33 +404,88 @@ html, body {
   display: none;
 }
 
-
-:root[data-theme="dark"] .btn:not(.btn-primary, .btn-secondary, .btn-success, .btn-danger, .btn-warning, .btn-info, .btn-light, .btn-dark, .btn-outline-primary, .btn-outline-secondary, .btn-outline-success, .btn-outline-danger, .btn-outline-warning, .btn-outline-info, .btn-outline-light, .btn-outline-dark) {
+:root[data-theme="dark"]
+  .btn:not(
+    .btn-primary,
+    .btn-secondary,
+    .btn-success,
+    .btn-danger,
+    .btn-warning,
+    .btn-info,
+    .btn-light,
+    .btn-dark,
+    .btn-outline-primary,
+    .btn-outline-secondary,
+    .btn-outline-success,
+    .btn-outline-danger,
+    .btn-outline-warning,
+    .btn-outline-info,
+    .btn-outline-light,
+    .btn-outline-dark
+  ) {
   color: var(--color-foreground) !important;
 }
 
-
-.w-0 { width: 0% !important; }
-.w-5 { width: 5% !important; }
-.w-10 { width: 10% !important; }
-.w-15 { width: 15% !important; }
-.w-20 { width: 20% !important; }
-.w-25 { width: 25% !important; }
-.w-30 { width: 30% !important; }
-.w-35 { width: 35% !important; }
-.w-40 { width: 40% !important; }
-.w-45 { width: 45% !important; }
-.w-50 { width: 50% !important; }
-.w-55 { width: 55% !important; }
-.w-60 { width: 60% !important; }
-.w-65 { width: 65% !important; }
-.w-70 { width: 70% !important; }
-.w-75 { width: 75% !important; }
-.w-80 { width: 80% !important; }
-.w-85 { width: 85% !important; }
-.w-90 { width: 90% !important; }
-.w-95 { width: 95% !important; }
-
+.w-0 {
+  width: 0% !important;
+}
+.w-5 {
+  width: 5% !important;
+}
+.w-10 {
+  width: 10% !important;
+}
+.w-15 {
+  width: 15% !important;
+}
+.w-20 {
+  width: 20% !important;
+}
+.w-25 {
+  width: 25% !important;
+}
+.w-30 {
+  width: 30% !important;
+}
+.w-35 {
+  width: 35% !important;
+}
+.w-40 {
+  width: 40% !important;
+}
+.w-45 {
+  width: 45% !important;
+}
+.w-50 {
+  width: 50% !important;
+}
+.w-55 {
+  width: 55% !important;
+}
+.w-60 {
+  width: 60% !important;
+}
+.w-65 {
+  width: 65% !important;
+}
+.w-70 {
+  width: 70% !important;
+}
+.w-75 {
+  width: 75% !important;
+}
+.w-80 {
+  width: 80% !important;
+}
+.w-85 {
+  width: 85% !important;
+}
+.w-90 {
+  width: 90% !important;
+}
+.w-95 {
+  width: 95% !important;
+}
 
 :root[data-theme="light"] .animated-gradient-bg {
   background: linear-gradient(
@@ -463,33 +517,113 @@ html, body {
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -100%;
     left: -50%;
     width: 200%;
     height: 300%;
-    background-image: 
-      radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.9), transparent),
-      radial-gradient(1px 1px at 80px 60px, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(3px 3px at 150px 20px, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(1px 1px at 200px 90px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(2px 2px at 50px 120px, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(1px 1px at 180px 140px, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(2px 2px at 120px 40px, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 30px 100px, rgba(255, 255, 255, 0.9), transparent),
-      radial-gradient(3px 3px at 250px 70px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(1px 1px at 90px 160px, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(2px 2px at 300px 200px, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 350px 50px, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(3px 3px at 400px 180px, rgba(255, 255, 255, 0.9), transparent),
-      radial-gradient(2px 2px at 450px 120px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(1px 1px at 500px 80px, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(2px 2px at 60px 200px, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 320px 40px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(3px 3px at 180px 300px, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(1px 1px at 420px 160px, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(2px 2px at 280px 80px, rgba(255, 255, 255, 0.9), transparent);
+    background-image:
+      radial-gradient(
+        2px 2px at 20px 30px,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 80px 60px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 150px 20px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 200px 90px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 50px 120px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 180px 140px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 120px 40px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 30px 100px,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 250px 70px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 90px 160px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 300px 200px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 350px 50px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 400px 180px,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 450px 120px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 500px 80px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 60px 200px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 320px 40px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 180px 300px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 420px 160px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 280px 80px,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      );
     background-repeat: repeat;
     background-size: 400px 300px;
     animation: infiniteAdvance 35s linear infinite;
@@ -497,37 +631,94 @@ html, body {
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -100%;
     left: -50%;
     width: 200%;
     height: 300%;
-    background-image: 
-      radial-gradient(1px 1px at 100px 150px, rgba(255, 255, 255, 0.4), transparent),
-      radial-gradient(2px 2px at 320px 80px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(1px 1px at 480px 220px, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(3px 3px at 160px 300px, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 380px 40px, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(2px 2px at 520px 160px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(1px 1px at 240px 280px, rgba(255, 255, 255, 0.9), transparent),
-      radial-gradient(2px 2px at 440px 200px, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(1px 1px at 140px 60px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(3px 3px at 360px 240px, rgba(255, 255, 255, 0.4), transparent),
-      radial-gradient(2px 2px at 220px 180px, rgba(255, 255, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 460px 120px, rgba(255, 255, 255, 0.5), transparent),
-      radial-gradient(2px 2px at 80px 260px, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(1px 1px at 300px 20px, rgba(255, 255, 255, 0.6), transparent),
-      radial-gradient(3px 3px at 500px 300px, rgba(255, 255, 255, 0.4), transparent);
+    background-image:
+      radial-gradient(
+        1px 1px at 100px 150px,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 320px 80px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 480px 220px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 160px 300px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 380px 40px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 520px 160px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 240px 280px,
+        rgba(255, 255, 255, 0.9),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 440px 200px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 140px 60px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 360px 240px,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 220px 180px,
+        rgba(255, 255, 255, 0.7),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 460px 120px,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      radial-gradient(
+        2px 2px at 80px 260px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(
+        1px 1px at 300px 20px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(
+        3px 3px at 500px 300px,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
     background-repeat: repeat;
     background-size: 500px 350px;
     animation: infiniteAdvance 50s linear infinite reverse;
     z-index: 0;
   }
 }
-
-
-
 
 @keyframes infiniteAdvance {
   0% {
@@ -574,3 +765,113 @@ html, body {
     opacity: 0.3;
   }
 }
+
+.icon-circle {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.icon-circle-sm mat-icon,
+.icon-circle-sm mat-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.icon-circle-md mat-icon,
+.icon-circle-md mat-icon svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.icon-circle-lg mat-icon,
+.icon-circle-lg mat-icon svg {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+.icon-circle-xl mat-icon,
+.icon-circle-xl mat-icon svg {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.icon-circle-xxl mat-icon,
+.icon-circle-xxl mat-icon svg {
+  width: 48px !important;
+  height: 48px !important;
+}
+
+
+
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-group .avatar-circle {
+  border: 2px solid var(--color-primary);
+}
+
+.avatar-group .avatar-circle:not(:first-child) {
+  margin-left: -10px; 
+}
+
+
+.avatar-circle {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-foreground);
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.avatar-group .avatar-circle:nth-child(1) { z-index: 100; }
+.avatar-group .avatar-circle:nth-child(2) { z-index: 99; }
+.avatar-group .avatar-circle:nth-child(3) { z-index: 98; }
+.avatar-group .avatar-circle:nth-child(4) { z-index: 97; }
+.avatar-group .avatar-circle:nth-child(5) { z-index: 96; }
+
+.avatar-circle-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.75rem; 
+}
+
+.avatar-circle-md {
+  width: 40px;
+  height: 40px;
+  font-size: 0.9rem;
+}
+
+.avatar-circle-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
+}
+
+.avatar-circle-xl {
+  width: 64px;
+  height: 64px;
+  font-size: 1.5rem;
+}
+
+.avatar-circle-xxl {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+}
+
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+

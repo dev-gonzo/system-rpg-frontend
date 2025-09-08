@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { API_URL } from '@app/core/tokens/api-base-url.token';
 import {
   GameGroupCreateRequest,
+  GameGroupMyGroupsResponse,
   GameGroupResponse,
 } from './game-group.api.types';
 
@@ -25,7 +26,7 @@ export class GameGroupApiService {
     page: number = 0,
     size: number = 20,
     sort?: string[],
-  ): Observable<GameGroupResponse> {
+  ): Observable<GameGroupMyGroupsResponse> {
     let httpParams = new HttpParams();
 
     httpParams = httpParams.set('page', page.toString());
@@ -37,7 +38,7 @@ export class GameGroupApiService {
       });
     }
 
-    return this.http.get<GameGroupResponse>(
+    return this.http.get<GameGroupMyGroupsResponse>(
       `${this.baseUrl}${this.basePath}/my-groups`,
       { params: httpParams },
     );
