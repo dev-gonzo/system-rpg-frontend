@@ -98,7 +98,8 @@
       "DASHBOARD": "INICIO",
       "USUARIOS": "USUARIOS",
       "ARQUIVOS": "ARCHIVOS",
-      "PROJETOS": "PROYECTOS"
+      "PROJETOS": "PROYECTOS",
+      "GAME_GROUP": "MESA"
     },
     "STEPS": {
       "NEXT": "Siguiente",
@@ -120,6 +121,11 @@
         "COMPLETED": "Paso completado",
         "INVALID": "Paso inválido"
       }
+    },
+    "DRAFT": {
+      "LOADED": "¡Borrador cargado con éxito!",
+      "SAVED": "Borrador guardado automáticamente",
+      "CLEARED": "Borrador eliminado"
     }
   }
 }

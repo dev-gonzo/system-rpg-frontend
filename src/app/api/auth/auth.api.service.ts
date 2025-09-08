@@ -8,7 +8,7 @@ import { AuthRequest, AuthResponse, AuthResponseLogout, RefreshTokenRequest } fr
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService {
-  basePath  = '/api/v1';
+  basePath  = '/api/v1/auth';
   private readonly http = inject(HttpClient);
   private readonly baseUrl = inject(API_URL);
 

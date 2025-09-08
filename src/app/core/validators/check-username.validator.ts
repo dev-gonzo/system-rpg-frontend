@@ -10,7 +10,7 @@ export const createUsernameAvailabilityValidator = (registerApiService: Register
     try {
       const response = await firstValueFrom(registerApiService.checkUsername(username));
       if (response) {
-        if (!response.data.available) {
+        if (!response.data?.available) {
           return {
             isValid: false,
             message: response.message || 'Username não está disponível'

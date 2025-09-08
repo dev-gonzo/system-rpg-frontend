@@ -72,15 +72,16 @@ describe('AuthService', () => {
   });
 
   describe('Missing Branch Coverage Tests', () => {
-    it('should handle initializeAuthState when token and userData exist', () => {
+    it('should handle initializeAuthState when token and userData exist', fakeAsync(() => {
       
       localStorageSpy.getItem.and.callFake((key: string) => {
         if (key === 'auth-token') return 'mock-token';
         if (key === 'user-data') return JSON.stringify(mockAuthResponse.user);
+        if (key === 'expires-at') return new Date(Date.now() + 60000).toISOString();
         return null;
       });
       
-      spyOn(service as unknown as { checkTokenExpiration: () => void }, 'checkTokenExpiration');
+      spyOn(service, 'ensureValidToken').and.returnValue(of(true));
       
       
       service.isLoggedIn.set(false);
@@ -91,8 +92,10 @@ describe('AuthService', () => {
       
       expect(service.isLoggedIn()).toBe(true);
       expect(service.currentUser()).toEqual(mockAuthResponse.user);
-      expect((service as unknown as { checkTokenExpiration: jasmine.Spy }).checkTokenExpiration).toHaveBeenCalled();
-    });
+      expect(service.ensureValidToken).toHaveBeenCalled();
+      
+      tick();
+    }));
 
     it('should handle scheduleTokenRefresh when expiresAt is null', () => {
       spyOn(service, 'getExpiresAt').and.returnValue(null);

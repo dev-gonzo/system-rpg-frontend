@@ -21,7 +21,7 @@
         class="btn-toggle-sidebar" 
         (click)="toggleExpansion()"
         [attr.aria-label]="(isExpanded ? 'COMMON.LAYOUT.SIDEBAR.MINIMIZE_SIDEBAR' : 'COMMON.LAYOUT.SIDEBAR.EXPAND_SIDEBAR') | translate">
-        <mat-icon style="font-size: 1.5rem;">{{ isExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+        <mat-icon style="font-size: 1.5rem;" [svgIcon]="isExpanded ? 'mdi-chevron-left' : 'mdi-chevron-right'"></mat-icon>
       </button>
     </app-tooltip>
   </div>
@@ -44,7 +44,7 @@
             class="menu-link"
             (click)="onMenuItemClick(item)">
             <div class="menu-icon">
-              <mat-icon>{{item.icon}}</mat-icon>
+              <mat-icon [svgIcon]="item.icon"></mat-icon>
             </div>
           </a>
         </app-tooltip>
@@ -57,7 +57,7 @@
           class="menu-link"
           (click)="onMenuItemClick(item)">
           <div class="menu-icon">
-            <mat-icon>{{item.icon}}</mat-icon>
+            <mat-icon [svgIcon]="item.icon"></mat-icon>
           </div>
           <span class="menu-label">{{ item.label | translate }}</span>
         </a>
@@ -79,7 +79,7 @@
           class="menu-link settings-link"
           (click)="onSettingsClick()">
           <div class="menu-icon">
-            <mat-icon>settings</mat-icon>
+            <mat-icon svgIcon="mdi-cog"></mat-icon>
           </div>
         </a>
       </app-tooltip>
@@ -92,7 +92,7 @@
         class="menu-link settings-link"
         (click)="onSettingsClick()">
         <div class="menu-icon">
-          <mat-icon>settings</mat-icon>
+          <mat-icon svgIcon="mdi-cog"></mat-icon>
         </div>
         <span class="menu-label">{{ 'COMMON.LAYOUT.SIDEBAR.SETTINGS' | translate }}</span>
       </a>

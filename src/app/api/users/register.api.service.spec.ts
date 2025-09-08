@@ -136,7 +136,7 @@ describe('RegisterApiService', () => {
 
       service.checkUsername(username).subscribe(response => {
         expect(response).toEqual(mockResponse);
-        expect(response.data.available).toBe(true);
+        expect(response.data?.available).toBe(true);
       });
 
       const req = httpMock.expectOne(`${mockBaseUrl}${basePath}/check-username?username=${username}`);
@@ -158,7 +158,7 @@ describe('RegisterApiService', () => {
 
       service.checkUsername(username).subscribe(response => {
         expect(response).toEqual(mockResponse);
-        expect(response.data.available).toBe(false);
+        expect(response.data?.available).toBe(false);
       });
 
       const req = httpMock.expectOne(request => {
@@ -203,7 +203,7 @@ describe('RegisterApiService', () => {
 
       service.checkEmail(email).subscribe(response => {
         expect(response).toEqual(mockResponse);
-        expect(response.data.available).toBe(true);
+        expect(response.data?.available).toBe(true);
       });
 
       const req = httpMock.expectOne(`${mockBaseUrl}${basePath}/check-email?email=${email}`);
@@ -225,7 +225,7 @@ describe('RegisterApiService', () => {
 
       service.checkEmail(email).subscribe(response => {
         expect(response).toEqual(mockResponse);
-        expect(response.data.available).toBe(false);
+        expect(response.data?.available).toBe(false);
       });
 
       const req = httpMock.expectOne(`${mockBaseUrl}${basePath}/check-email?email=${email}`);

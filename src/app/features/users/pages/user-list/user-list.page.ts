@@ -174,9 +174,8 @@ export class UserListPage extends TranslatedFormComponent implements OnInit {
       }
     } catch (error) {
       const apiError = error as ApiErrorResponse;
-      this.toastService.danger(
-        apiError.message || this.translate.instant('PAGE.USER_LIST.LOAD_ERROR'),
-      );
+      const errorMessage = apiError.error?.message || apiError.message || this.translate.instant('PAGE.USER_LIST.LOAD_ERROR');
+      this.toastService.danger(errorMessage);
     } finally {
       this.isLoading.set(false);
     }
@@ -229,10 +228,8 @@ export class UserListPage extends TranslatedFormComponent implements OnInit {
             await this.loadUsers(this.currentPage());
           } catch (error) {
             const apiError = error as ApiErrorResponse;
-            this.toastService.danger(
-              apiError.message ||
-                this.translate.instant('PAGE.USER_LIST.DELETE_ERROR'),
-            );
+            const errorMessage = apiError.error?.message || apiError.message || this.translate.instant('PAGE.USER_LIST.DELETE_ERROR');
+            this.toastService.danger(errorMessage);
           }
         }
       );
@@ -256,10 +253,8 @@ export class UserListPage extends TranslatedFormComponent implements OnInit {
         await this.loadUsers(this.currentPage());
       } catch (error) {
         const apiError = error as ApiErrorResponse;
-        this.toastService.danger(
-          apiError.message ||
-            this.translate.instant('PAGE.USER_LIST.STATUS_TOGGLE_ERROR'),
-        );
+        const errorMessage = apiError.error?.message || apiError.message || this.translate.instant('PAGE.USER_LIST.STATUS_TOGGLE_ERROR');
+        this.toastService.danger(errorMessage);
       }
     }
   }
@@ -280,10 +275,8 @@ export class UserListPage extends TranslatedFormComponent implements OnInit {
         await this.loadUsers(this.currentPage());
       } catch (error) {
         const apiError = error as ApiErrorResponse;
-        this.toastService.danger(
-          apiError.message ||
-            this.translate.instant('PAGE.USER_LIST.EMAIL_VERIFY_ERROR'),
-        );
+        const errorMessage = apiError.error?.message || apiError.message || this.translate.instant('PAGE.USER_LIST.EMAIL_VERIFY_ERROR');
+        this.toastService.danger(errorMessage);
       }
     }
   }

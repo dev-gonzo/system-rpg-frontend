@@ -333,10 +333,19 @@
           "LOCATION_INFO_DESCRIPTION": "This information helps other players find your table",
           "SESSION_INFO": "Session Information"
         },
+        "SUMMARY": {
+          "TITLE": "Campaign Summary",
+          "NOT_INFORMED": "Not informed",
+          "PLAYERS": "Players",
+          "ACCESS_SETTINGS": "Access Settings",
+          "LOCATION_INFO": "Location Information",
+          "GEOGRAPHIC_LOCATION": "Geographic Location",
+          "REVIEW_MESSAGE": "Review the information above and click 'Create Campaign' to finish."
+        },
         "RULES_CONDUCT": {
           "TITLE": "Rules and Conduct",
-          "CONDUCT_LABEL": "Themes and Content",
-          "CONDUCT_PLACEHOLDER": "List themes that may or may not be addressed in the game (e.g., graphic violence, phobias, etc.)",
+          "CONDUCT_LABEL": "Topics and Content",
+          "CONDUCT_PLACEHOLDER": "List topics that may or may not be addressed in the game (e.g.: graphic violence, phobias, etc.)",
           "PUNCTUALITY_ATTENDANCE_LABEL": "Punctuality and Attendance",
           "PUNCTUALITY_ATTENDANCE_PLACEHOLDER": "Describe expectations about punctuality and player attendance",
           "HOUSE_ROLE_LABEL": "House Rules",
@@ -347,6 +356,22 @@
           "INFO_MESSAGE": "These rules help create a safe and fun environment for all table participants.",
           "FINISH_BUTTON": "Finish Registration"
         },
+        "VALIDATION": {
+          "GAME_GROUP_NAME_REQUIRED": "Game group name is required",
+          "GAME_GROUP_NAME_MIN_LENGTH": "Game group name must have at least 3 characters",
+          "GAME_GROUP_NAME_MAX_LENGTH": "Game group name must have at most 100 characters",
+          "NOME_REQUIRED": "Your name is required",
+          "NOME_MIN_LENGTH": "Name must have at least 2 characters",
+          "NOME_MAX_LENGTH": "Name must have at most 50 characters",
+          "LOCAL_REQUIRED": "Location is required",
+          "LOCAL_MIN_LENGTH": "Location must have at least 5 characters",
+          "LOCAL_MAX_LENGTH": "Location must have at most 200 characters",
+          "HORA_REQUIRED": "Time is required",
+          "HORA_PATTERN": "Time must be in HH:MM format (e.g.: 14:30)"
+        },
+        "SUCCESS": "Game group created successfully!",
+        "ERROR": "Error creating game group",
+        "FORM_ERROR": "Please correct the errors in the form",
         "STEP_ERROR": "Please correct the errors in this step"
       }
     }

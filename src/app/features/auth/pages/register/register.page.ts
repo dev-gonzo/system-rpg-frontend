@@ -201,7 +201,7 @@ export class RegisterPage extends TranslatedFormComponent implements OnInit {
     } catch (error) {
       const apiError = error as ApiErrorResponse;
       this.toastService.danger(
-        apiError.message ?? this.translate.instant('PAGE.REGISTER.ERROR'),
+        apiError.error.message ?? this.translate.instant('PAGE.REGISTER.ERROR'),
       );
     }
   }
@@ -218,6 +218,6 @@ export class RegisterPage extends TranslatedFormComponent implements OnInit {
 
     delete newValue.confirmPassword;
 
-    return { ...newValue, roles: ['ADMIN'] } as RegisterRequest;
+    return { ...newValue, roles: ['USER'] } as RegisterRequest;
   }
 }

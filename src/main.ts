@@ -3,7 +3,7 @@ import {
   withInterceptors,
   HttpClient,
 } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, APP_INITIALIZER } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
@@ -21,6 +21,14 @@ import { routes } from './app/app.routes';
 import { API_URL } from './app/core/tokens/api-base-url.token';
 import { environment } from './environments/environment';
 import { DisableNativeTooltips } from './app/core/utils/disable-native-tooltips';
+import { MdiIconsService } from './app/core/services/mdi-icons.service';
+
+
+export function initializeMdiIcons(mdiIconsService: MdiIconsService) {
+  return () => {
+    mdiIconsService.registerIcons();
+  };
+}
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -30,8 +38,8 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(
       withInterceptors([
         languageInterceptor,
-        authTokenInterceptor,
         authErrorInterceptor,
+        authTokenInterceptor,
       ]),
     ),
     importProvidersFrom(
@@ -46,6 +54,12 @@ bootstrapApplication(AppComponent, {
       }),
     ),
     { provide: API_URL, useValue: environment.apis.endpoint },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeMdiIcons,
+      deps: [MdiIconsService],
+      multi: true
+    },
   ],
 }).then(() => {
   

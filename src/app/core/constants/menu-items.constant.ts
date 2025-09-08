@@ -6,8 +6,9 @@ export interface MenuItem {
 }
 
 export const MENU_ITEMS: MenuItem[] = [
-  { label: 'COMMON.MENU.DASHBOARD', icon: 'home', route: '/' },
-  { label: 'COMMON.MENU.USUARIOS', icon: 'person', route: '/users' },
-  { label: 'COMMON.MENU.ARQUIVOS', icon: 'folder', route: '/arquivos' },
-  { label: 'COMMON.MENU.PROJETOS', icon: 'assignment', route: '/projetos' },
+  { label: 'COMMON.MENU.DASHBOARD', icon: 'mdi-home', route: '/' },
+  { label: 'COMMON.MENU.GAME_GROUP', icon: 'mdi-table-furniture', route: '/game-group' },
+  { label: 'COMMON.MENU.USUARIOS', icon: 'mdi-account', route: '/users' },
+  { label: 'COMMON.MENU.ARQUIVOS', icon: 'mdi-folder', route: '/arquivos' },
+  { label: 'COMMON.MENU.PROJETOS', icon: 'mdi-clipboard-text', route: '/projetos' },
 ];

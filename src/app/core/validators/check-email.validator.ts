@@ -18,7 +18,7 @@ export const createEmailAvailabilityValidator = (registerApiService: RegisterApi
     try {
       const response = await firstValueFrom(registerApiService.checkEmail(email));
       if (response) {
-        if (!response.data.available) {
+        if (!response.data?.available) {
           return {
             isValid: false,
             message: response.message || 'Email não está disponível'

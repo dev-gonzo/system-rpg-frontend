@@ -5,7 +5,7 @@ import {
   HttpHandlerFn,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { catchError, throwError, switchMap } from 'rxjs';
 
 import { AuthService } from '@app/auth/service/auth.service';
 
@@ -18,6 +18,7 @@ export const authErrorInterceptor: HttpInterceptorFn = (
   const publicApiUrls = [
     '/api/v1/login',
     '/api/v1/register',
+    '/api/v1/refresh-token',
     '/assets/i18n/',
   ];
 
@@ -29,7 +30,25 @@ export const authErrorInterceptor: HttpInterceptorFn = (
         (error.status === 401 || error.status === 403) &&
         !isPublicApiRequest
       ) {
-        authService.logoutSilent();
+        
+        return authService.ensureValidToken().pipe(
+          switchMap((tokenRefreshed: boolean) => {
+            if (tokenRefreshed) {
+              
+              
+              return next(req);
+            } else {
+              
+              authService.logoutSilent();
+              return throwError(() => error);
+            }
+          }),
+          catchError(() => {
+            
+            authService.logoutSilent();
+            return throwError(() => error);
+          })
+        );
       }
 
       return throwError(() => error);

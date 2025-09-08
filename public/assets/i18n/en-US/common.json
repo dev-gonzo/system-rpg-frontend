@@ -98,7 +98,8 @@
       "DASHBOARD": "HOME",
       "USUARIOS": "USERS",
       "ARQUIVOS": "FILES",
-      "PROJETOS": "PROJECTS"
+      "PROJETOS": "PROJECTS",
+      "GAME_GROUP": "CAMPAIGN"
     },
     "STEPS": {
       "NEXT": "Next",
@@ -121,5 +122,10 @@
         "INVALID": "Invalid step"
       }
     }
+  },
+  "DRAFT": {
+    "LOADED": "Draft loaded successfully!",
+    "SAVED": "Draft saved automatically",
+    "CLEARED": "Draft removed"
   }
 }

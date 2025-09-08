@@ -10,7 +10,7 @@ describe('AuthErrorInterceptor', () => {
   let mockNext: jasmine.Spy<HttpHandlerFn>;
 
   beforeEach(() => {
-    const authServiceSpy = jasmine.createSpyObj('AuthService', ['logoutSilent']);
+    const authServiceSpy = jasmine.createSpyObj('AuthService', ['logoutSilent', 'ensureValidToken']);
     TestBed.configureTestingModule({
       providers: [
         { provide: AuthService, useValue: authServiceSpy }
@@ -42,6 +42,7 @@ describe('AuthErrorInterceptor', () => {
     const request = new HttpRequest('GET', '/api/protected');
     const error = new HttpErrorResponse({ status: 401, statusText: 'Unauthorized' });
     mockNext.and.returnValue(throwError(() => error));
+    mockAuthService.ensureValidToken.and.returnValue(of(false));
 
     TestBed.runInInjectionContext(() => {
       const result = authErrorInterceptor(request, mockNext);
@@ -60,6 +61,7 @@ describe('AuthErrorInterceptor', () => {
     const request = new HttpRequest('GET', '/api/protected');
     const error = new HttpErrorResponse({ status: 403, statusText: 'Forbidden' });
     mockNext.and.returnValue(throwError(() => error));
+    mockAuthService.ensureValidToken.and.returnValue(of(false));
 
     TestBed.runInInjectionContext(() => {
       const result = authErrorInterceptor(request, mockNext);

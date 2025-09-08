@@ -295,12 +295,19 @@
           "CITY_PLACEHOLDER": "Ingrese la ciudad",
           "ACCESS_RULE_PLACEHOLDER": "Selecciona regla de acceso",
           "VIRTUAL_TABLETOP": "Mesa Virtual",
-          "VIRTUAL_TABLETOP_PLACEHOLDER": "Ej: Roll20, Foundry VTT, Discord",
           "LOCATION": "Ubicación",
-          "LOCATION_PLACEHOLDER": "Ingresa la ubicación de la sesión",
           "LOCATION_INFO": "Información de Ubicación",
           "LOCATION_INFO_DESCRIPTION": "Esta información ayuda a otros jugadores a encontrar tu mesa",
           "SESSION_INFO": "Información de la Sesión"
+        },
+        "SUMMARY": {
+          "TITLE": "Resumen de la Campaña",
+          "NOT_INFORMED": "No informado",
+          "PLAYERS": "Jugadores",
+          "ACCESS_SETTINGS": "Configuraciones de Acceso",
+          "LOCATION_INFO": "Información de Ubicación",
+          "GEOGRAPHIC_LOCATION": "Ubicación Geográfica",
+          "REVIEW_MESSAGE": "Revisa la información anterior y haz clic en 'Crear Campaña' para finalizar."
         },
         "RULES_CONDUCT": {
           "TITLE": "Reglas y Conducta",
@@ -316,6 +323,22 @@
           "INFO_MESSAGE": "Estas reglas ayudan a crear un ambiente seguro y divertido para todos los participantes de la mesa.",
           "FINISH_BUTTON": "Finalizar Registro"
         },
+        "VALIDATION": {
+          "GAME_GROUP_NAME_REQUIRED": "El nombre del grupo de juego es obligatorio",
+          "GAME_GROUP_NAME_MIN_LENGTH": "El nombre del grupo de juego debe tener al menos 3 caracteres",
+          "GAME_GROUP_NAME_MAX_LENGTH": "El nombre del grupo de juego debe tener como máximo 100 caracteres",
+          "NOME_REQUIRED": "Tu nombre es obligatorio",
+          "NOME_MIN_LENGTH": "El nombre debe tener al menos 2 caracteres",
+          "NOME_MAX_LENGTH": "El nombre debe tener como máximo 50 caracteres",
+          "LOCAL_REQUIRED": "La ubicación es obligatoria",
+          "LOCAL_MIN_LENGTH": "La ubicación debe tener al menos 5 caracteres",
+          "LOCAL_MAX_LENGTH": "La ubicación debe tener como máximo 200 caracteres",
+          "HORA_REQUIRED": "La hora es obligatoria",
+          "HORA_PATTERN": "La hora debe estar en formato HH:MM (ej: 14:30)"
+        },
+        "SUCCESS": "¡Grupo de juego creado exitosamente!",
+        "ERROR": "Error al crear el grupo de juego",
+        "FORM_ERROR": "Por favor, corrige los errores en el formulario",
         "STEP_ERROR": "Por favor, corrige los errores en este paso"
       }
     }

@@ -19,7 +19,7 @@
       (click)="closeMenu.emit()"
       [attr.aria-label]="'COMMON.LAYOUT.MOBILE_MENU.CLOSE_MENU' | translate"
     >
-      <mat-icon>close</mat-icon>
+      <mat-icon svgIcon="mdi-close"></mat-icon>
     </button>
   </div>
 
@@ -34,7 +34,7 @@
           (click)="onMenuItemClick(item)"
         >
           <div class="menu-icon">
-            <mat-icon>{{item.icon}}</mat-icon>
+            <mat-icon [svgIcon]="item.icon"></mat-icon>
           </div>
           <span class="menu-label">{{ item.label | translate }}</span>
         </a>
@@ -51,7 +51,7 @@
       (click)="onSettingsClick()"
     >
       <div class="menu-icon">
-        <mat-icon>settings</mat-icon>
+        <mat-icon svgIcon="mdi-cog"></mat-icon>
       </div>
       <span class="menu-label">{{ 'COMMON.LAYOUT.MOBILE_MENU.SETTINGS' | translate }}</span>
     </a>

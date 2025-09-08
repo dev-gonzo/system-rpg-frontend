@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 
 import {
   TranslatedFormComponent,
@@ -15,7 +16,11 @@ import { SectionWrapperComponent } from '@app/shared/components/section-wrapper/
 import { StepperNavigationComponent } from '@app/shared/components/steps/stepper-navigation/stepper-navigation.component';
 import { StepperComponent } from '@app/shared/components/steps/stepper/stepper.component';
 import { ToastService } from '@app/shared/components/toast/toast.service';
+import { GameGroupApiService } from '@app/api/game-group/game-group.api.service';
+import { GameGroupCreateRequest } from '@app/api/game-group/game-group.api.types';
+import { ApiErrorResponse } from '@app/core/types/errorApiForm';
 
+import { DraftService } from '../../services/draft.service';
 import { EssentialInfoStepComponent } from './steps/essential-info/essential-info-step.component';
 import { LocationTimeStepComponent } from './steps/location-time/location-time-step.component';
 import { RulesConductStepComponent } from './steps/rules-conduct/rules-conduct-step.component';
@@ -45,6 +50,8 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
   private readonly toastService = inject(ToastService);
   private readonly translate = inject(TranslateService);
   private readonly formValidator = inject(FormValidatorService);
+  private readonly draftService = inject(DraftService);
+  private readonly gameGroupApiService = inject(GameGroupApiService);
 
   form!: TypedFormGroup<GameGroupFormData>;
   private formSubmit!: () => Promise<GameGroupFormData | null | undefined>;
@@ -63,6 +70,9 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
     this.form = result.form as TypedFormGroup<GameGroupFormData>;
     this.formSubmit = result.submit;
     this.steps = result.steps || [];
+    
+    
+    this.loadDraftIfExists();
     
     this.cdRef.detectChanges();
   }
@@ -97,13 +107,22 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
     }
   }
 
-  private async handleCreateGameGroup(_formData: GameGroupFormData): Promise<void> {
-    
-    
-    
-    const successMessage = this.translate.instant('PAGE.GAME_GROUP.CREATE.SUCCESS');
-    this.toastService.success(successMessage);
-    this.router.navigate(['/game-groups']);
+  private async handleCreateGameGroup(formData: GameGroupFormData): Promise<void> {
+    const payload = this.convertPayload(formData);
+
+    try {
+      await firstValueFrom(this.gameGroupApiService.create(payload));
+      this.draftService.clearDraft();
+      
+      const successMessage = this.translate.instant('PAGE.GAME_GROUP.CREATE.SUCCESS');
+      this.toastService.success(successMessage);
+      this.router.navigate(['/game-groups']);
+    } catch (error) {
+      const apiError = error as ApiErrorResponse;
+      this.toastService.danger(
+        apiError.error?.message ?? this.translate.instant('PAGE.GAME_GROUP.CREATE.ERROR'),
+      );
+    }
   }
 
   trocarStep(index: number): void {
@@ -115,6 +134,8 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
     const result = await this.formValidator.validateForm(this.form, currentStep.schema);
 
     if (result.success) {
+      
+      this.saveDraft();
       this.atualizarSteps(this.stepAtual + 1);
     } else {
       const errorMessage = this.translate.instant('PAGE.GAME_GROUP.CREATE.STEP_ERROR');
@@ -133,6 +154,7 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
       ...step,
       ativo: i === novoIndex,
       completado: i < novoIndex,
+      bloqueado: i > novoIndex, 
     }));
     this.stepAtual = novoIndex;
     this.cdRef.detectChanges();
@@ -140,7 +162,57 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
 
   onReset(): void {
     this.form.reset();
+    this.draftService.clearDraft();
     this.atualizarSteps(0);
     this.cdRef.detectChanges();
+  }
+
+  
+  private saveDraft(): void {
+    if (this.form && this.form.value) {
+      this.draftService.saveDraft(this.form.value, this.stepAtual);
+    }
+  }
+
+  
+  private loadDraftIfExists(): void {
+    const draft = this.draftService.loadDraft();
+    if (draft && this.form) {
+      
+      this.form.patchValue(draft.formData);
+      
+      
+      if (draft.currentStep !== undefined) {
+        this.atualizarSteps(draft.currentStep);
+      }
+      
+      
+      const draftMessage = this.translate.instant('COMMON.DRAFT.LOADED');
+      this.toastService.info(draftMessage);
+    }
+  }
+
+  convertPayload(formData: GameGroupFormData): GameGroupCreateRequest {
+    return {
+      campaignName: formData.campaignName,
+      gameSystem: formData.gameSystem,
+      settingWorld: formData.settingWorld,
+      shortDescription: formData.shortDescription,
+      description: formData.campaignOverview,
+      minPlayers: formData.minPlayers,
+      maxPlayers: formData.maxPlayers,
+
+      visibility: formData.visibilityGameGroup.toUpperCase() as 'PUBLIC' | 'FRIENDS' | 'PRIVATE',
+      accessRule: formData.accessRule.toUpperCase() as 'FREE' | 'FRIENDS' | 'APPROVAL',
+      modality: formData.modality.toUpperCase() as 'ONLINE' | 'PRESENCIAL',
+      country: formData.country,
+      state: formData.state,
+      city: formData.city,
+
+      themesContent: formData.conduct,
+      punctualityAttendance: formData.punctualityAttendance,
+      houseRules: formData.houseRole,
+      behavioralExpectations: formData.behavioralExpectations,
+    };
   }
 }

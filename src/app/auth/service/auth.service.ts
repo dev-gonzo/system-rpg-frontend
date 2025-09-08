@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from '@app/shared/components/toast/toast.service';
 import { TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject, Observable, timer, EMPTY } from 'rxjs';
+import { BehaviorSubject, Observable, EMPTY } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
 import { AuthApiService } from '@app/api/auth/auth.api.service';
@@ -19,8 +19,12 @@ export class AuthService {
   private readonly REFRESH_BUFFER_SECONDS = 30;
 
   private refreshTimer?: ReturnType<typeof setTimeout>;
-  private isRefreshing = false;
+  public isRefreshing = false;
   private readonly refreshTokenSubject = new BehaviorSubject<string | null>(null);
+
+  
+  private visibilityChangeListener?: () => void;
+  private windowFocusListener?: () => void;
 
   public isLoggedIn = signal<boolean>(false);
   public currentUser = signal<unknown>(null);
@@ -31,9 +35,45 @@ export class AuthService {
   private readonly translationService = inject(TranslationService);
   private readonly authApiService = inject(AuthApiService);
 
-  //eslint-disable-next-line @typescript-eslint/no-empty-function
+   
   constructor() {
     
+    this.setupPageVisibilityListener();
+  }
+
+  private setupPageVisibilityListener(): void {
+    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+      
+      this.visibilityChangeListener = () => {
+        if (!document.hidden && this.isLoggedIn()) {
+          this.checkTokenOnReturn();
+        }
+      };
+      document.addEventListener('visibilitychange', this.visibilityChangeListener);
+
+      
+      this.windowFocusListener = () => {
+        if (this.isLoggedIn()) {
+          this.checkTokenOnReturn();
+        }
+      };
+      window.addEventListener('focus', this.windowFocusListener);
+    }
+  }
+
+  private cleanupPageVisibilityListeners(): void {
+    if (typeof document !== 'undefined' && this.visibilityChangeListener) {
+      document.removeEventListener('visibilitychange', this.visibilityChangeListener);
+      this.visibilityChangeListener = undefined;
+    }
+    if (typeof window !== 'undefined' && this.windowFocusListener) {
+      window.removeEventListener('focus', this.windowFocusListener);
+      this.windowFocusListener = undefined;
+    }
+  }
+
+  private checkTokenOnReturn(): void {
+    this.ensureValidToken().subscribe();
   }
 
   public async initialize(): Promise<void> {
@@ -67,7 +107,21 @@ export class AuthService {
     if (token && userData) {
       this.isLoggedIn.set(true);
       this.currentUser.set(userData);
-      this.checkTokenExpiration();
+      
+      
+      this.ensureValidToken().subscribe({
+        next: (isValid) => {
+          if (isValid) {
+            
+            this.scheduleTokenRefresh();
+          }
+          
+        },
+        error: () => {
+          
+          this.logoutSilent();
+        }
+      });
     }
   }
 
@@ -117,6 +171,7 @@ export class AuthService {
 
   logout(): void {
     this.clear();
+    this.cleanupPageVisibilityListeners();
     this.router.navigate(['/auth/login']);
     const message = this.translate.instant('COMMON.AUTH.LOGOUT_SUCCESS') ?? 'Logout successful';
     this.toast.success(message);
@@ -124,6 +179,7 @@ export class AuthService {
 
   logoutSilent(): void {
     this.clear();
+    this.cleanupPageVisibilityListeners();
     this.router.navigate(['/auth/login']);
   }
 
@@ -165,47 +221,68 @@ export class AuthService {
     }
   }
 
-  private attemptTokenRefresh(): void {
-    if (this.isRefreshing) {
-      return;
-    }
-
+  private performTokenRefresh(): Observable<boolean> {
     const accessToken = this.getToken();
     const refreshToken = this.getRefreshToken();
 
     if (!accessToken || !refreshToken) {
       this.logoutSilent();
-      return;
+      return new Observable((observer) => {
+        observer.next(false);
+        observer.complete();
+      });
     }
 
     this.isRefreshing = true;
 
-    this.authApiService
+    return this.authApiService
       .refreshToken({
         accessToken,
         refreshToken,
       })
       .pipe(
         tap((response: AuthResponse) => {
-          this.setAuthData(response);
-          this.isRefreshing = false;
+           this.setAuthData(response);
+           this.isRefreshing = false;
+           this.refreshTokenSubject.next(response.accessToken);
+           
+           this.scheduleTokenRefresh();
+         }),
+        switchMap(() => {
+          return new Observable<boolean>((observer) => {
+            observer.next(true);
+            observer.complete();
+          });
         }),
         catchError((error) => {
           this.isRefreshing = false;
+          this.refreshTokenSubject.next(null);
 
           if (error.status === 401) {
-            const message = this.translate.instant('COMMON.AUTH.SESSION_EXPIRED') ?? 'Session expired';
+            const apiMessage = error.error?.message || error.message || error.error?.error || null;
+            const message = apiMessage ?? this.translate.instant('COMMON.AUTH.SESSION_EXPIRED') ?? 'Session expired';
             this.toast.warning(message);
-            this.logout();
+            this.logoutSilent();
           } else {
-            const message = this.translate.instant('COMMON.AUTH.REFRESH_ERROR') ?? 'Token refresh failed';
+            const apiMessage = error.error?.message || error.message || error.error?.error || null;
+            const message = apiMessage ?? this.translate.instant('COMMON.AUTH.REFRESH_ERROR') ?? 'Token refresh failed';
             this.toast.danger(message);
           }
 
-          return EMPTY;
-        }),
-      )
-      .subscribe();
+          return new Observable<boolean>((observer) => {
+            observer.next(false);
+            observer.complete();
+          });
+        })
+      );
+  }
+
+  private attemptTokenRefresh(): void {
+    if (this.isRefreshing) {
+      return;
+    }
+
+    this.performTokenRefresh().subscribe();
   }
 
   public ensureValidToken(): Observable<boolean> {
@@ -221,21 +298,20 @@ export class AuthService {
 
     if (currentTime >= expirationTime - bufferTime) {
       if (this.isRefreshing) {
+        
         return this.refreshTokenSubject.asObservable().pipe(
-          switchMap(() => timer(100)),
-          switchMap(() => this.ensureValidToken()),
+          switchMap(() => {
+            const newToken = this.getToken();
+            return new Observable<boolean>((observer) => {
+              observer.next(!!newToken);
+              observer.complete();
+            });
+          })
         );
       }
 
-      return new Observable((observer) => {
-        this.attemptTokenRefresh();
-
-        setTimeout(() => {
-          const newToken = this.getToken();
-          observer.next(!!newToken);
-          observer.complete();
-        }, 1000);
-      });
+      
+      return this.performTokenRefresh();
     }
 
     return new Observable((observer) => {

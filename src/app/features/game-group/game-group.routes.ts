@@ -16,6 +16,13 @@ export const GAME_GROUP_ROUTES: Routes = [
             (m) => m.GameGroupCreatePage,
           ),
       },
+      {
+        path: 'my-groups',
+        loadComponent: () =>
+          import('./pages/my-groups/game-group-my-groups.page').then(
+            (m) => m.GameGroupMyGroupsPage,
+          ),
+      },
     ],
   },
 ];

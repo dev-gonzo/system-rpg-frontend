@@ -67,23 +67,35 @@ export const createGameGroupSchema = async (translate: TranslateService) => {
     rulesConductSchemaStep: yup.object({
       conduct: yup
         .string()
-        .required(translate.instant('VALIDATION.CONDUCT_REQUIRED'))
-        .min(10, translate.instant('VALIDATION.CONDUCT_MIN_LENGTH'))
+        .optional()
+        .test('min-length-when-not-empty', translate.instant('VALIDATION.CONDUCT_MIN_LENGTH'), function(value) {
+          if (!value || value.trim() === '') return true;
+          return value.length >= 10;
+        })
         .max(1000, translate.instant('VALIDATION.CONDUCT_MAX_LENGTH')),
       punctualityAttendance: yup
         .string()
-        .required(translate.instant('VALIDATION.PUNCTUALITY_ATTENDANCE_REQUIRED'))
-        .min(10, translate.instant('VALIDATION.PUNCTUALITY_ATTENDANCE_MIN_LENGTH'))
+        .optional()
+        .test('min-length-when-not-empty', translate.instant('VALIDATION.PUNCTUALITY_ATTENDANCE_MIN_LENGTH'), function(value) {
+          if (!value || value.trim() === '') return true;
+          return value.length >= 10;
+        })
         .max(1000, translate.instant('VALIDATION.PUNCTUALITY_ATTENDANCE_MAX_LENGTH')),
       houseRole: yup
         .string()
-        .required(translate.instant('VALIDATION.HOUSE_ROLE_REQUIRED'))
-        .min(10, translate.instant('VALIDATION.HOUSE_ROLE_MIN_LENGTH'))
+        .optional()
+        .test('min-length-when-not-empty', translate.instant('VALIDATION.HOUSE_ROLE_MIN_LENGTH'), function(value) {
+          if (!value || value.trim() === '') return true;
+          return value.length >= 10;
+        })
         .max(1000, translate.instant('VALIDATION.HOUSE_ROLE_MAX_LENGTH')),
       behavioralExpectations: yup
         .string()
-        .required(translate.instant('VALIDATION.BEHAVIORAL_EXPECTATIONS_REQUIRED'))
-        .min(10, translate.instant('VALIDATION.BEHAVIORAL_EXPECTATIONS_MIN_LENGTH'))
+        .optional()
+        .test('min-length-when-not-empty', translate.instant('VALIDATION.BEHAVIORAL_EXPECTATIONS_MIN_LENGTH'), function(value) {
+          if (!value || value.trim() === '') return true;
+          return value.length >= 10;
+        })
         .max(1000, translate.instant('VALIDATION.BEHAVIORAL_EXPECTATIONS_MAX_LENGTH')),
       commitment: yup
         .boolean()
