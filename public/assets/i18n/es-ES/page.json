@@ -270,6 +270,18 @@
           "ACCESS_RULE_INFO": "Mesa {{accessRule}}"
         }
       },
+      "SEARCH": {
+        "TITLE": "Buscar Mesas",
+        "DESCRIPTION": "Encuentra mesas de RPG para unirte",
+        "SEARCH_PLACEHOLDER": "Escribe el nombre de la campaña...",
+        "SEARCHING_FOR": "Buscando: {{term}}",
+        "LOADING": "Buscando mesas...",
+        "NO_SEARCH_YET": "Escribe algo para comenzar a buscar",
+        "NO_RESULTS_FOUND": "No se encontraron mesas",
+        "START_SEARCHING": "Usa el campo de arriba para encontrar mesas de RPG",
+        "TRY_DIFFERENT_TERMS": "Intenta usar términos diferentes o verifica la ortografía",
+        "LOAD_ERROR": "Error al buscar mesas"
+      },
       "CREATE": {
         "TITLE": "Crear Grupo de Juego",
         "DESCRIPTION": "Configura tu nuevo grupo de RPG",

@@ -318,6 +318,18 @@
           "ACCESS_RULE_INFO": "Mesa {{accessRule}}"
         }
       },
+      "SEARCH": {
+        "TITLE": "Buscar Mesas",
+        "DESCRIPTION": "Encontre mesas de RPG para participar",
+        "SEARCH_PLACEHOLDER": "Digite o nome da campanha...",
+        "SEARCHING_FOR": "Buscando por: {{term}}",
+        "LOADING": "Buscando mesas...",
+        "NO_SEARCH_YET": "Digite algo para começar a buscar",
+        "NO_RESULTS_FOUND": "Nenhuma mesa encontrada",
+        "START_SEARCHING": "Use o campo acima para encontrar mesas de RPG",
+        "TRY_DIFFERENT_TERMS": "Tente usar termos diferentes ou verifique a ortografia",
+        "LOAD_ERROR": "Erro ao buscar mesas"
+      },
       "CREATE": {
         "TITLE": "Criar Mesa de Jogo",
         "DESCRIPTION": "Configure sua nova mesa de RPG",

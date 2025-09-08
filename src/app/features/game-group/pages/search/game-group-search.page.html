@@ -1,6 +1,40 @@
-<app-game-group-navigation activePage="my-groups"></app-game-group-navigation>
+<app-game-group-navigation activePage="search"></app-game-group-navigation>
 
-<div class="row" *ngIf="gameGroups().length > 0">
+
+<div class="row justify-content-center mb-4">
+  <app-form-input-button
+    [control]="searchControl"
+    [label]="'PAGE.GAME_GROUP.SEARCH.TITLE' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.SEARCH.SEARCH_PLACEHOLDER' | translate"
+    buttonIcon="mdi mdi-magnify"
+    [buttonAriaLabel]="'PAGE.GAME_GROUP.SEARCH.TITLE' | translate"
+    [buttonLoading]="isLoading()"
+    (buttonClick)="onManualSearch($event)"
+    [col]="12"
+    [colLg]="6"
+  />
+</div>
+
+<div class="row justify-content-center" *ngIf="currentSearchTerm()">
+  <div class="col-8 col-lg-6">
+    <small class="text-muted d-block text-center mb-3">
+      {{ 'PAGE.GAME_GROUP.SEARCH.SEARCHING_FOR' | translate: {term: currentSearchTerm()} }}
+    </small>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="isLoading()">
+  <div class="col-12 text-center py-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">{{ 'PAGE.GAME_GROUP.SEARCH.LOADING' | translate }}</span>
+    </div>
+    <p class="mt-2">{{ 'PAGE.GAME_GROUP.SEARCH.LOADING' | translate }}</p>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="gameGroups().length > 0 && !isLoading()">
   <div *ngFor="let gameGroup of gameGroups()" class="col-12 col-md-6 col-lg-4 mb-3">
     <div class="card border-0 theme-surface">
       <div class="card-body p-4">
@@ -17,8 +51,8 @@
         </div>
         <p class="card-text text-muted">
           {{ gameGroup.gameSystem }}
-          |
-          {{ gameGroup.settingWorld }}
+          <span *ngIf="gameGroup.settingWorld">|
+          {{ gameGroup.settingWorld }}</span>
         </p>
         <p class="card-text">
           {{ gameGroup.shortDescription }}
@@ -55,11 +89,28 @@
   </div>
 </div>
 
+
 <div class="row" *ngIf="gameGroups().length === 0 && !isLoading()">
   <div class="col-12">
     <div class="card border-0">
-      <div class="card-body">
-        <p class="card-text">{{ 'PAGE.GAME_GROUP.MY_GROUPS.NO_TABLES_FOUND' | translate }}</p>
+      <div class="card-body text-center py-5">
+        <mat-icon svgIcon="mdi-magnify" class="display-1 text-muted mb-3"></mat-icon>
+        <h5 class="text-muted mb-3">
+          <span *ngIf="!currentSearchTerm()">
+            {{ 'PAGE.GAME_GROUP.SEARCH.NO_SEARCH_YET' | translate }}
+          </span>
+          <span *ngIf="currentSearchTerm()">
+            {{ 'PAGE.GAME_GROUP.SEARCH.NO_RESULTS_FOUND' | translate }}
+          </span>
+        </h5>
+        <p class="text-muted">
+          <span *ngIf="!currentSearchTerm()">
+            {{ 'PAGE.GAME_GROUP.SEARCH.START_SEARCHING' | translate }}
+          </span>
+          <span *ngIf="currentSearchTerm()">
+            {{ 'PAGE.GAME_GROUP.SEARCH.TRY_DIFFERENT_TERMS' | translate }}
+          </span>
+        </p>
       </div>
     </div>
   </div>

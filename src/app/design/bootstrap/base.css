@@ -426,6 +426,35 @@ body {
   color: var(--color-foreground) !important;
 }
 
+
+.btn-primary:disabled {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary-contrast) !important;
+  opacity: 0.65 !important;
+}
+
+.btn-secondary:disabled {
+  background-color: var(--color-secondary) !important;
+  border-color: var(--color-secondary) !important;
+  color: var(--color-secondary-contrast) !important;
+  opacity: 0.65 !important;
+}
+
+.btn-outline-primary:disabled {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  background-color: transparent !important;
+  opacity: 0.65 !important;
+}
+
+.btn-outline-secondary:disabled {
+  color: var(--color-secondary) !important;
+  border-color: var(--color-secondary) !important;
+  background-color: transparent !important;
+  opacity: 0.65 !important;
+}
+
 .w-0 {
   width: 0% !important;
 }

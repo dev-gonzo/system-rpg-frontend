@@ -300,6 +300,18 @@
           "ACCESS_RULE_INFO": "{{accessRule}} Game Group"
         }
       },
+      "SEARCH": {
+        "TITLE": "Search Tables",
+        "DESCRIPTION": "Find RPG tables to join",
+        "SEARCH_PLACEHOLDER": "Type the campaign name...",
+        "SEARCHING_FOR": "Searching for: {{term}}",
+        "LOADING": "Searching tables...",
+        "NO_SEARCH_YET": "Type something to start searching",
+        "NO_RESULTS_FOUND": "No tables found",
+        "START_SEARCHING": "Use the field above to find RPG tables",
+        "TRY_DIFFERENT_TERMS": "Try using different terms or check spelling",
+        "LOAD_ERROR": "Error searching tables"
+      },
       "CREATE": {
         "TITLE": "Create a New Campaign",
         "DESCRIPTION": "Set up the details for your new RPG campaign.",

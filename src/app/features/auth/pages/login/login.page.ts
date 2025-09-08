@@ -11,7 +11,6 @@ import { TypedFormGroup } from '@app/core/types/forms';
 import { FormWrapperComponent } from '@app/shared/components/form/form-wrapper/form-wrapper.component';
 import { InputComponent } from '@app/shared/components/form/input/input.component';
 
-import { ApiErrorResponse } from '@app/core/types/errorApiForm';
 import { ThemeState } from '@app/design/theme/theme.state';
 import { AccessibilityControlsComponent } from '@app/shared/components/accessibility-controls/accessibility-controls.component';
 import { ToastService } from '@app/shared/components/toast/toast.service';
@@ -71,29 +70,30 @@ export class LoginPage extends TranslatedFormComponent implements OnInit {
   }
 
   async handleSubmit(): Promise<void> {
-    
     if (this.isSubmitting) {
       return;
     }
 
-    this.isSubmitting = true;
-    try {
-      
-      await this.formSubmit();
-    } finally {
-      this.isSubmitting = false;
-    }
+    await this.formSubmit();
   }
 
   private handleLogin(data: LoginFormData): void {
+    this.isSubmitting = true;
+    this.cdRef.detectChanges();
+    
     this.authApi.login(data).subscribe({
       next: (authResponse) => {
         this.auth.setAuthData(authResponse);
         this.router.navigate(['/']);
         this.toastService.success('Login efetuado!');
+        this.isSubmitting = false;
+        this.cdRef.detectChanges();
       },
-      error: (err: ApiErrorResponse) => {
-        this.toastService.danger(err.error.message ?? 'Erro no login');
+      error: (err: { error?: { data?: string; error?: string; message?: string }; message?: string }) => {
+        const errorMessage = err.error?.data || err.error?.error || err.error?.message || err.message || 'Erro no login';
+        this.toastService.danger(errorMessage);
+        this.isSubmitting = false;
+        this.cdRef.detectChanges();
       }
     });
   }

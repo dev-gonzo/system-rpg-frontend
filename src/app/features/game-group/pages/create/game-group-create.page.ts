@@ -26,6 +26,7 @@ import { LocationTimeStepComponent } from './steps/location-time/location-time-s
 import { RulesConductStepComponent } from './steps/rules-conduct/rules-conduct-step.component';
 import { createStepsConfig } from './steps/step-config';
 import { GameGroupFormData } from '../../types/game-group-form.types';
+import { GameGroupNavigationComponent } from '../../components/game-group-navigation/game-group-navigation.component';
 
 @Component({
   standalone: true,
@@ -33,13 +34,14 @@ import { GameGroupFormData } from '../../types/game-group-form.types';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
     SectionWrapperComponent,
     StepperComponent,
     StepperNavigationComponent,
     EssentialInfoStepComponent,
     LocationTimeStepComponent,
     RulesConductStepComponent,
-    TranslateModule,
+    GameGroupNavigationComponent,
   ],
   templateUrl: './game-group-create.page.html',
   providers: [TranslatedFormService],

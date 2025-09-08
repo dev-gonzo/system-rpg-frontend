@@ -40,7 +40,9 @@
           [submitButtonText]="'PAGE.LOGIN.LOGIN_BUTTON' | translate"
           [showResetButton]="false"
           [disabled]="isSubmitting"
+          [loading]="isSubmitting"
           submitButtonClass="btn btn-primary w-100"
+          buttonsContainerClass="col-12 d-flex gap-2 justify-content-end mt-4"
         >
           <app-form-input
             [label]="'PAGE.LOGIN.USERNAME_LABEL' | translate"

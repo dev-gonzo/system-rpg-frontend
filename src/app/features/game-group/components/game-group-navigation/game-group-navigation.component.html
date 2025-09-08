@@ -1,0 +1,39 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card border-0">
+      <div class="card-body">
+        <div class="btn-group w-100">
+          <button
+            type="button"
+            class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center gap-1"
+            [class.active]="activePage === 'my-groups'"
+            routerLink="/game-groups/my-groups"
+          >
+            <mat-icon svgIcon="mdi-account-group"></mat-icon>
+            <span>{{ 'PAGE.GAME_GROUP.MY_GROUPS.MY_TABLES' | translate }}</span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center gap-1"
+            [class.active]="activePage === 'search'"
+            routerLink="/game-groups/search"
+          >
+            <mat-icon svgIcon="mdi-magnify"></mat-icon>
+            <span>{{ 'PAGE.GAME_GROUP.MY_GROUPS.SEARCH_TABLE' | translate }}</span>
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center gap-1"
+            [class.active]="activePage === 'create'"
+            routerLink="/game-groups/create"
+          >
+            <mat-icon svgIcon="mdi-plus"></mat-icon>
+            <span>{{ 'PAGE.GAME_GROUP.MY_GROUPS.CREATE_TABLE' | translate }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

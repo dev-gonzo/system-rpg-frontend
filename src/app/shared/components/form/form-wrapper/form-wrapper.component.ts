@@ -24,6 +24,7 @@ export class FormWrapperComponent implements OnInit, OnDestroy {
   @Input() formClass = '';
   @Input() buttonsContainerClass = 'col-12 d-flex justify-content-end gap-2 mt-4';
   @Input() disabled = false;
+  @Input() loading = false;
   @Input() autoMarkAsTouched = true;
   @Input() resetToInitialValues = false;
 

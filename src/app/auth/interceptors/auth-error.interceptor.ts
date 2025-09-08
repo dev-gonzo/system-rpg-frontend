@@ -17,6 +17,7 @@ export const authErrorInterceptor: HttpInterceptorFn = (
 
   const publicApiUrls = [
     '/api/v1/login',
+    '/api/v1/auth/login',
     '/api/v1/register',
     '/api/v1/refresh-token',
     '/assets/i18n/',
