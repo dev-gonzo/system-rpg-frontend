@@ -4,6 +4,7 @@ export { DatepickerComponent } from './datepicker/datepicker.component';
 export { FormWrapperComponent } from './form-wrapper/form-wrapper.component';
 export { InputComponent } from './input/input.component';
 export { InputButtonComponent } from './input-button/input-button.component';
+export { InputViewComponent } from './input-view/input-view.component';
 export { MultiSelectComponent } from './multi-select/multi-select.component';
 export { PasswordComponent } from './password/password.component';
 export { RadioComponent } from './radio/radio.component';

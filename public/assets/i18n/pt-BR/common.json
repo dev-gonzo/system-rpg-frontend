@@ -120,6 +120,15 @@
       "LOADED": "Rascunho carregado com sucesso!",
       "SAVED": "Rascunho salvo automaticamente",
       "CLEARED": "Rascunho removido"
+    },
+    "GAME_GROUP": {
+      "DETAIL": {
+        "TITLE": "Detalhes da Mesa"
+      }
+    },
+    "MARKDOWN": {
+      "EDITOR": "Editor",
+      "PREVIEW": "Visualização"
     }
   }
 }

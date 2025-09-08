@@ -30,6 +30,13 @@ export const GAME_GROUP_ROUTES: Routes = [
             (m) => m.GameGroupSearchPage,
           ),
       },
+       {
+        path: 'detail',
+        loadComponent: () =>
+          import('./pages/detail/game-group-detail.page').then(
+            (m) => m.GameGroupDetailPage,
+          ),
+      },
     ],
   },
 ];

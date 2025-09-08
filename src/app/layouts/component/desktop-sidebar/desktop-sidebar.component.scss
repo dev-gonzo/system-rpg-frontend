@@ -58,6 +58,13 @@
       background-color: color-mix(in srgb, var(--color-menu-contrast) 10%, transparent);
     }
 
+    &:focus,
+    &:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+
     mat-icon {
       font-size: 1rem;
     }
@@ -281,4 +288,35 @@
 
 .sidebar-nav::-webkit-scrollbar-thumb:hover {
   background: color-mix(in srgb, var(--color-menu-contrast) 50%, transparent);
+}
+
+.sidebar-nav::-webkit-scrollbar-corner {
+  background: transparent !important;
+  display: none !important;
+}
+
+.desktop-sidebar {
+  resize: none !important;
+}
+
+.desktop-sidebar *::-webkit-scrollbar-corner {
+  background: transparent !important;
+  display: none !important;
+}
+
+app-tooltip,
+app-tooltip *,
+.btn-toggle-sidebar,
+.btn-toggle-sidebar *,
+mat-icon {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.btn-toggle-sidebar mat-icon {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }

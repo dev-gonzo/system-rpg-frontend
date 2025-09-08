@@ -26,7 +26,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/app/design/bootstrap/base.css"
+              "src/app/design/bootstrap/base.css",
+              "node_modules/github-markdown-css/github-markdown-light.css"
             ],
             "allowedCommonJsDependencies": [
               "property-expr",

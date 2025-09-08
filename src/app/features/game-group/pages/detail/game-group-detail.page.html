@@ -1,0 +1,24 @@
+<div class="container-fluid py-4">
+  <h1 class="mb-4">{{ 'GAME_GROUP.DETAIL.TITLE' | translate }}</h1>
+  
+  <div class="editor-container">
+    <div class="editor-pane">
+      <h3 class="mb-3">{{ 'MARKDOWN.EDITOR' | translate }}</h3>
+      <app-form-textarea
+        [control]="markdownControl"
+        placeholder="Digite seu conteúdo em Markdown aqui..."
+        [rows]="15"
+        resize="vertical">
+      </app-form-textarea>
+      <span class="text-muted">Este campo aceita formatação Markdown. Saiba mais em: https://www.markdownguide.org/</span>
+    </div>
+    
+    <div class="preview-pane">
+      <h3 class="mb-3">{{ 'MARKDOWN.PREVIEW' | translate }}</h3>
+      <div class="markdown-body preview-content">
+        <markdown [data]="markdownContent"></markdown>
+      </div>
+    </div>
+  </div>
+</div>
+

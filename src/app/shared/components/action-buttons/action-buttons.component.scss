@@ -44,8 +44,7 @@
     }
 
     &:focus {
-      outline: 2px solid var(--bs-primary);
-      outline-offset: 2px;
+      outline: none !important;
       border: none !important;
       box-shadow: none !important;
     }

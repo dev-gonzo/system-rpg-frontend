@@ -314,26 +314,26 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-bg);
-  border-radius: 4px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg);
+  background: #666;
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover-bg);
+  background: #444;
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: var(--scrollbar-thumb-active-bg);
+  background: #333;
 }
 
 ::-webkit-scrollbar-corner {
-  background: var(--scrollbar-track-bg);
+  background: transparent !important;
+  display: none !important;
 }
 
 * {
@@ -341,11 +341,11 @@ body {
 }
 
 :root[data-theme="light"] * {
-  scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
+  scrollbar-color: #666 transparent;
 }
 
 :root[data-theme="dark"] * {
-  scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-track-bg);
+  scrollbar-color: #666 transparent;
 }
 
 .custom-scrollbar {
@@ -357,24 +357,23 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-bg);
-  border-radius: 4px;
+  background: transparent;
   margin: 2px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg);
+  background: #666;
   border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover-bg);
+  background: #444;
   transform: scaleY(1.1);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:active {
-  background: var(--scrollbar-thumb-active-bg);
+  background: #333;
 }
 
 .thin-scrollbar::-webkit-scrollbar {
@@ -387,12 +386,12 @@ body {
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg);
+  background: #666;
   border-radius: 2px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover-bg);
+  background: #444;
 }
 
 .hidden-scrollbar {
@@ -426,6 +425,16 @@ body {
   color: var(--color-foreground) !important;
 }
 
+textarea::-webkit-resizer {
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  border-right: 2px solid #888; 
+  border-bottom: 2px solid #888; 
+  
+
+}
 
 .btn-primary:disabled {
   background-color: var(--color-primary) !important;
@@ -453,6 +462,20 @@ body {
   border-color: var(--color-secondary) !important;
   background-color: transparent !important;
   opacity: 0.65 !important;
+}
+
+.btn:focus,
+.btn:focus-visible,
+button:focus,
+button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  --bs-btn-focus-shadow-rgb: transparent !important;
+}
+
+.btn {
+  --bs-btn-focus-shadow-rgb: transparent !important;
 }
 
 .w-0 {
@@ -902,5 +925,29 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+markdown table,
+.markdown-body table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: var(--bs-table-color);
+  vertical-align: top;
+  border-collapse: collapse;
+}
+
+markdown table > thead,
+.markdown-body table > thead {
+  vertical-align: bottom;
+  border-bottom: 1px solid var(--color-border);
+}
+
+markdown table > thead > tr > th,
+.markdown-body table > thead {
+  padding-bottom: 5px;
+}
+markdown table > tbody > tr > td,
+.markdown-body table > thead {
+  padding-top: 5px;
 }
 

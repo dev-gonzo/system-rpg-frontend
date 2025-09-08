@@ -1,0 +1,25 @@
+<app-form-wrapper [label]="label" [inputId]="inputId" [helper]="helper">
+  <div class="input-group">
+    <div 
+      [id]="inputId"
+      class="form-control"
+      [class.text-muted]="value === null || value === undefined || value === ''"
+      [attr.aria-label]="label"
+      role="textbox"
+      aria-readonly="true"
+    >
+      {{ displayValue }}
+    </div>
+    
+    <button 
+      *ngIf="copyable && value"
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="copyToClipboard()"
+      [attr.aria-label]="'Copiar ' + label"
+      title="Copiar valor"
+    >
+      <i class="bi bi-copy"></i>
+    </button>
+  </div>
+</app-form-wrapper>

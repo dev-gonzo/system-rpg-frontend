@@ -25,6 +25,13 @@
     background-color: color-mix(in srgb, var(--color-primary-contrast) 10%, transparent);
   }
 
+  &:focus,
+  &:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
   .collapsed & {
     align-self: center;
   }
