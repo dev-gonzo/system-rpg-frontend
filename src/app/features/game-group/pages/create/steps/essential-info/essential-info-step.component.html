@@ -1,53 +1,5 @@
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h4 class="card-title mb-0">{{ 'PAGE.GAME_GROUP.CREATE.STEPS.ESSENTIAL_INFO' | translate }}</h4>
-  
-  <app-tooltip
-    [text]="'Editar informações essenciais'"
-    position="bottom"
-  >
-    <button
-      class="btn text-white p-2"
-      (click)="toggleEditMode()"
-      *ngIf="!isEditing"
-    >
-      <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
-    </button>
-  </app-tooltip>
-</div>
-
-<div *ngIf="!isEditing" class="row row-gap-3">
-  <div class="col-12">
-      <span class="form-label fw-bold d-block">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_NAME' | translate }}</span>
-      <p class="mb-0">{{ form.get('campaignName')?.value || 'Não informado' }}</p>
-    </div>
-    
-    <div class="col-12 col-md-6">
-      <span class="form-label fw-bold d-block">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.GAME_SYSTEM' | translate }}</span>
-      <p class="mb-0">{{ form.get('gameSystem')?.value || 'Não informado' }}</p>
-    </div>
-    
-    <div class="col-12 col-md-6">
-      <span class="form-label fw-bold d-block">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.SETTING_WORLD' | translate }}</span>
-      <p class="mb-0">{{ form.get('settingWorld')?.value || 'Não informado' }}</p>
-    </div>
-    
-    <div class="col-12">
-      <span class="form-label fw-bold d-block">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.SHORT_DESCRIPTION' | translate }}</span>
-      <p class="mb-0">{{ form.get('shortDescription')?.value || 'Não informado' }}</p>
-    </div>
-    
-    <div class="col-6">
-      <span class="form-label fw-bold d-block">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.MIN_PLAYERS' | translate }}</span>
-      <p class="mb-0">{{ form.get('minPlayers')?.value || 'Não informado' }}</p>
-    </div>
-    
-    <div class="col-6">
-      <span class="form-label fw-bold d-block">{{ 'PAGE.GAME_GROUP.CREATE.FIELDS.MAX_PLAYERS' | translate }}</span>
-      <p class="mb-0">{{ form.get('maxPlayers')?.value || 'Não informado' }}</p>
-    </div>
-</div>
-
-<div *ngIf="isEditing" class="row row-gap-3">
+<h4 class="card-title mb-3">{{ 'PAGE.GAME_GROUP.CREATE.STEPS.ESSENTIAL_INFO' | translate }}</h4>
+<div class="row row-gap-3">
   <app-form-input
     [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_NAME' | translate"
     [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_NAME_PLACEHOLDER' | translate"
@@ -85,7 +37,14 @@
 
 
 
-
+  <app-form-textarea
+    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_OVERVIEW' | translate"
+    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.CAMPAIGN_OVERVIEW_PLACEHOLDER' | translate"
+    [control]="$any(form.get('campaignOverview'))"
+    fieldName="campaignOverview"
+    col="12"
+    [rows]="10"
+  />
 
   <app-form-input
     [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.MIN_PLAYERS' | translate"
@@ -104,21 +63,4 @@
     col="6"
     type="number"
   />
-  
-  <div class="col-12 d-flex justify-content-end gap-2 mt-3">
-    <button 
-      type="button" 
-      class="btn btn-secondary"
-      (click)="cancelEdit()"
-    >
-      Cancelar
-    </button>
-    <button 
-      type="button" 
-      class="btn btn-primary"
-      (click)="saveChanges()"
-    >
-      Salvar
-    </button>
-  </div>
 </div>

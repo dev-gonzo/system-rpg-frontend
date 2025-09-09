@@ -8,6 +8,7 @@
     <button
       type="button"
       class="btn input-group-text decrement-btn"
+      aria-label="Diminuir valor"
       (click)="decrement()"
       [disabled]="disabled || (min !== undefined && (control.value ?? 0) <= min)"
     >
@@ -18,6 +19,7 @@
       #inputElement
       type="text"
       class="form-control"
+      [id]="inputId"
       [value]="displayValue"
       [placeholder]="placeholder"
       [disabled]="disabled"
@@ -30,6 +32,7 @@
     <button
       type="button"
       class="btn input-group-text increment-btn"
+      aria-label="Aumentar valor"
       (click)="increment()"
       [disabled]="disabled || (max !== undefined && (control.value ?? 0) >= max)"
     >
