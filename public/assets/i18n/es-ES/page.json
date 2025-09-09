@@ -402,7 +402,35 @@
         "PARTICIPANTS": "Participantes",
         "NO_PARTICIPANTS": "Ningún participante registrado.",
         "RULES_GUIDELINES": "Reglas y Directrices",
-        "NO_RULES": "Ninguna regla registrada."
+        "NO_RULES": "Ninguna regla registrada.",
+        "NO_DESCRIPTION": "Incluye la descripción de tu mesa, o ninguna descripción incluida",
+        "DESCRIPTION_PLACEHOLDER": "Ingresa la descripción de tu Mesa",
+        "DESCRIPTION_MARKDOWN_INFO": "Este campo acepta formato Markdown. Aprende más en: https://www.markdownguide.org/",
+        "LABELS": {
+          "CAMPAIGN_NAME": "Nombre de la Campaña",
+          "GAME_SYSTEM": "Sistema de Juego",
+          "SETTING_WORLD": "Mundo/Ambientación",
+          "SHORT_DESCRIPTION": "Descripción Corta",
+          "MAX_PLAYERS": "Máx. Jugadores",
+          "VISIBILITY": "Visibilidad",
+          "ACCESS_RULE": "Regla de Acceso",
+          "MODALITY": "Modalidad",
+          "THEMES_CONTENT": "Temas y Contenido",
+          "PUNCTUALITY_ATTENDANCE": "Puntualidad y Asistencia",
+          "HOUSE_RULES": "Reglas de la Casa",
+          "BEHAVIORAL_EXPECTATIONS": "Expectativas de Comportamiento"
+        },
+        "PLACEHOLDERS": {
+          "CAMPAIGN_NAME": "Ingresa el nombre de la campaña",
+          "GAME_SYSTEM": "Ej: D&D 5e, Pathfinder, etc.",
+          "SETTING_WORLD": "Ingresa el mundo o ambientación",
+          "SHORT_DESCRIPTION": "Describe brevemente tu campaña",
+          "ACCESS_RULE": "Selecciona la regla de acceso",
+          "THEMES_CONTENT": "Lista temas que pueden o no ser abordados en el juego (ej: violencia gráfica, fobias, etc.)",
+          "PUNCTUALITY_ATTENDANCE": "Describe las expectativas sobre puntualidad y frecuencia de los jugadores",
+          "HOUSE_RULES": "Describe cualquier modificación a las reglas del sistema de juego elegido",
+          "BEHAVIORAL_EXPECTATIONS": "Reglas sobre respeto mutuo, metagaming, etc."
+        }
       }
     }
   }

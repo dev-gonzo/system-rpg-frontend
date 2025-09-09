@@ -434,7 +434,35 @@
         "PARTICIPANTS": "Participants",
         "NO_PARTICIPANTS": "No participants registered.",
         "RULES_GUIDELINES": "Rules and Guidelines",
-        "NO_RULES": "No rules registered."
+        "NO_RULES": "No rules registered.",
+        "NO_DESCRIPTION": "Include your table description, or no description included",
+        "DESCRIPTION_PLACEHOLDER": "Enter your table description",
+        "DESCRIPTION_MARKDOWN_INFO": "This field accepts Markdown formatting. Learn more at: https://www.markdownguide.org/",
+        "LABELS": {
+          "CAMPAIGN_NAME": "Campaign Name",
+          "GAME_SYSTEM": "Game System",
+          "SETTING_WORLD": "World/Setting",
+          "SHORT_DESCRIPTION": "Short Description",
+          "MAX_PLAYERS": "Max Players",
+          "VISIBILITY": "Visibility",
+          "ACCESS_RULE": "Access Rule",
+          "MODALITY": "Modality",
+          "THEMES_CONTENT": "Themes and Content",
+          "PUNCTUALITY_ATTENDANCE": "Punctuality and Attendance",
+          "HOUSE_RULES": "House Rules",
+          "BEHAVIORAL_EXPECTATIONS": "Behavioral Expectations"
+        },
+        "PLACEHOLDERS": {
+          "CAMPAIGN_NAME": "Enter the campaign name",
+          "GAME_SYSTEM": "Ex: D&D 5e, Pathfinder, etc.",
+          "SETTING_WORLD": "Enter the world or setting",
+          "SHORT_DESCRIPTION": "Briefly describe your campaign",
+          "ACCESS_RULE": "Select the access rule",
+          "THEMES_CONTENT": "List themes that may or may not be addressed in the game (ex: graphic violence, phobias, etc.)",
+          "PUNCTUALITY_ATTENDANCE": "Describe expectations about punctuality and player frequency",
+          "HOUSE_RULES": "Describe any modifications to the chosen game system rules",
+          "BEHAVIORAL_EXPECTATIONS": "Rules about mutual respect, metagaming, etc."
+        }
       }
     }
   }

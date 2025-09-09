@@ -34,8 +34,8 @@
   
       <div *ngIf="isEditingEssentialInfo" class="row row-gap-3">
         <app-form-input
-          label="Nome da Campanha"
-          placeholder="Digite o nome da campanha"
+          [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.CAMPAIGN_NAME' | translate"
+          [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.CAMPAIGN_NAME' | translate"
           [control]="$any(essentialInfoForm.get('campaignName'))"
           fieldName="campaignName"
           col="12"
@@ -43,8 +43,8 @@
         ></app-form-input>
         
         <app-form-input
-          label="Sistema de Jogo"
-          placeholder="Ex: D&D 5e, Pathfinder, etc."
+          [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.GAME_SYSTEM' | translate"
+          [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.GAME_SYSTEM' | translate"
           [control]="$any(essentialInfoForm.get('gameSystem'))"
           fieldName="gameSystem"
           col="12"
@@ -53,8 +53,8 @@
         ></app-form-input>
         
         <app-form-input
-          label="Mundo/Cenário"
-          placeholder="Digite o mundo ou cenário"
+          [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.SETTING_WORLD' | translate"
+          [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.SETTING_WORLD' | translate"
           [control]="$any(essentialInfoForm.get('settingWorld'))"
           fieldName="settingWorld"
           col="12"
@@ -63,8 +63,8 @@
         ></app-form-input>
         
         <app-form-textarea
-          label="Descrição Curta"
-          placeholder="Descreva brevemente sua campanha"
+          [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.SHORT_DESCRIPTION' | translate"
+          [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.SHORT_DESCRIPTION' | translate"
           [control]="$any(essentialInfoForm.get('shortDescription'))"
           fieldName="shortDescription"
           col="12"
@@ -73,7 +73,7 @@
         ></app-form-textarea>
         
         <app-form-number-input
-          label="Máx. Jogadores"
+          [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.MAX_PLAYERS' | translate"
           placeholder="6"
           [control]="$any(essentialInfoForm.get('maxPlayers'))"
           fieldName="maxPlayers"
@@ -85,7 +85,7 @@
         ></app-form-number-input>
 
         <app-form-radio
-           label="Visibilidade"
+           [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.VISIBILITY' | translate"
            [control]="$any(essentialInfoForm.get('visibility'))"
            fieldName="visibility"
            name="visibility"
@@ -95,8 +95,8 @@
          ></app-form-radio>
 
          <app-form-select
-           label="Regra de Acesso"
-           placeholder="Selecione a regra de acesso"
+           [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.ACCESS_RULE' | translate"
+           [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.ACCESS_RULE' | translate"
            [control]="$any(essentialInfoForm.get('accessRule'))"
            fieldName="accessRule"
            [options]="accessRuleOptions"
@@ -105,7 +105,7 @@
          ></app-form-select>
 
          <app-form-radio
-           label="Modalidade"
+           [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.MODALITY' | translate"
            [control]="$any(essentialInfoForm.get('modality'))"
            fieldName="modality"
            name="modality"
@@ -137,18 +137,23 @@
         </div>
         <div class="col-12">
           <div *ngIf="!isEditingDescription" class="markdown-body">
-             <markdown [data]="descriptionContent"></markdown>
+             <div *ngIf="descriptionContent; else noDescription">
+               <markdown [data]="descriptionContent"></markdown>
+             </div>
+             <ng-template #noDescription>
+               <p class="text-muted fst-italic">{{ 'PAGE.GAME_GROUP.DETAIL.NO_DESCRIPTION' | translate }}</p>
+             </ng-template>
            </div>
            <div *ngIf="isEditingDescription">
              <app-form-textarea 
                 [control]="descriptionControl" 
-                placeholder="Digite a descrição de sua Mesa" 
-                [rows]="50" 
+                [placeholder]="'PAGE.GAME_GROUP.DETAIL.DESCRIPTION_PLACEHOLDER' | translate" 
+                [rows]="20" 
                 resize="vertical"
                 fieldName="description"
                 (blurEvent)="onDescriptionBlur()"> 
               </app-form-textarea>
-             <span class="text-muted">Este campo aceita formatação Markdown. Saiba mais em: https://www.markdownguide.org/</span>
+             <span class="text-muted">{{ 'PAGE.GAME_GROUP.DETAIL.DESCRIPTION_MARKDOWN_INFO' | translate }}</span>
            </div>
         </div>
       </div>
@@ -238,27 +243,96 @@
     </div>
   </app-section-wrapper>
   
-  <app-section-wrapper>
+  <app-section-wrapper #rulesSection>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-between align-items-center">
           <h1>{{ "PAGE.GAME_GROUP.DETAIL.RULES_GUIDELINES" | translate }}</h1>
           <app-tooltip 
-            [text]="'COMMON.EDIT' | translate"
+            [text]="isEditingRules ? ('COMMON.CLOSE' | translate) : ('COMMON.EDIT' | translate)"
             position="bottom"
             [delay]="300">
             <button
-              class="btn btn-sm"
-              (click)="toggleDescriptionEdit()"
-              *ngIf="!isEditingDescription"
+              class="btn text-white p-2"
+              (click)="toggleRulesEdit()"
             >
-              <mat-icon svgIcon="mdi-pencil" style="width: 18px; height: 18px; font-size: 18px;"></mat-icon>
+              <mat-icon [svgIcon]="isEditingRules ? 'mdi-close' : 'mdi-pencil'" class="icon-sm"></mat-icon>
              </button>
           </app-tooltip>
         </div>
-        <div class="col-12">
-           <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_RULES" | translate }}</p>
-         </div>
+        
+        <div *ngIf="!isEditingRules" class="col-12">
+          <div *ngIf="gameGroup$ | async as gameGroup">
+            <div *ngIf="currentThemesContent || currentPunctualityAttendance || currentHouseRules || currentBehavioralExpectations; else noRules">
+              
+              <div *ngIf="currentThemesContent" class="mb-3 mt-3">
+                <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.THEMES_CONTENT' | translate }}</h5>
+                <p class="text-muted">{{ currentThemesContent }}</p>
+              </div>
+              
+              <div *ngIf="currentPunctualityAttendance" class="mb-3">
+                <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.PUNCTUALITY_ATTENDANCE' | translate }}</h5>
+                <p class="text-muted">{{ currentPunctualityAttendance }}</p>
+              </div>
+              
+              <div *ngIf="currentHouseRules" class="mb-3">
+                <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.HOUSE_RULES' | translate }}</h5>
+                <p class="text-muted">{{ currentHouseRules }}</p>
+              </div>
+              
+              <div *ngIf="currentBehavioralExpectations" class="mb-3">
+                <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.BEHAVIORAL_EXPECTATIONS' | translate }}</h5>
+                <p class="text-muted">{{ currentBehavioralExpectations }}</p>
+              </div>
+            </div>
+            
+            <ng-template #noRules>
+              <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_RULES" | translate }}</p>
+            </ng-template>
+          </div>
+        </div>
+        
+        <div *ngIf="isEditingRules" class="row row-gap-3">
+          <app-form-textarea
+            [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.THEMES_CONTENT' | translate"
+            [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.THEMES_CONTENT' | translate"
+            [control]="$any(rulesForm.get('themesContent'))"
+            fieldName="themesContent"
+            col="12"
+            [rows]="3"
+            (blurEvent)="onFieldBlur($event)"
+          ></app-form-textarea>
+          
+          <app-form-textarea
+            [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.PUNCTUALITY_ATTENDANCE' | translate"
+            [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.PUNCTUALITY_ATTENDANCE' | translate"
+            [control]="$any(rulesForm.get('punctualityAttendance'))"
+            fieldName="punctualityAttendance"
+            col="12"
+            [rows]="3"
+            (blurEvent)="onFieldBlur($event)"
+          ></app-form-textarea>
+          
+          <app-form-textarea
+            [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.HOUSE_RULES' | translate"
+            [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.HOUSE_RULES' | translate"
+            [control]="$any(rulesForm.get('houseRules'))"
+            fieldName="houseRules"
+            col="12"
+            [rows]="4"
+            (blurEvent)="onFieldBlur($event)"
+          ></app-form-textarea>
+          
+          <app-form-textarea
+            [label]="'PAGE.GAME_GROUP.DETAIL.LABELS.BEHAVIORAL_EXPECTATIONS' | translate"
+            [placeholder]="'PAGE.GAME_GROUP.DETAIL.PLACEHOLDERS.BEHAVIORAL_EXPECTATIONS' | translate"
+            [control]="$any(rulesForm.get('behavioralExpectations'))"
+            fieldName="behavioralExpectations"
+            col="12"
+            [rows]="4"
+            (blurEvent)="onFieldBlur($event)"
+          ></app-form-textarea>
+        </div>
       </div>
     </div>
   </app-section-wrapper>

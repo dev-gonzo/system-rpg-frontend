@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
@@ -43,6 +43,8 @@ export class GameGroupDetailPage implements OnInit {
   private gameGroupService = inject(GameGroupApiService);
   private translate = inject(TranslateService);
   
+  @ViewChild('rulesSection') rulesSection!: ElementRef;
+  
   private gameGroupId!: string;
   private originalFormValues: Record<string, unknown> = {};
   private updateInProgress = false;
@@ -65,6 +67,14 @@ export class GameGroupDetailPage implements OnInit {
     visibility: new FormControl('', [Validators.required]),
     accessRule: new FormControl('', [Validators.required]),
     modality: new FormControl('', [Validators.required])
+  });
+
+  isEditingRules = false;
+  rulesForm = new FormGroup({
+    themesContent: new FormControl(''),
+    punctualityAttendance: new FormControl(''),
+    houseRules: new FormControl(''),
+    behavioralExpectations: new FormControl('')
   });
 
   ngOnInit(): void {
@@ -102,6 +112,55 @@ export class GameGroupDetailPage implements OnInit {
   
   get currentCampaignName(): string {
     return this.essentialInfoForm.get('campaignName')?.value || '';
+  }
+
+  get currentThemesContent(): string {
+    const formValue = this.rulesForm.get('themesContent')?.value;
+    if (formValue !== null && formValue !== undefined) {
+      return formValue;
+    }
+    
+    let gameGroupValue = '';
+    this.gameGroup$.subscribe(gameGroup => {
+      gameGroupValue = gameGroup.themesContent || '';
+    }).unsubscribe();
+    return gameGroupValue;
+  }
+
+  get currentPunctualityAttendance(): string {
+    const formValue = this.rulesForm.get('punctualityAttendance')?.value;
+    if (formValue !== null && formValue !== undefined) {
+      return formValue;
+    }
+    let gameGroupValue = '';
+    this.gameGroup$.subscribe(gameGroup => {
+      gameGroupValue = gameGroup.punctualityAttendance || '';
+    }).unsubscribe();
+    return gameGroupValue;
+  }
+
+  get currentHouseRules(): string {
+    const formValue = this.rulesForm.get('houseRules')?.value;
+    if (formValue !== null && formValue !== undefined) {
+      return formValue;
+    }
+    let gameGroupValue = '';
+    this.gameGroup$.subscribe(gameGroup => {
+      gameGroupValue = gameGroup.houseRules || '';
+    }).unsubscribe();
+    return gameGroupValue;
+  }
+
+  get currentBehavioralExpectations(): string {
+    const formValue = this.rulesForm.get('behavioralExpectations')?.value;
+    if (formValue !== null && formValue !== undefined) {
+      return formValue;
+    }
+    let gameGroupValue = '';
+    this.gameGroup$.subscribe(gameGroup => {
+      gameGroupValue = gameGroup.behavioralExpectations || '';
+    }).unsubscribe();
+    return gameGroupValue;
   }
 
   visibilityOptions = [
@@ -186,9 +245,38 @@ export class GameGroupDetailPage implements OnInit {
         
         this.originalFormValues = { ...formValues };
       });
+    }
+  }
+
+  toggleRulesEdit(): void {
+    this.isEditingRules = !this.isEditingRules;
+    
+    if (this.isEditingRules) {
+      this.gameGroup$.subscribe(gameGroup => {
+        const rulesFormValues = {
+          themesContent: gameGroup.themesContent || '',
+          punctualityAttendance: gameGroup.punctualityAttendance || '',
+          houseRules: gameGroup.houseRules || '',
+          behavioralExpectations: gameGroup.behavioralExpectations || ''
+        };
+        
+        this.rulesForm.get('themesContent')?.setValue(rulesFormValues.themesContent);
+        this.rulesForm.get('punctualityAttendance')?.setValue(rulesFormValues.punctualityAttendance);
+        this.rulesForm.get('houseRules')?.setValue(rulesFormValues.houseRules);
+        this.rulesForm.get('behavioralExpectations')?.setValue(rulesFormValues.behavioralExpectations);
+        
+        this.originalFormValues = { ...rulesFormValues };
+      });
     } else {
       
-      this.loadGameGroup();
+      setTimeout(() => {
+        if (this.rulesSection) {
+          this.rulesSection.nativeElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100);
     }
   }
   
@@ -201,7 +289,10 @@ export class GameGroupDetailPage implements OnInit {
       return;
     }
     
-    const currentValue = this.essentialInfoForm.get(fieldName)?.value;
+    let currentValue = this.essentialInfoForm.get(fieldName)?.value;
+    if (currentValue === undefined) {
+      currentValue = this.rulesForm.get(fieldName)?.value;
+    }
     const originalValue = this.originalFormValues[fieldName];
     
     if (this.hasValueChanged(originalValue, currentValue)) {
@@ -218,7 +309,10 @@ export class GameGroupDetailPage implements OnInit {
       return;
     }
     
-    const currentValue = this.essentialInfoForm.get(fieldName)?.value;
+    let currentValue = this.essentialInfoForm.get(fieldName)?.value;
+    if (currentValue === undefined) {
+      currentValue = this.rulesForm.get(fieldName)?.value;
+    }
     const originalValue = this.originalFormValues[fieldName];
     
     if (this.hasValueChanged(originalValue, currentValue)) {
