@@ -70,4 +70,8 @@ export class GameGroupApiService {
       { params: httpParams },
     );
   }
+
+  getById(id: string): Observable<GameGroupResponse> {
+    return this.http.get<GameGroupResponse>(`${this.baseUrl}${this.basePath}/${id}`);
+  }
 }

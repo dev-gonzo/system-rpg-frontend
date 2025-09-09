@@ -428,6 +428,29 @@
         "ERROR": "Erro ao criar mesa de jogo",
         "FORM_ERROR": "Por favor, corrija os erros no formulário",
         "STEP_ERROR": "Por favor, corrija os erros neste passo"
+      },
+      "DETAIL": {
+        "BASIC_INFO": "Informações Básicas",
+        "PARTICIPATION_INFO": "Informações de Participação",
+        "DESCRIPTION": "Descrição",
+        "TIMESTAMPS": "Datas",
+        "CAMPAIGN_NAME": "Nome da Campanha",
+        "GAME_SYSTEM": "Sistema de Jogo",
+        "SETTING_WORLD": "Cenário/Mundo",
+        "ACCESS_RULE": "Regra de Acesso",
+        "MODALITY": "Modalidade",
+        "MAX_PLAYERS": "Máximo de Jogadores",
+        "CURRENT_PARTICIPANTS": "Participantes Atuais",
+        "CREATED_BY": "Criado por",
+        "STATUS": {
+          "ACTIVE": "Ativa"
+        },
+        "ADVENTURES": "Aventuras",
+        "NO_ADVENTURES": "Nenhuma aventura cadastrada.",
+        "PARTICIPANTS": "Participantes",
+        "NO_PARTICIPANTS": "Nenhum participante cadastrado.",
+        "RULES_GUIDELINES": "Regras e Diretrizes",
+        "NO_RULES": "Nenhuma regra cadastrada."
       }
     }
   }

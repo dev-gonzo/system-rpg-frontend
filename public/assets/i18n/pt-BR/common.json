@@ -129,6 +129,10 @@
     "MARKDOWN": {
       "EDITOR": "Editor",
       "PREVIEW": "Visualização"
-    }
+    },
+    "CREATED_AT": "Criado em",
+    "UPDATED_AT": "Atualizado em",
+    "GAME_GROUP_NOT_FOUND": "Grupo de jogo não encontrado",
+    "OF": "de"
   }
 }

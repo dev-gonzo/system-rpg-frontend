@@ -1,24 +1,148 @@
-<div class="container-fluid py-4">
-  <h1 class="mb-4">{{ 'GAME_GROUP.DETAIL.TITLE' | translate }}</h1>
-  
-  <div class="editor-container">
-    <div class="editor-pane">
-      <h3 class="mb-3">{{ 'MARKDOWN.EDITOR' | translate }}</h3>
-      <app-form-textarea
-        [control]="markdownControl"
-        placeholder="Digite seu conteúdo em Markdown aqui..."
-        [rows]="15"
-        resize="vertical">
-      </app-form-textarea>
-      <span class="text-muted">Este campo aceita formatação Markdown. Saiba mais em: https://www.markdownguide.org/</span>
-    </div>
-    
-    <div class="preview-pane">
-      <h3 class="mb-3">{{ 'MARKDOWN.PREVIEW' | translate }}</h3>
-      <div class="markdown-body preview-content">
-        <markdown [data]="markdownContent"></markdown>
+<app-section-wrapper>
+  <div class="container-fluid" *ngIf="gameGroup$ | async as gameGroup">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h1 class="mb-2">{{ gameGroup.campaignName }}</h1>
+        <button
+          class="btn btn-sm btn-outline-primary"
+          (click)="toggleDescriptionEdit()"
+          *ngIf="!isEditingDescription"
+        >
+          <i class="fas fa-edit me-1"></i>
+          {{ "COMMON.EDIT" | translate }}
+        </button>
+      </div>
+
+      <div class="col-12">
+ 
+          <span class="badge bg-success mb-2" *ngIf="gameGroup.isActive">
+            {{ "PAGE.GAME_GROUP.DETAIL.STATUS.ACTIVE" | translate }}
+          </span>
+        <p class="text-muted">
+          {{ gameGroup.gameSystem }}
+          | {{ gameGroup.settingWorld }} | {{ gameGroup.modality }} |
+          {{ "PAGE.GAME_GROUP.DETAIL.CURRENT_PARTICIPANTS" | translate }} {{ gameGroup.currentParticipants?.toString() }} {{ "COMMON.OF" | translate }}
+          {{ gameGroup.maxPlayers?.toString() }}
+        </p>
       </div>
     </div>
   </div>
-</div>
+</app-section-wrapper>
+
+<app-section-wrapper>
+  <div class="container-fluid" *ngIf="gameGroup$ | async as gameGroup">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end mb-3">
+        <button
+          class="btn btn-sm btn-outline-primary"
+          (click)="toggleDescriptionEdit()"
+          *ngIf="!isEditingDescription"
+        >
+          <i class="fas fa-edit me-1"></i>
+          {{ "COMMON.EDIT" | translate }}
+        </button>
+      </div>
+      <div class="col-12">
+        <div *ngIf="!isEditingDescription" class="markdown-body">
+           <markdown [data]="descriptionContent"></markdown>
+         </div>
+      </div>
+    </div>
+  </div>
+</app-section-wrapper>
+
+<app-section-wrapper>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+      <h1>{{ "PAGE.GAME_GROUP.DETAIL.ADVENTURES" | translate }}</h1>
+      <button
+        class="btn btn-sm btn-outline-primary"
+        (click)="toggleDescriptionEdit()"
+        *ngIf="!isEditingDescription"
+      >
+        <i class="fas fa-edit me-1"></i>
+        {{ "COMMON.EDIT" | translate }}
+      </button>
+    </div>
+    <div class="col-12">
+      <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_ADVENTURES" | translate }}</p>
+    </div>
+  </div>
+</app-section-wrapper>
+
+<app-section-wrapper>
+  <div class="row row-gap-3">
+    <div
+      class="col-12 d-flex justify-content-between align-items-center"
+      *ngIf="gameGroup$ | async as gameGroup"
+    >
+      <h1 class="mb-2">{{ "PAGE.GAME_GROUP.DETAIL.PARTICIPANTS" | translate }}</h1>
+      <button
+        class="btn btn-sm btn-outline-primary"
+        (click)="toggleDescriptionEdit()"
+        *ngIf="!isEditingDescription"
+      >
+        <i class="fas fa-edit me-1"></i>
+        {{ "COMMON.EDIT" | translate }}
+      </button>
+    </div>
+
+    <div class="col-12 d-flex flex-column gap-3">
+      <div 
+        class="w-100 border-1 border-bottom border-primary py-2 px-3 d-flex justify-content-between align-items-center"
+        *ngFor="let participant of sortedParticipants$ | async"
+      >
+        <div class="d-flex align-items-center gap-2">
+          <span class="fw-bold">{{ participant.username | uppercase }}</span>
+          <span 
+            class="badge"
+            [class.bg-success]="participant.role === 'MASTER'"
+            [class.bg-info]="participant.role === 'PLAYER'"
+          >
+            {{ participant.role === 'MASTER' ? ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.MASTER' | translate) : ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.PLAYER' | translate) }}
+          </span>
+        </div>
+        <div class="text-muted">
+          <app-tooltip
+            [text]="('COMMON.CREATED_AT' | translate) + ': ' + (participant.createdAt | date:'medium')"
+            position="left"
+            [autoCloseOnClick]="true"
+            [autoCloseDelay]="1500"
+            style="cursor: pointer; user-select: none;"
+          >
+            <mat-icon svgIcon="mdi-calendar" style="cursor: pointer; user-select: none;"></mat-icon>
+          </app-tooltip>
+        </div>
+      </div>
+      
+      <div 
+        class="w-100 text-center py-3 text-muted"
+        *ngIf="(sortedParticipants$ | async)?.length === 0"
+      >
+        <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_PARTICIPANTS" | translate }}</p>
+      </div>
+    </div>
+  </div>
+</app-section-wrapper>
+
+<app-section-wrapper>
+  <div class="row">
+    <div
+      class="col-12 col-12 d-flex justify-content-between align-items-center"
+    >
+      <h1>{{ "PAGE.GAME_GROUP.DETAIL.RULES_GUIDELINES" | translate }}</h1>
+      <button
+        class="btn btn-sm btn-outline-primary"
+        (click)="toggleDescriptionEdit()"
+        *ngIf="!isEditingDescription"
+      >
+        <i class="fas fa-edit me-1"></i>
+        {{ "COMMON.EDIT" | translate }}
+      </button>
+    </div>
+    <div class="col-12">
+      <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_RULES" | translate }}</p>
+    </div>
+  </div>
+</app-section-wrapper>
 

@@ -31,7 +31,7 @@ export const GAME_GROUP_ROUTES: Routes = [
           ),
       },
        {
-        path: 'detail',
+        path: 'detail/:id',
         loadComponent: () =>
           import('./pages/detail/game-group-detail.page').then(
             (m) => m.GameGroupDetailPage,

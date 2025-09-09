@@ -31,33 +31,61 @@ export interface GameGroupMember {
   updatedAt: string;
 }
 
+export interface UserRole {
+  id: string;
+  name: string;
+  description: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GameGroupCreatedBy {
+  id: string;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  isActive: boolean;
+  isEmailVerified: boolean;
+  createdAt: string;
+  updatedAt: string;
+  lastLoginAt: string;
+  passwordChangedAt: string;
+  roles: UserRole[];
+}
+
 export interface GameGroupResponseData {
   id: string;
 
   campaignName: string;
-  shortDescription: string;
+  description?: string;
   gameSystem: string;
   settingWorld?: string;
 
-  visibility?: 'PUBLIC' | 'FRIENDS' | 'PRIVATE';
-  accessRule: 'PUBLIC' | 'FRIENDS' | 'PRIVATE';
-  modality: 'ONLINE' | 'PRESENTIAL';
+  accessRule: string;
+  modality: string;
 
-  minPlayers?: number;
   maxPlayers?: number;
   currentParticipants?: number;
-  participants?: GameGroupMember[];
+  location?: string;
+  rules?: string;
+  notes?: string;
 
+  
+  shortDescription: string;
+  visibility?: 'PUBLIC' | 'FRIENDS' | 'PRIVATE';
+  minPlayers?: number;
+  participants?: GameGroupMember[];
   country?: string;
   state?: string;
   city?: string;
-
   themesContent?: string;
   punctualityAttendance?: string;
   houseRules?: string;
   behavioralExpectations?: string;
 
-  createdBy?: string;
+  createdBy: GameGroupCreatedBy;
   isActive: boolean;
 
   createdAt: string;

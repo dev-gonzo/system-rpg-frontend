@@ -126,6 +126,10 @@
       "LOADED": "¡Borrador cargado con éxito!",
       "SAVED": "Borrador guardado automáticamente",
       "CLEARED": "Borrador eliminado"
-    }
+    },
+    "CREATED_AT": "Creado en",
+    "UPDATED_AT": "Actualizado en",
+    "GAME_GROUP_NOT_FOUND": "Grupo de juego no encontrado",
+    "OF": "de"
   }
 }

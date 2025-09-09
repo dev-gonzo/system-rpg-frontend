@@ -127,5 +127,8 @@
     "LOADED": "Draft loaded successfully!",
     "SAVED": "Draft saved automatically",
     "CLEARED": "Draft removed"
-  }
+  },
+  "CREATED_AT": "Created at",
+  "UPDATED_AT": "Updated at",
+  "OF": "of"
 }

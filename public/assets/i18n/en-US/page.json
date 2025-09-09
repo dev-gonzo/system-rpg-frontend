@@ -412,6 +412,29 @@
         "ERROR": "Error creating game group",
         "FORM_ERROR": "Please correct the errors in the form",
         "STEP_ERROR": "Please correct the errors in this step"
+      },
+      "DETAIL": {
+        "BASIC_INFO": "Basic Information",
+        "PARTICIPATION_INFO": "Participation Information",
+        "DESCRIPTION": "Description",
+        "TIMESTAMPS": "Timestamps",
+        "CAMPAIGN_NAME": "Campaign Name",
+        "GAME_SYSTEM": "Game System",
+        "SETTING_WORLD": "Setting/World",
+        "ACCESS_RULE": "Access Rule",
+        "MODALITY": "Modality",
+        "MAX_PLAYERS": "Max Players",
+        "CURRENT_PARTICIPANTS": "Current Participants",
+        "CREATED_BY": "Created by",
+        "STATUS": {
+          "ACTIVE": "Active"
+        },
+        "ADVENTURES": "Adventures",
+        "NO_ADVENTURES": "No adventures registered.",
+        "PARTICIPANTS": "Participants",
+        "NO_PARTICIPANTS": "No participants registered.",
+        "RULES_GUIDELINES": "Rules and Guidelines",
+        "NO_RULES": "No rules registered."
       }
     }
   }

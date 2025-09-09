@@ -927,6 +927,16 @@ button:focus-visible {
   object-fit: cover;
 }
 
+ .markdown-body {
+  background: transparent !important;
+  color: inherit !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 markdown table,
 .markdown-body table {
   width: 100%;
