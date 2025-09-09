@@ -101,6 +101,28 @@
       "PROJETOS": "PROJECTS",
       "GAME_GROUP": "GAME GROUP"
     },
+    "GAME_GROUP": {
+      "DETAIL": {
+        "TITLE": "Game Group Details"
+      }
+    },
+    "VISIBILITY": {
+      "PUBLIC": "Public",
+      "PRIVATE": "Private",
+      "GAME_GROUP": "Game Group Visibility"
+    },
+    "MODALITY": {
+      "ONLINE": "Online",
+      "PRESENCIAL": "In-Person",
+      "LABEL": "Modality"
+    },
+    "ACCESS_RULE": {
+      "FREE": "Free Registration",
+      "FRIENDS": "Friends Only",
+      "APPROVAL": "Master Approval",
+      "LABEL": "Access Rule",
+      "PLACEHOLDER": "Select access rule"
+    },
     "STEPS": {
       "NEXT": "Next",
       "PREVIOUS_STEP": "Previous step",

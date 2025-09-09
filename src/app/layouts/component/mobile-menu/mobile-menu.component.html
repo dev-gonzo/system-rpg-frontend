@@ -8,19 +8,17 @@
 <div class="mobile-menu-drawer" [class.show]="isOpen">
   <div class="mobile-menu-header">
     <div class="d-flex align-items-center gap-2">
-      <img
-        src="assets/img/logo-white.png"
-        alt="System RPG"
-        class="w-60"
-      />
+      <img src="assets/img/logo-white.png" alt="System RPG" class="w-60" />
     </div>
-    <button
-      class="btn-close-menu text-white"
-      (click)="closeMenu.emit()"
-      [attr.aria-label]="'COMMON.LAYOUT.MOBILE_MENU.CLOSE_MENU' | translate"
-    >
-      <mat-icon svgIcon="mdi-close"></mat-icon>
-    </button>
+    <div>
+      <button
+        class="btn-close-menu text-white rounded-circle"
+        (click)="closeMenu.emit()"
+        [attr.aria-label]="'COMMON.LAYOUT.MOBILE_MENU.CLOSE_MENU' | translate"
+      >
+        <mat-icon svgIcon="mdi-close" class="icon-sm"></mat-icon>
+      </button>
+    </div>
   </div>
 
   <nav class="mobile-menu-nav">
@@ -53,13 +51,17 @@
       <div class="menu-icon">
         <mat-icon svgIcon="mdi-cog"></mat-icon>
       </div>
-      <span class="menu-label">{{ 'COMMON.LAYOUT.MOBILE_MENU.SETTINGS' | translate }}</span>
+      <span class="menu-label">{{
+        "COMMON.LAYOUT.MOBILE_MENU.SETTINGS" | translate
+      }}</span>
     </a>
   </div>
 
   <div class="mobile-menu-footer">
     <div class="menu-version">
-      <small>{{ 'COMMON.LAYOUT.MOBILE_MENU.PORTAL_VERSION' | translate }}</small>
+      <small>{{
+        "COMMON.LAYOUT.MOBILE_MENU.PORTAL_VERSION" | translate
+      }}</small>
     </div>
   </div>
 </div>

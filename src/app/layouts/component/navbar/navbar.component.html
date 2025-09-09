@@ -1,98 +1,118 @@
-<nav class="navbar p-3 d-flex  align-items-center">
-
-
-       
-    <img
-         src="icon-white.png"
-         alt="System RPG"
-         class="d-lg-none me-3"
-         width="40px"
-       />
-  <button 
-    class="btn text-white hamburger-btn d-flex d-lg-none align-items-center p-2" 
+<nav class="navbar p-3 d-flex align-items-center">
+  <img
+    src="icon-white.png"
+    alt="System RPG"
+    class="d-lg-none me-3"
+    width="40px"
+  />
+  <button
+    class="btn text-white hamburger-btn d-flex d-lg-none align-items-center p-2"
     [class.menu-open]="isSidebarOpen"
     (click)="toggleSidebar.emit()"
     [attr.aria-expanded]="isSidebarOpen"
-    [attr.aria-label]="(isSidebarOpen ? 'COMMON.LAYOUT.NAVBAR.CLOSE_MENU' : 'COMMON.LAYOUT.NAVBAR.OPEN_MENU') | translate">
-    <mat-icon class="icon-2x">{{isSidebarOpen ? 'close' : 'menu'}}</mat-icon>
+    [attr.aria-label]="
+      (isSidebarOpen
+        ? 'COMMON.LAYOUT.NAVBAR.CLOSE_MENU'
+        : 'COMMON.LAYOUT.NAVBAR.OPEN_MENU'
+      ) | translate
+    "
+  >
+    <mat-icon>{{ isSidebarOpen ? "close" : "menu" }}</mat-icon>
   </button>
 
-
   <div class="d-flex flex-column unit-info">
-    <small>{{ 'COMMON.LAYOUT.NAVBAR.YOU_ARE_HERE' | translate }}</small>
-    <div class="d-flex align-items-center gap-2 ">
+    <small>{{ "COMMON.LAYOUT.NAVBAR.YOU_ARE_HERE" | translate }}</small>
+    <div class="d-flex align-items-center gap-2">
       <span class="fw-bold">Mesa Principal</span>
-      <app-tooltip 
-    [text]="'COMMON.LAYOUT.NAVBAR.CHANGE_UNIT' | translate"
-    position="bottom"
-    [delay]="300">
-    <button 
-      class="btn btn-sm text-white p-1 " 
-      [attr.aria-label]="'COMMON.LAYOUT.NAVBAR.CHANGE_UNIT' | translate">
-      <mat-icon>swap_horiz</mat-icon>
-    </button>
-  </app-tooltip>
+      <app-tooltip
+        [text]="'COMMON.LAYOUT.NAVBAR.CHANGE_UNIT' | translate"
+        position="bottom"
+        [delay]="300"
+      >
+        <button
+          class="btn btn-sm text-white p-1"
+          [attr.aria-label]="'COMMON.LAYOUT.NAVBAR.CHANGE_UNIT' | translate"
+        >
+          <mat-icon>swap_horiz</mat-icon>
+        </button>
+      </app-tooltip>
     </div>
   </div>
 
-
   <div class="flex-grow-1"></div>
-
 
   <div class="accessibility-controls d-flex align-items-center gap-2">
     <app-accessibility-controls buttonClass="text-white" />
   </div>
 
-
-  <app-tooltip 
+  <app-tooltip
     [text]="'COMMON.LAYOUT.NAVBAR.ALERTS' | translate"
     position="bottom"
-    [delay]="300">
-    <button 
-        class="btn text-white p-2" 
-        [attr.aria-label]="'COMMON.LAYOUT.NAVBAR.ALERTS' | translate">
-        <mat-icon style="font-size: 1.3rem;">notifications</mat-icon>
-      </button>
+    [delay]="300"
+  >
+    <button
+      class="btn text-white p-2"
+      [attr.aria-label]="'COMMON.LAYOUT.NAVBAR.ALERTS' | translate"
+    >
+      <mat-icon style="font-size: 1.3rem">notifications</mat-icon>
+    </button>
   </app-tooltip>
 
-
   <div class="dropdown">
-    <app-tooltip 
+    <app-tooltip
       [text]="'COMMON.LAYOUT.NAVBAR.USER_MENU' | translate"
       position="bottom"
-      [delay]="300">
-      <button 
-        class="btn dropdown-toggle d-flex align-items-center gap-2 text-white p-2" 
-        type="button" 
-        id="userDropdown" 
-        data-bs-toggle="dropdown" 
+      [delay]="300"
+    >
+      <button
+        class="btn dropdown-toggle d-flex align-items-center gap-2 text-white p-2"
+        type="button"
+        id="userDropdown"
+        data-bs-toggle="dropdown"
         aria-expanded="false"
         [attr.aria-expanded]="isUserDropdownOpen"
-        (click)="toggleUserDropdown()">
-      <img 
-         src="assets/img/default-avatar.svg" 
-         [alt]="'COMMON.LAYOUT.NAVBAR.USER_AVATAR' | translate" 
-         class="user-avatar rounded-circle"
-         width="32" 
-         height="32">
-      <div class="d-none d-lg-block text-start">
-        <div class="user-name fw-bold">{{ 'COMMON.LAYOUT.NAVBAR.USER_NAME' | translate }}</div>
-        <div class="user-role">{{ 'COMMON.LAYOUT.NAVBAR.OPERATIONAL_UNIT' | translate }}</div>
-      </div>
-    </button>
+        (click)="toggleUserDropdown()"
+      >
+        <img
+          src="assets/img/default-avatar.svg"
+          [alt]="'COMMON.LAYOUT.NAVBAR.USER_AVATAR' | translate"
+          class="user-avatar rounded-circle"
+          width="32"
+          height="32"
+        />
+        <div class="d-none d-lg-block text-start">
+          <div class="user-name fw-bold">
+            {{ "COMMON.LAYOUT.NAVBAR.USER_NAME" | translate }}
+          </div>
+          <div class="user-role">
+            {{ "COMMON.LAYOUT.NAVBAR.OPERATIONAL_UNIT" | translate }}
+          </div>
+        </div>
+      </button>
     </app-tooltip>
-    <ul class="dropdown-menu dropdown-menu-end" [class.show]="isUserDropdownOpen">
+    <ul
+      class="dropdown-menu dropdown-menu-end"
+      [class.show]="isUserDropdownOpen"
+    >
       <li>
-        <a class="dropdown-item d-flex align-items-center gap-2 " href="#" (click)="goToProfile($event)">
+        <a
+          class="dropdown-item d-flex align-items-center gap-2"
+          href="#"
+          (click)="goToProfile($event)"
+        >
           <mat-icon>person</mat-icon>
-          {{ 'COMMON.LAYOUT.NAVBAR.MY_PROFILE' | translate }}
+          {{ "COMMON.LAYOUT.NAVBAR.MY_PROFILE" | translate }}
         </a>
       </li>
-      <li><hr class="dropdown-divider"></li>
+      <li><hr class="dropdown-divider" /></li>
       <li>
-        <a class="dropdown-item d-flex align-items-center gap-2" href="#" (click)="logout($event)">
+        <a
+          class="dropdown-item d-flex align-items-center gap-2"
+          href="#"
+          (click)="logout($event)"
+        >
           <mat-icon>logout</mat-icon>
-          {{ 'COMMON.LAYOUT.NAVBAR.LOGOUT' | translate }}
+          {{ "COMMON.LAYOUT.NAVBAR.LOGOUT" | translate }}
         </a>
       </li>
     </ul>

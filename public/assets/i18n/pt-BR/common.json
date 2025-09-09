@@ -126,6 +126,23 @@
         "TITLE": "Detalhes da Mesa"
       }
     },
+    "VISIBILITY": {
+      "PUBLIC": "Pública",
+      "PRIVATE": "Privada",
+      "GAME_GROUP": "Visibilidade da Mesa"
+    },
+    "MODALITY": {
+      "ONLINE": "Online",
+      "PRESENCIAL": "Presencial",
+      "LABEL": "Modalidade"
+    },
+    "ACCESS_RULE": {
+      "FREE": "Inscrição Livre",
+      "FRIENDS": "Apenas para Amigos",
+      "APPROVAL": "Aprovação do Mestre",
+      "LABEL": "Regra de Acesso",
+      "PLACEHOLDER": "Selecione a regra de acesso"
+    },
     "MARKDOWN": {
       "EDITOR": "Editor",
       "PREVIEW": "Visualização"

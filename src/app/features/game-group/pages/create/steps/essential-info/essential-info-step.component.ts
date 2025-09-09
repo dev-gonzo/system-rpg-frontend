@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TypedFormGroup } from '@app/core/types/forms';
 import { InputComponent } from '@app/shared/components/form/input/input.component';
 import { TextareaComponent } from '@app/shared/components/form/textarea/textarea.component';
-import { TooltipComponent } from '@app/shared/components/tooltip/tooltip.component';
+
 import { GameGroupFormData } from '../../../../types/game-group-form.types';
 
 @Component({
@@ -22,7 +22,6 @@ import { GameGroupFormData } from '../../../../types/game-group-form.types';
     TranslateModule,
     MatButtonModule,
     MatIconModule,
-    TooltipComponent,
   ],
   templateUrl: './essential-info-step.component.html',
 })

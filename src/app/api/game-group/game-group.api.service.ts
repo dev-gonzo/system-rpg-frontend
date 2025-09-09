@@ -8,6 +8,7 @@ import {
   GameGroupMyGroupsResponse,
   GameGroupResponse,
 } from './game-group.api.types';
+import { GameGroupPartialUpdate } from '@app/features/game-group/types/game-group-update.types';
 
 @Injectable({ providedIn: 'root' })
 export class GameGroupApiService {
@@ -73,5 +74,12 @@ export class GameGroupApiService {
 
   getById(id: string): Observable<GameGroupResponse> {
     return this.http.get<GameGroupResponse>(`${this.baseUrl}${this.basePath}/${id}`);
+  }
+
+  update(id: string, data: GameGroupPartialUpdate): Observable<GameGroupResponse> {
+    return this.http.put<GameGroupResponse>(
+      `${this.baseUrl}${this.basePath}/${id}`,
+      data,
+    );
   }
 }

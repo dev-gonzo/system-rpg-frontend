@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { ColumnHostClass } from '../../abstract/ColumnHostClass';
@@ -24,6 +24,9 @@ export class SelectComponent extends ColumnHostClass {
   @Input() placeholder = 'Selecione';
   @Input() id?: string;
   @Input() helper: string = '';
+  @Input() fieldName?: string;
+  
+  @Output() blurEvent = new EventEmitter<string>();
 
   get selectId(): string {
     return this.id ?? `select-${this.label.toLowerCase().replace(/\s+/g, '-')}`;
@@ -36,6 +39,13 @@ export class SelectComponent extends ColumnHostClass {
   }
 
   onBlur(): void {
-    this.control.markAsTouched();
+    if (this.control) {
+      this.control.markAsTouched();
+      this.control.updateValueAndValidity();
+      
+      if (this.fieldName) {
+        this.blurEvent.emit(this.fieldName);
+      }
+    }
   }
 }

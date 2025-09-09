@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -27,10 +27,36 @@ export class RadioComponent extends ColumnHostClass {
   @Input() options: RadioOption[] = [];
   @Input() inline = false;
   @Input() helper: string = '';
+  @Input() fieldName?: string;
+  
+  @Output() blurEvent = new EventEmitter<string>();
+  @Output() changeEvent = new EventEmitter<string>();
 
   get error(): string | null {
     if (!this.control || !this.control.touched || !this.control.errors) return null;
 
     return typeof this.control.errors['message'] === 'string' ? this.control.errors['message'] : null;
+  }
+
+  onBlur(): void {
+    if (this.control) {
+      this.control.markAsTouched();
+      this.control.updateValueAndValidity();
+      
+      if (this.fieldName) {
+        this.blurEvent.emit(this.fieldName);
+      }
+    }
+  }
+
+  onChange(): void {
+    if (this.control) {
+      this.control.markAsTouched();
+      this.control.updateValueAndValidity();
+      
+      if (this.fieldName) {
+        this.changeEvent.emit(this.fieldName);
+      }
+    }
   }
 }

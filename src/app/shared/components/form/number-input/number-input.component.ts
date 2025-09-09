@@ -143,6 +143,11 @@ export class NumberInputComponent extends ColumnHostClass {
     if (this.isValidValue(newValue)) {
       this.control.setValue(newValue);
       this.valueChange.emit(newValue);
+      
+      
+      if (this.fieldName) {
+        this.blurEvent.emit(this.fieldName);
+      }
     }
   }
 
@@ -155,6 +160,11 @@ export class NumberInputComponent extends ColumnHostClass {
     if (this.isValidValue(newValue)) {
       this.control.setValue(newValue);
       this.valueChange.emit(newValue);
+      
+      
+      if (this.fieldName) {
+        this.blurEvent.emit(this.fieldName);
+      }
     }
   }
 

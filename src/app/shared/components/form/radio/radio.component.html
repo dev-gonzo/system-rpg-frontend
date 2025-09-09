@@ -24,6 +24,8 @@
             [formControl]="control"
             [value]="opt.value"
             [id]="name + '_' + opt.value"
+            (change)="onChange()"
+            (blur)="onBlur()"
           />
           <label
             class="form-check-label small"

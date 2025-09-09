@@ -33,19 +33,19 @@ export class LocationTimeStepComponent implements OnInit, OnDestroy {
 
   
   visibilityOptions = [
-    { label: this.translate.instant('PAGE.GAME_GROUP.CREATE.FIELDS.VISIBILITY_PUBLIC'), value: 'public' },
-    { label: this.translate.instant('PAGE.GAME_GROUP.CREATE.FIELDS.VISIBILITY_PRIVATE'), value: 'private' }
+    { label: this.translate.instant('COMMON.VISIBILITY.PUBLIC'), value: 'public' },
+    { label: this.translate.instant('COMMON.VISIBILITY.PRIVATE'), value: 'private' }
   ];
 
   accessRuleOptions = [
-    { label: this.translate.instant('PAGE.GAME_GROUP.CREATE.FIELDS.ACCESS_RULE_FREE'), value: 'free' },
-    { label: this.translate.instant('PAGE.GAME_GROUP.CREATE.FIELDS.ACCESS_RULE_FRIENDS'), value: 'friends' },
-    { label: this.translate.instant('PAGE.GAME_GROUP.CREATE.FIELDS.ACCESS_RULE_APPROVAL'), value: 'approval' }
+    { label: this.translate.instant('COMMON.ACCESS_RULE.FREE'), value: 'free' },
+    { label: this.translate.instant('COMMON.ACCESS_RULE.FRIENDS'), value: 'friends' },
+    { label: this.translate.instant('COMMON.ACCESS_RULE.APPROVAL'), value: 'approval' }
   ];
 
   modalityOptions = [
-    { label: this.translate.instant('PAGE.GAME_GROUP.CREATE.FIELDS.MODALITY_ONLINE'), value: 'online' },
-    { label: this.translate.instant('PAGE.GAME_GROUP.CREATE.FIELDS.MODALITY_PRESENTIAL'), value: 'presential' }
+    { label: this.translate.instant('COMMON.MODALITY.ONLINE'), value: 'online' },
+    { label: this.translate.instant('COMMON.MODALITY.PRESENCIAL'), value: 'presential' }
   ];
 
   

@@ -1,246 +1,256 @@
-<app-section-wrapper>
-      <div class="container-fluid" *ngIf="gameGroup$ | async as gameGroup">
-        <div class="row" *ngIf="!isEditingEssentialInfo">
-          <div class="col-12 d-flex justify-content-between align-items-center">
-            <h1 class="mb-2">{{ gameGroup.campaignName }}</h1>
-            <app-tooltip 
-              [text]="'COMMON.EDIT' | translate"
-              position="bottom"
-              [delay]="300">
-              <button
-                class="btn text-white p-2"
-                (click)="toggleEssentialInfoEdit()"
-                *ngIf="!isEditingEssentialInfo"
-              >
-                <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
-              </button>
-            </app-tooltip>
-          </div>
- 
-          <div class="col-12">
-            <span class="badge bg-success mb-2" *ngIf="gameGroup.isActive">
-              {{ "PAGE.GAME_GROUP.DETAIL.STATUS.ACTIVE" | translate }}
-            </span>
-            <p class="text-muted">
-              {{ gameGroup.gameSystem }}
-              | {{ gameGroup.settingWorld }} | {{ gameGroup.modality }} |
-              {{ "PAGE.GAME_GROUP.DETAIL.CURRENT_PARTICIPANTS" | translate }} {{ gameGroup.currentParticipants?.toString() }} {{ "COMMON.OF" | translate }}
-              {{ gameGroup.maxPlayers?.toString() }}
-            </p>
-          </div>
-        </div>
-    
-        <div *ngIf="isEditingEssentialInfo" class="row row-gap-3">
-          <app-form-input
-            label="Nome da Campanha"
-            placeholder="Digite o nome da campanha"
-            [control]="$any(essentialInfoForm.get('campaignName'))"
-            fieldName="campaignName"
-            col="12"
-          ></app-form-input>
-          
-          <app-form-input
-            label="Sistema de Jogo"
-            placeholder="Ex: D&D 5e, Pathfinder, etc."
-            [control]="$any(essentialInfoForm.get('gameSystem'))"
-            fieldName="gameSystem"
-            col="12"
-            colMd="6"
-          ></app-form-input>
-          
-          <app-form-input
-            label="Mundo/Cenário"
-            placeholder="Digite o mundo ou cenário"
-            [control]="$any(essentialInfoForm.get('settingWorld'))"
-            fieldName="settingWorld"
-            col="12"
-            colMd="6"
-          ></app-form-input>
-          
-          <app-form-textarea
-            label="Descrição Curta"
-            placeholder="Descreva brevemente sua campanha"
-            [control]="$any(essentialInfoForm.get('shortDescription'))"
-            fieldName="shortDescription"
-            col="12"
-            [rows]="3"
-          ></app-form-textarea>
-          
-          <app-form-number-input
-            label="Mín. Jogadores"
-            placeholder="1"
-            [control]="$any(essentialInfoForm.get('minPlayers'))"
-            fieldName="minPlayers"
-            numberType="integer"
-            [min]="1"
-            [max]="20"
-            col="6"
-          ></app-form-number-input>
-          
-          <app-form-number-input
-            label="Máx. Jogadores"
-            placeholder="6"
-            [control]="$any(essentialInfoForm.get('maxPlayers'))"
-            fieldName="maxPlayers"
-            numberType="integer"
-            [min]="1"
-            [max]="20"
-            col="6"
-          ></app-form-number-input>
-      
-      <div class="d-flex gap-2 mt-3">
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="saveEssentialInfo()"
-          [disabled]="essentialInfoForm.invalid"
-        >
-          <mat-icon svgIcon="mdi-check" class="icon-sm me-1"></mat-icon>
-          Salvar
-        </button>
-        <button
-          type="button"
-          class="btn btn-secondary"
-          (click)="cancelEssentialInfoEdit()"
-        >
-          <mat-icon svgIcon="mdi-close" class="icon-sm me-1"></mat-icon>
-          Cancelar
-        </button>
-      </div>
-    </div>
-  </div>
-</app-section-wrapper>
-
-<app-section-wrapper>
-  <div class="container-fluid" *ngIf="gameGroup$ | async as gameGroup">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end mb-3">
-        <app-tooltip 
-          [text]="'COMMON.EDIT' | translate"
-          position="bottom"
-          [delay]="300">
-          <button
-            class="btn btn-sm"
-            (click)="toggleDescriptionEdit()"
-            *ngIf="!isEditingDescription"
-          >
-            <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
-          </button>
-        </app-tooltip>
-      </div>
-      <div class="col-12">
-        <div *ngIf="!isEditingDescription" class="markdown-body">
-           <markdown [data]="descriptionContent"></markdown>
-         </div>
-      </div>
-    </div>
-  </div>
-</app-section-wrapper>
-
-<app-section-wrapper>
-  <div class="row">
-    <div class="col-12 d-flex justify-content-between align-items-center mb-3">
-      <h1>{{ "PAGE.GAME_GROUP.DETAIL.ADVENTURES" | translate }}</h1>
-      <app-tooltip 
-        [text]="'COMMON.EDIT' | translate"
-        position="bottom"
-        [delay]="300">
-        <button
-          class="btn btn-sm"
-          (click)="toggleDescriptionEdit()"
-          *ngIf="!isEditingDescription"
-        >
-          <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
-        </button>
-      </app-tooltip>
-    </div>
-    <div class="col-12">
-      <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_ADVENTURES" | translate }}</p>
-    </div>
-  </div>
-</app-section-wrapper>
-
-<app-section-wrapper>
-  <div class="row row-gap-3">
-    <div
-      class="col-12 d-flex justify-content-between align-items-center"
-      *ngIf="gameGroup$ | async as gameGroup"
-    >
-      <h1 class="mb-2">{{ "PAGE.GAME_GROUP.DETAIL.PARTICIPANTS" | translate }}</h1>
-      <app-tooltip 
-        [text]="'COMMON.EDIT' | translate"
-        position="bottom"
-        [delay]="300">
-        <button
-          class="btn btn-sm"
-          (click)="toggleDescriptionEdit()"
-          *ngIf="!isEditingDescription"
-        >
-          <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
-        </button>
-      </app-tooltip>
-    </div>
-
-    <div class="col-12 d-flex flex-column gap-3">
-      <div 
-        class="w-100 border-1 border-bottom border-primary py-2 px-3 d-flex justify-content-between align-items-center"
-        *ngFor="let participant of sortedParticipants$ | async"
-      >
-        <div class="d-flex align-items-center gap-2">
-          <span class="fw-bold">{{ participant.username | uppercase }}</span>
-          <span 
-            class="badge"
-            [class.bg-success]="participant.role === 'MASTER'"
-            [class.bg-info]="participant.role === 'PLAYER'"
-          >
-            {{ participant.role === 'MASTER' ? ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.MASTER' | translate) : ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.PLAYER' | translate) }}
-          </span>
-        </div>
-        <div class="text-muted">
-          <app-tooltip
-            [text]="('COMMON.CREATED_AT' | translate) + ': ' + (participant.createdAt | date:'medium')"
-            position="left"
-            [autoCloseOnClick]="true"
-            [autoCloseDelay]="1500"
-            style="cursor: pointer; user-select: none;"
-          >
-            <mat-icon svgIcon="mdi-calendar" class="icon-sm" style="cursor: pointer; user-select: none;"></mat-icon>
+<div *ngIf="gameGroup$ | async as gameGroup">
+  <app-section-wrapper>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+          <h1 class="mb-2">{{ isEditingEssentialInfo ? currentCampaignName : gameGroup.campaignName }}</h1>
+          <app-tooltip 
+            [text]="isEditingEssentialInfo ? ('COMMON.CLOSE' | translate) : ('COMMON.EDIT' | translate)"
+            position="bottom"
+            [delay]="300">
+            <button
+              class="btn text-white p-2"
+              (click)="toggleEssentialInfoEdit()"
+            >
+              <mat-icon [svgIcon]="isEditingEssentialInfo ? 'mdi-close' : 'mdi-pencil'" class="icon-sm"></mat-icon>
+            </button>
           </app-tooltip>
         </div>
       </div>
       
-      <div 
-        class="w-100 text-center py-3 text-muted"
-        *ngIf="(sortedParticipants$ | async)?.length === 0"
-      >
-        <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_PARTICIPANTS" | translate }}</p>
+      <div class="row" *ngIf="!isEditingEssentialInfo">
+        <div class="col-12">
+          <span class="badge bg-success mb-2" *ngIf="gameGroup.isActive">
+            {{ "PAGE.GAME_GROUP.DETAIL.STATUS.ACTIVE" | translate }}
+          </span>
+          <p class="text-muted">
+            {{ gameGroup.gameSystem }}
+            | {{ gameGroup.settingWorld }} | {{ gameGroup.modality }} |
+            {{ "PAGE.GAME_GROUP.DETAIL.CURRENT_PARTICIPANTS" | translate }} {{ gameGroup.currentParticipants?.toString() }} {{ "COMMON.OF" | translate }}
+            {{ gameGroup.maxPlayers?.toString() }}
+          </p>
+        </div>
+      </div>
+  
+      <div *ngIf="isEditingEssentialInfo" class="row row-gap-3">
+        <app-form-input
+          label="Nome da Campanha"
+          placeholder="Digite o nome da campanha"
+          [control]="$any(essentialInfoForm.get('campaignName'))"
+          fieldName="campaignName"
+          col="12"
+          (blurEvent)="onFieldBlur($event)"
+        ></app-form-input>
+        
+        <app-form-input
+          label="Sistema de Jogo"
+          placeholder="Ex: D&D 5e, Pathfinder, etc."
+          [control]="$any(essentialInfoForm.get('gameSystem'))"
+          fieldName="gameSystem"
+          col="12"
+          colMd="6"
+          (blurEvent)="onFieldBlur($event)"
+        ></app-form-input>
+        
+        <app-form-input
+          label="Mundo/Cenário"
+          placeholder="Digite o mundo ou cenário"
+          [control]="$any(essentialInfoForm.get('settingWorld'))"
+          fieldName="settingWorld"
+          col="12"
+          colMd="6"
+          (blurEvent)="onFieldBlur($event)"
+        ></app-form-input>
+        
+        <app-form-textarea
+          label="Descrição Curta"
+          placeholder="Descreva brevemente sua campanha"
+          [control]="$any(essentialInfoForm.get('shortDescription'))"
+          fieldName="shortDescription"
+          col="12"
+          [rows]="3"
+          (blurEvent)="onFieldBlur($event)"
+        ></app-form-textarea>
+        
+        <app-form-number-input
+          label="Máx. Jogadores"
+          placeholder="6"
+          [control]="$any(essentialInfoForm.get('maxPlayers'))"
+          fieldName="maxPlayers"
+          numberType="integer"
+          [min]="1"
+          [max]="20"
+          col="12"
+          (blurEvent)="onFieldBlur($event)"
+        ></app-form-number-input>
+
+        <app-form-radio
+           label="Visibilidade"
+           [control]="$any(essentialInfoForm.get('visibility'))"
+           fieldName="visibility"
+           name="visibility"
+           [options]="visibilityOptions"
+           col="12"
+           (changeEvent)="onFieldChange($event)"
+         ></app-form-radio>
+
+         <app-form-select
+           label="Regra de Acesso"
+           placeholder="Selecione a regra de acesso"
+           [control]="$any(essentialInfoForm.get('accessRule'))"
+           fieldName="accessRule"
+           [options]="accessRuleOptions"
+           col="12"
+           (blurEvent)="onFieldBlur($event)"
+         ></app-form-select>
+
+         <app-form-radio
+           label="Modalidade"
+           [control]="$any(essentialInfoForm.get('modality'))"
+           fieldName="modality"
+           name="modality"
+           [options]="modalityOptions"
+           col="12"
+           (changeEvent)="onFieldChange($event)"
+         ></app-form-radio>
+
+
       </div>
     </div>
-  </div>
-</app-section-wrapper>
+  </app-section-wrapper>
+  
+  <app-section-wrapper>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-end mb-3">
+          <app-tooltip 
+            [text]="'COMMON.EDIT' | translate"
+            position="bottom"
+            [delay]="300">
+            <button
+              class="btn btn-sm"
+              (click)="toggleDescriptionEdit()"
+              *ngIf="!isEditingDescription"
+            >
+              <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+            </button>
+          </app-tooltip>
+        </div>
+        <div class="col-12">
+          <div *ngIf="!isEditingDescription" class="markdown-body">
+             <markdown [data]="descriptionContent"></markdown>
+           </div>
+        </div>
+      </div>
+    </div>
+  </app-section-wrapper>
+  
+  <app-section-wrapper>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+          <h1>{{ "PAGE.GAME_GROUP.DETAIL.ADVENTURES" | translate }}</h1>
+          <app-tooltip 
+            [text]="'COMMON.EDIT' | translate"
+            position="bottom"
+            [delay]="300">
+            <button
+              class="btn btn-sm"
+              (click)="toggleDescriptionEdit()"
+              *ngIf="!isEditingDescription"
+            >
+              <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+            </button>
+          </app-tooltip>
+        </div>
+        <div class="col-12">
+           <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_ADVENTURES" | translate }}</p>
+         </div>
+      </div>
+    </div>
+  </app-section-wrapper>
+  
+  <app-section-wrapper>
+    <div class="container-fluid">
+      <div class="row row-gap-3">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+          <h1 class="mb-2">{{ "PAGE.GAME_GROUP.DETAIL.PARTICIPANTS" | translate }}</h1>
+          <app-tooltip 
+            [text]="'COMMON.EDIT' | translate"
+            position="bottom"
+            [delay]="300">
+            <button
+              class="btn btn-sm"
+              (click)="toggleDescriptionEdit()"
+              *ngIf="!isEditingDescription"
+            >
+              <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+            </button>
+          </app-tooltip>
+        </div>
 
-<app-section-wrapper>
-  <div class="row">
-    <div
-      class="col-12 col-12 d-flex justify-content-between align-items-center"
-    >
-      <h1>{{ "PAGE.GAME_GROUP.DETAIL.RULES_GUIDELINES" | translate }}</h1>
-      <app-tooltip 
-        [text]="'COMMON.EDIT' | translate"
-        position="bottom"
-        [delay]="300">
-        <button
-          class="btn btn-sm"
-          (click)="toggleDescriptionEdit()"
-          *ngIf="!isEditingDescription"
-        >
-          <mat-icon svgIcon="mdi-pencil" style="width: 18px; height: 18px; font-size: 18px;"></mat-icon>
-         </button>
-      </app-tooltip>
+        <div class="col-12 d-flex flex-column gap-3">
+          <div 
+            class="w-100 border-1 border-bottom border-primary py-2 px-3 d-flex justify-content-between align-items-center"
+            *ngFor="let participant of sortedParticipants$ | async"
+          >
+            <div class="d-flex align-items-center gap-2">
+              <span class="fw-bold">{{ participant.username | uppercase }}</span>
+              <span 
+                class="badge"
+                [class.bg-success]="participant.role === 'MASTER'"
+                [class.bg-info]="participant.role === 'PLAYER'"
+              >
+                {{ participant.role === 'MASTER' ? ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.MASTER' | translate) : ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.PLAYER' | translate) }}
+              </span>
+            </div>
+            <div class="text-muted">
+              <app-tooltip
+                [text]="('COMMON.CREATED_AT' | translate) + ': ' + (participant.createdAt | date:'medium')"
+                position="left"
+                [autoCloseOnClick]="true"
+                [autoCloseDelay]="1500"
+                style="cursor: pointer; user-select: none;"
+              >
+                <mat-icon svgIcon="mdi-calendar" class="icon-sm" style="cursor: pointer; user-select: none;"></mat-icon>
+              </app-tooltip>
+            </div>
+          </div>
+          
+          <div 
+            class="w-100 text-center py-3 text-muted"
+            *ngIf="(sortedParticipants$ | async)?.length === 0"
+          >
+            <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_PARTICIPANTS" | translate }}</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-12">
-      <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_RULES" | translate }}</p>
+  </app-section-wrapper>
+  
+  <app-section-wrapper>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+          <h1>{{ "PAGE.GAME_GROUP.DETAIL.RULES_GUIDELINES" | translate }}</h1>
+          <app-tooltip 
+            [text]="'COMMON.EDIT' | translate"
+            position="bottom"
+            [delay]="300">
+            <button
+              class="btn btn-sm"
+              (click)="toggleDescriptionEdit()"
+              *ngIf="!isEditingDescription"
+            >
+              <mat-icon svgIcon="mdi-pencil" style="width: 18px; height: 18px; font-size: 18px;"></mat-icon>
+             </button>
+          </app-tooltip>
+        </div>
+        <div class="col-12">
+           <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_RULES" | translate }}</p>
+         </div>
+      </div>
     </div>
-  </div>
-</app-section-wrapper>
+  </app-section-wrapper>
+</div>
 

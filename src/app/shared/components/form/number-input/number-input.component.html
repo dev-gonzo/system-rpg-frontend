@@ -23,7 +23,7 @@
       [value]="displayValue"
       [placeholder]="placeholder"
       [disabled]="disabled"
-      [class.is-invalid]="control?.invalid && (control?.dirty || control?.touched)"
+      [class.is-invalid]="control.invalid && (control.dirty || control.touched)"
       (input)="onInputChange($event)"
       (blur)="onBlur()"
       (focus)="focus()"

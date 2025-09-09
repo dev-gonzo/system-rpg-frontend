@@ -1,7 +1,7 @@
 <h4 class="card-title mb-3">{{ 'PAGE.GAME_GROUP.CREATE.STEPS.LOCATION_TIME' | translate }}</h4>
 <div class="row row-gap-3">
   <app-form-radio
-    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.VISIBILITY_GAME_GROUP' | translate"
+    [label]="'COMMON.VISIBILITY.GAME_GROUP' | translate"
     [options]="visibilityOptions"
     [control]="$any(form.get('visibilityGameGroup'))"
     name="visibilityGameGroup"
@@ -11,15 +11,15 @@
   />
 
   <app-form-select
-    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.ACCESS_RULE' | translate"
-    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.ACCESS_RULE_PLACEHOLDER' | translate"
+    [label]="'COMMON.ACCESS_RULE.LABEL' | translate"
+    [placeholder]="'COMMON.ACCESS_RULE.PLACEHOLDER' | translate"
     [options]="accessRuleOptions"
     [control]="$any(form.get('accessRule'))"
     col="12"
   />
 
   <app-form-radio
-    [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.MODALITY' | translate"
+    [label]="'COMMON.MODALITY.LABEL' | translate"
     [options]="modalityOptions"
     [control]="$any(form.get('modality'))"
     name="modality"
