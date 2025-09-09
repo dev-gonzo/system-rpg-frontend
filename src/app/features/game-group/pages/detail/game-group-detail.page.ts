@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -11,6 +11,9 @@ import { GameGroupApiService } from '../../../../api/game-group/game-group.api.s
 import { GameGroupResponseData, GameGroupMember } from '../../../../api/game-group/game-group.api.types';
 import { TooltipComponent } from '@app/shared/components/tooltip/tooltip.component';
 import { SectionWrapperComponent } from '@app/shared/components/section-wrapper/section-wrapper.component';
+import { InputComponent } from '@app/shared/components/form/input/input.component';
+import { TextareaComponent } from '@app/shared/components/form/textarea/textarea.component';
+import { NumberInputComponent } from '@app/shared/components/form/number-input/number-input.component';
 
 @Component({
   standalone: true,
@@ -22,7 +25,10 @@ import { SectionWrapperComponent } from '@app/shared/components/section-wrapper/
     MarkdownComponent,
     MatIconModule,
     TooltipComponent,
-    SectionWrapperComponent
+    SectionWrapperComponent,
+    InputComponent,
+    TextareaComponent,
+    NumberInputComponent
 ],
   providers: [provideMarkdown()],
   templateUrl: './game-group-detail.page.html'
@@ -36,6 +42,17 @@ export class GameGroupDetailPage implements OnInit {
   sortedParticipants$!: Observable<GameGroupMember[]>;
   descriptionControl = new FormControl('');
   isEditingDescription = false;
+  
+  
+  isEditingEssentialInfo = false;
+  essentialInfoForm = new FormGroup({
+    campaignName: new FormControl('', [Validators.required]),
+    gameSystem: new FormControl('', [Validators.required]),
+    settingWorld: new FormControl(''),
+    shortDescription: new FormControl('', [Validators.required]),
+    minPlayers: new FormControl<number | null>(null, [Validators.min(1)]),
+    maxPlayers: new FormControl<number | null>(null, [Validators.min(1)])
+  });
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -88,6 +105,37 @@ export class GameGroupDetailPage implements OnInit {
 
   get descriptionContent(): string {
     return this.descriptionControl.value || '';
+  }
+  
+  
+  toggleEssentialInfoEdit(): void {
+    this.isEditingEssentialInfo = !this.isEditingEssentialInfo;
+    
+    if (this.isEditingEssentialInfo) {
+      
+      this.gameGroup$.subscribe(gameGroup => {
+        this.essentialInfoForm.patchValue({
+          campaignName: gameGroup.campaignName,
+          gameSystem: gameGroup.gameSystem,
+          settingWorld: gameGroup.settingWorld || '',
+          shortDescription: gameGroup.shortDescription,
+          minPlayers: gameGroup.minPlayers || null,
+          maxPlayers: gameGroup.maxPlayers || null
+        });
+      });
+    }
+  }
+  
+  saveEssentialInfo(): void {
+    if (this.essentialInfoForm.valid) {
+      
+      this.isEditingEssentialInfo = false;
+    }
+  }
+  
+  cancelEssentialInfoEdit(): void {
+    this.isEditingEssentialInfo = false;
+    this.essentialInfoForm.reset();
   }
 
 

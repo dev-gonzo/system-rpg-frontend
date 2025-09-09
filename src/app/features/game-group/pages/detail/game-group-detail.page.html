@@ -1,29 +1,111 @@
 <app-section-wrapper>
-  <div class="container-fluid" *ngIf="gameGroup$ | async as gameGroup">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-between align-items-center">
-        <h1 class="mb-2">{{ gameGroup.campaignName }}</h1>
-        <button
-          class="btn btn-sm btn-outline-primary"
-          (click)="toggleDescriptionEdit()"
-          *ngIf="!isEditingDescription"
-        >
-          <i class="fas fa-edit me-1"></i>
-          {{ "COMMON.EDIT" | translate }}
-        </button>
-      </div>
-
-      <div class="col-12">
+      <div class="container-fluid" *ngIf="gameGroup$ | async as gameGroup">
+        <div class="row" *ngIf="!isEditingEssentialInfo">
+          <div class="col-12 d-flex justify-content-between align-items-center">
+            <h1 class="mb-2">{{ gameGroup.campaignName }}</h1>
+            <app-tooltip 
+              [text]="'COMMON.EDIT' | translate"
+              position="bottom"
+              [delay]="300">
+              <button
+                class="btn text-white p-2"
+                (click)="toggleEssentialInfoEdit()"
+                *ngIf="!isEditingEssentialInfo"
+              >
+                <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+              </button>
+            </app-tooltip>
+          </div>
  
-          <span class="badge bg-success mb-2" *ngIf="gameGroup.isActive">
-            {{ "PAGE.GAME_GROUP.DETAIL.STATUS.ACTIVE" | translate }}
-          </span>
-        <p class="text-muted">
-          {{ gameGroup.gameSystem }}
-          | {{ gameGroup.settingWorld }} | {{ gameGroup.modality }} |
-          {{ "PAGE.GAME_GROUP.DETAIL.CURRENT_PARTICIPANTS" | translate }} {{ gameGroup.currentParticipants?.toString() }} {{ "COMMON.OF" | translate }}
-          {{ gameGroup.maxPlayers?.toString() }}
-        </p>
+          <div class="col-12">
+            <span class="badge bg-success mb-2" *ngIf="gameGroup.isActive">
+              {{ "PAGE.GAME_GROUP.DETAIL.STATUS.ACTIVE" | translate }}
+            </span>
+            <p class="text-muted">
+              {{ gameGroup.gameSystem }}
+              | {{ gameGroup.settingWorld }} | {{ gameGroup.modality }} |
+              {{ "PAGE.GAME_GROUP.DETAIL.CURRENT_PARTICIPANTS" | translate }} {{ gameGroup.currentParticipants?.toString() }} {{ "COMMON.OF" | translate }}
+              {{ gameGroup.maxPlayers?.toString() }}
+            </p>
+          </div>
+        </div>
+    
+        <div *ngIf="isEditingEssentialInfo" class="row row-gap-3">
+          <app-form-input
+            label="Nome da Campanha"
+            placeholder="Digite o nome da campanha"
+            [control]="$any(essentialInfoForm.get('campaignName'))"
+            fieldName="campaignName"
+            col="12"
+          ></app-form-input>
+          
+          <app-form-input
+            label="Sistema de Jogo"
+            placeholder="Ex: D&D 5e, Pathfinder, etc."
+            [control]="$any(essentialInfoForm.get('gameSystem'))"
+            fieldName="gameSystem"
+            col="12"
+            colMd="6"
+          ></app-form-input>
+          
+          <app-form-input
+            label="Mundo/Cenário"
+            placeholder="Digite o mundo ou cenário"
+            [control]="$any(essentialInfoForm.get('settingWorld'))"
+            fieldName="settingWorld"
+            col="12"
+            colMd="6"
+          ></app-form-input>
+          
+          <app-form-textarea
+            label="Descrição Curta"
+            placeholder="Descreva brevemente sua campanha"
+            [control]="$any(essentialInfoForm.get('shortDescription'))"
+            fieldName="shortDescription"
+            col="12"
+            [rows]="3"
+          ></app-form-textarea>
+          
+          <app-form-number-input
+            label="Mín. Jogadores"
+            placeholder="1"
+            [control]="$any(essentialInfoForm.get('minPlayers'))"
+            fieldName="minPlayers"
+            numberType="integer"
+            [min]="1"
+            [max]="20"
+            col="6"
+          ></app-form-number-input>
+          
+          <app-form-number-input
+            label="Máx. Jogadores"
+            placeholder="6"
+            [control]="$any(essentialInfoForm.get('maxPlayers'))"
+            fieldName="maxPlayers"
+            numberType="integer"
+            [min]="1"
+            [max]="20"
+            col="6"
+          ></app-form-number-input>
+      
+      <div class="d-flex gap-2 mt-3">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveEssentialInfo()"
+          [disabled]="essentialInfoForm.invalid"
+        >
+          <mat-icon svgIcon="mdi-check" class="icon-sm me-1"></mat-icon>
+          Salvar
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="cancelEssentialInfoEdit()"
+        >
+          <mat-icon svgIcon="mdi-close" class="icon-sm me-1"></mat-icon>
+          Cancelar
+        </button>
       </div>
     </div>
   </div>
@@ -33,14 +115,18 @@
   <div class="container-fluid" *ngIf="gameGroup$ | async as gameGroup">
     <div class="row">
       <div class="col-12 d-flex justify-content-end mb-3">
-        <button
-          class="btn btn-sm btn-outline-primary"
-          (click)="toggleDescriptionEdit()"
-          *ngIf="!isEditingDescription"
-        >
-          <i class="fas fa-edit me-1"></i>
-          {{ "COMMON.EDIT" | translate }}
-        </button>
+        <app-tooltip 
+          [text]="'COMMON.EDIT' | translate"
+          position="bottom"
+          [delay]="300">
+          <button
+            class="btn btn-sm"
+            (click)="toggleDescriptionEdit()"
+            *ngIf="!isEditingDescription"
+          >
+            <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+          </button>
+        </app-tooltip>
       </div>
       <div class="col-12">
         <div *ngIf="!isEditingDescription" class="markdown-body">
@@ -55,14 +141,18 @@
   <div class="row">
     <div class="col-12 d-flex justify-content-between align-items-center mb-3">
       <h1>{{ "PAGE.GAME_GROUP.DETAIL.ADVENTURES" | translate }}</h1>
-      <button
-        class="btn btn-sm btn-outline-primary"
-        (click)="toggleDescriptionEdit()"
-        *ngIf="!isEditingDescription"
-      >
-        <i class="fas fa-edit me-1"></i>
-        {{ "COMMON.EDIT" | translate }}
-      </button>
+      <app-tooltip 
+        [text]="'COMMON.EDIT' | translate"
+        position="bottom"
+        [delay]="300">
+        <button
+          class="btn btn-sm"
+          (click)="toggleDescriptionEdit()"
+          *ngIf="!isEditingDescription"
+        >
+          <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+        </button>
+      </app-tooltip>
     </div>
     <div class="col-12">
       <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_ADVENTURES" | translate }}</p>
@@ -77,14 +167,18 @@
       *ngIf="gameGroup$ | async as gameGroup"
     >
       <h1 class="mb-2">{{ "PAGE.GAME_GROUP.DETAIL.PARTICIPANTS" | translate }}</h1>
-      <button
-        class="btn btn-sm btn-outline-primary"
-        (click)="toggleDescriptionEdit()"
-        *ngIf="!isEditingDescription"
-      >
-        <i class="fas fa-edit me-1"></i>
-        {{ "COMMON.EDIT" | translate }}
-      </button>
+      <app-tooltip 
+        [text]="'COMMON.EDIT' | translate"
+        position="bottom"
+        [delay]="300">
+        <button
+          class="btn btn-sm"
+          (click)="toggleDescriptionEdit()"
+          *ngIf="!isEditingDescription"
+        >
+          <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+        </button>
+      </app-tooltip>
     </div>
 
     <div class="col-12 d-flex flex-column gap-3">
@@ -110,7 +204,7 @@
             [autoCloseDelay]="1500"
             style="cursor: pointer; user-select: none;"
           >
-            <mat-icon svgIcon="mdi-calendar" style="cursor: pointer; user-select: none;"></mat-icon>
+            <mat-icon svgIcon="mdi-calendar" class="icon-sm" style="cursor: pointer; user-select: none;"></mat-icon>
           </app-tooltip>
         </div>
       </div>
@@ -131,14 +225,18 @@
       class="col-12 col-12 d-flex justify-content-between align-items-center"
     >
       <h1>{{ "PAGE.GAME_GROUP.DETAIL.RULES_GUIDELINES" | translate }}</h1>
-      <button
-        class="btn btn-sm btn-outline-primary"
-        (click)="toggleDescriptionEdit()"
-        *ngIf="!isEditingDescription"
-      >
-        <i class="fas fa-edit me-1"></i>
-        {{ "COMMON.EDIT" | translate }}
-      </button>
+      <app-tooltip 
+        [text]="'COMMON.EDIT' | translate"
+        position="bottom"
+        [delay]="300">
+        <button
+          class="btn btn-sm"
+          (click)="toggleDescriptionEdit()"
+          *ngIf="!isEditingDescription"
+        >
+          <mat-icon svgIcon="mdi-pencil" style="width: 18px; height: 18px; font-size: 18px;"></mat-icon>
+         </button>
+      </app-tooltip>
     </div>
     <div class="col-12">
       <p>{{ "PAGE.GAME_GROUP.DETAIL.NO_RULES" | translate }}</p>

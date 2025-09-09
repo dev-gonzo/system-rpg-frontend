@@ -1,0 +1,39 @@
+<app-form-wrapper
+  [label]="label"
+  [error]="error"
+  [inputId]="inputId"
+  [helper]="helper"
+>
+  <div class="input-group number-input-group">
+    <button
+      type="button"
+      class="btn input-group-text decrement-btn"
+      (click)="decrement()"
+      [disabled]="disabled || (min !== undefined && (control.value ?? 0) <= min)"
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+    
+    <input
+      #inputElement
+      type="text"
+      class="form-control"
+      [value]="displayValue"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [class.is-invalid]="control?.invalid && (control?.dirty || control?.touched)"
+      (input)="onInputChange($event)"
+      (blur)="onBlur()"
+      (focus)="focus()"
+    />
+    
+    <button
+      type="button"
+      class="btn input-group-text increment-btn"
+      (click)="increment()"
+      [disabled]="disabled || (max !== undefined && (control.value ?? 0) >= max)"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</app-form-wrapper>

@@ -6,6 +6,7 @@ export { InputComponent } from './input/input.component';
 export { InputButtonComponent } from './input-button/input-button.component';
 export { InputViewComponent } from './input-view/input-view.component';
 export { MultiSelectComponent } from './multi-select/multi-select.component';
+export { NumberInputComponent } from './number-input/number-input.component';
 export { PasswordComponent } from './password/password.component';
 export { RadioComponent } from './radio/radio.component';
 export { SelectComponent } from './select/select.component';
