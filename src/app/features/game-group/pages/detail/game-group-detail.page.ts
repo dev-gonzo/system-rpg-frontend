@@ -52,6 +52,7 @@ export class GameGroupDetailPage implements OnInit {
   sortedParticipants$!: Observable<GameGroupMember[]>;
   descriptionControl = new FormControl('');
   isEditingDescription = false;
+  private originalDescription = '';
   
   
   isEditingEssentialInfo = false;
@@ -76,19 +77,23 @@ export class GameGroupDetailPage implements OnInit {
   }
 
   toggleDescriptionEdit(): void {
+    if (!this.isEditingDescription) {
+      this.originalDescription = this.descriptionControl.value || '';
+    } else {
+      
+      this.descriptionControl.setValue(this.originalDescription);
+    }
     this.isEditingDescription = !this.isEditingDescription;
   }
 
-  saveDescription(): void {
+  onDescriptionBlur(): void {
+    const currentValue = this.descriptionControl.value || '';
+    const originalValue = this.originalDescription;
     
-    
-    this.isEditingDescription = false;
-  }
-
-  cancelDescriptionEdit(): void {
-    
-    this.isEditingDescription = false;
-    
+    if (this.hasValueChanged(originalValue, currentValue)) {
+      this.updateField('description', currentValue);
+      this.originalDescription = currentValue;
+    }
   }
 
   get descriptionContent(): string {
@@ -114,6 +119,17 @@ export class GameGroupDetailPage implements OnInit {
     { label: this.translate.instant('COMMON.MODALITY.ONLINE'), value: 'online' },
     { label: this.translate.instant('COMMON.MODALITY.PRESENCIAL'), value: 'presential' }
   ];
+
+  getModalityLabel(modality: string): string {
+    switch(modality) {
+      case 'ONLINE':
+        return this.translate.instant('COMMON.MODALITY.ONLINE');
+      case 'PRESENTIAL':
+        return this.translate.instant('COMMON.MODALITY.PRESENCIAL');
+      default:
+        return modality;
+    }
+  }
   
   
   toggleEssentialInfoEdit(): void {
@@ -228,8 +244,8 @@ export class GameGroupDetailPage implements OnInit {
     if (this.updateTimeout) {
       clearTimeout(this.updateTimeout);
     }
-    
-    this.updateTimeout = setTimeout(() => {
+
+    this.updateTimeout = window.setTimeout(() => {
       this.performUpdate(fieldName, newValue);
     }, 300);
   }
@@ -277,10 +293,17 @@ export class GameGroupDetailPage implements OnInit {
     this.gameGroupService.update(this.gameGroupId, updateData).subscribe({
       next: () => {
         this.originalFormValues[fieldName] = newValue;
+        if (fieldName === 'description') {
+          this.originalDescription = newValue as string;
+        }
         this.updateInProgress = false;
       },
       error: () => {
-        this.essentialInfoForm.get(fieldName)?.setValue(this.originalFormValues[fieldName], { emitEvent: false });
+        if (fieldName === 'description') {
+          this.descriptionControl.setValue(this.originalDescription, { emitEvent: false });
+        } else {
+          this.essentialInfoForm.get(fieldName)?.setValue(this.originalFormValues[fieldName], { emitEvent: false });
+        }
         this.updateInProgress = false;
       }
     });
@@ -290,7 +313,10 @@ export class GameGroupDetailPage implements OnInit {
     this.gameGroup$ = this.gameGroupService.getById(this.gameGroupId).pipe(
       map(response => {
         if (response.data) {
-          this.descriptionControl.setValue(response.data.description || '');
+          const description = response.data.description || '';
+          this.descriptionControl.setValue(description);
+          this.originalDescription = description;
+          this.originalFormValues['description'] = description;
           return response.data;
         }
         throw new Error(this.translate.instant('COMMON.GAME_GROUP_NOT_FOUND'));

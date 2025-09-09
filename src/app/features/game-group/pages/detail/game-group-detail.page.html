@@ -25,7 +25,7 @@
           </span>
           <p class="text-muted">
             {{ gameGroup.gameSystem }}
-            | {{ gameGroup.settingWorld }} | {{ gameGroup.modality }} |
+            | {{ gameGroup.settingWorld }} | {{ getModalityLabel(gameGroup.modality) }} |
             {{ "PAGE.GAME_GROUP.DETAIL.CURRENT_PARTICIPANTS" | translate }} {{ gameGroup.currentParticipants?.toString() }} {{ "COMMON.OF" | translate }}
             {{ gameGroup.maxPlayers?.toString() }}
           </p>
@@ -124,21 +124,31 @@
       <div class="row">
         <div class="col-12 d-flex justify-content-end mb-3">
           <app-tooltip 
-            [text]="'COMMON.EDIT' | translate"
+            [text]="isEditingDescription ? ('COMMON.CLOSE' | translate) : ('COMMON.EDIT' | translate)"
             position="bottom"
             [delay]="300">
             <button
               class="btn btn-sm"
               (click)="toggleDescriptionEdit()"
-              *ngIf="!isEditingDescription"
             >
-              <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+              <mat-icon [svgIcon]="isEditingDescription ? 'mdi-close' : 'mdi-pencil'" class="icon-sm"></mat-icon>
             </button>
           </app-tooltip>
         </div>
         <div class="col-12">
           <div *ngIf="!isEditingDescription" class="markdown-body">
              <markdown [data]="descriptionContent"></markdown>
+           </div>
+           <div *ngIf="isEditingDescription">
+             <app-form-textarea 
+                [control]="descriptionControl" 
+                placeholder="Digite a descrição de sua Mesa" 
+                [rows]="50" 
+                resize="vertical"
+                fieldName="description"
+                (blurEvent)="onDescriptionBlur()"> 
+              </app-form-textarea>
+             <span class="text-muted">Este campo aceita formatação Markdown. Saiba mais em: https://www.markdownguide.org/</span>
            </div>
         </div>
       </div>

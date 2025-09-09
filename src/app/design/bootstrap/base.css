@@ -933,31 +933,36 @@ button:focus-visible {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-  max-width: 100%;
+  width: 100% !important;
+  max-width: none !important;
   overflow-x: auto;
+
 }
 
-markdown table,
+markdown table * {
+  background: transparent !important;
+  border: none;
+}
+
 .markdown-body table {
-  width: 100%;
-  margin-bottom: 1rem;
-  color: var(--bs-table-color);
-  vertical-align: top;
+  display: table !important;
+  width: 100% !important;
+  table-layout: fixed !important;
   border-collapse: collapse;
 }
 
-markdown table > thead,
-.markdown-body table > thead {
-  vertical-align: bottom;
-  border-bottom: 1px solid var(--color-border);
+.markdown-body table th,
+.markdown-body table td {
+  padding: 8px 12px;
+  text-align: left;
+  word-wrap: break-word;
+  border: none;
 }
 
-markdown table > thead > tr > th,
-.markdown-body table > thead {
-  padding-bottom: 5px;
+.markdown-body table th {
+  border-bottom: 2px solid #555;
 }
-markdown table > tbody > tr > td,
-.markdown-body table > thead {
-  padding-top: 5px;
-}
+
+
+
 
