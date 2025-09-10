@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
@@ -14,6 +14,7 @@ import { SelectComponent } from '@app/shared/components/form/select/select.compo
 import { TextareaComponent } from '@app/shared/components/form/textarea/textarea.component';
 import { SectionWrapperComponent } from '@app/shared/components/section-wrapper/section-wrapper.component';
 import { TooltipComponent } from '@app/shared/components/tooltip/tooltip.component';
+import { ConfirmationModalService } from '@app/shared/components/confirmation-modal/confirmation-modal.service';
 import { GameGroupApiService } from '../../../../api/game-group/game-group.api.service';
 import { GameGroupMember, GameGroupResponseData } from '../../../../api/game-group/game-group.api.types';
 import { GameGroupPartialUpdate } from '../../types/game-group-update.types';
@@ -42,13 +43,19 @@ export class GameGroupDetailPage implements OnInit {
   private route = inject(ActivatedRoute);
   private gameGroupService = inject(GameGroupApiService);
   private translate = inject(TranslateService);
+  private confirmationModalService = inject(ConfirmationModalService);
   
   @ViewChild('rulesSection') rulesSection!: ElementRef;
   
   private gameGroupId!: string;
   private originalFormValues: Record<string, unknown> = {};
-  private updateInProgress = false;
+  updateInProgress = false;
   private updateTimeout: number | null = null;
+  
+  
+  isUpdatingStatus = false;
+  isDeletingGroup = false;
+  isDropdownOpen = false;
 
   gameGroup$!: Observable<GameGroupResponseData>;
   sortedParticipants$!: Observable<GameGroupMember[]>;
@@ -279,6 +286,90 @@ export class GameGroupDetailPage implements OnInit {
       }, 100);
     }
   }
+
+  hasRulesChanges(): boolean {
+    const currentValues = {
+      themesContent: this.rulesForm.get('themesContent')?.value || '',
+      punctualityAttendance: this.rulesForm.get('punctualityAttendance')?.value || '',
+      houseRules: this.rulesForm.get('houseRules')?.value || '',
+      behavioralExpectations: this.rulesForm.get('behavioralExpectations')?.value || ''
+    };
+
+    return Object.keys(currentValues).some(key => 
+      this.hasValueChanged(this.originalFormValues[key], currentValues[key as keyof typeof currentValues])
+    );
+  }
+
+  saveRulesChanges(): void {
+    if (this.updateInProgress || !this.hasRulesChanges()) {
+      return;
+    }
+
+    this.updateInProgress = true;
+
+    const currentValues = {
+      themesContent: this.rulesForm.get('themesContent')?.value || '',
+      punctualityAttendance: this.rulesForm.get('punctualityAttendance')?.value || '',
+      houseRules: this.rulesForm.get('houseRules')?.value || '',
+      behavioralExpectations: this.rulesForm.get('behavioralExpectations')?.value || ''
+    };
+
+    const updateData = {} as GameGroupPartialUpdate;
+      
+      Object.keys(currentValues).forEach(key => {
+        if (this.hasValueChanged(this.originalFormValues[key], currentValues[key as keyof typeof currentValues])) {
+          Object.assign(updateData, { [key]: currentValues[key as keyof typeof currentValues] });
+        }
+      });
+
+    this.gameGroupService.update(this.gameGroupId, updateData).subscribe({
+      next: () => {
+        this.originalFormValues = { ...currentValues };
+        this.isEditingRules = false;
+        this.updateInProgress = false;
+        
+        setTimeout(() => {
+          if (this.rulesSection) {
+            this.rulesSection.nativeElement.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'start' 
+            });
+          }
+        }, 100);
+      },
+      error: () => {
+        this.updateInProgress = false;
+      }
+    });
+  }
+
+  cancelRulesEdit(): void {
+    this.gameGroup$.subscribe(gameGroup => {
+      const originalValues = {
+        themesContent: gameGroup.themesContent || '',
+        punctualityAttendance: gameGroup.punctualityAttendance || '',
+        houseRules: gameGroup.houseRules || '',
+        behavioralExpectations: gameGroup.behavioralExpectations || ''
+      };
+      
+      this.rulesForm.get('themesContent')?.setValue(originalValues.themesContent);
+      this.rulesForm.get('punctualityAttendance')?.setValue(originalValues.punctualityAttendance);
+      this.rulesForm.get('houseRules')?.setValue(originalValues.houseRules);
+      this.rulesForm.get('behavioralExpectations')?.setValue(originalValues.behavioralExpectations);
+      
+      this.originalFormValues = { ...originalValues };
+      this.isEditingRules = false;
+      
+      setTimeout(() => {
+        if (this.rulesSection) {
+          this.rulesSection.nativeElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100);
+    });
+  }
   
   onFieldBlur(fieldName: string): void {
     if (!this.originalFormValues) {
@@ -434,5 +525,85 @@ export class GameGroupDetailPage implements OnInit {
     );
   }
 
+  
+  toggleGameGroupStatus(): void {
+    if (this.isUpdatingStatus) return;
+    
+    this.isDropdownOpen = false;
+    
+    
+    this.gameGroup$.subscribe(gameGroup => {
+      const isCurrentlyActive = gameGroup.isActive;
+      const actionText = isCurrentlyActive ? 'inativar' : 'ativar';
+      const title = `Confirmar ${actionText} mesa`;
+      const message = `Tem certeza que deseja ${actionText} esta mesa de jogo?`;
+      
+      this.confirmationModalService.show({
+        title,
+        message,
+        onConfirm: () => {
+          this.performStatusUpdate(!isCurrentlyActive);
+        }
+      });
+    }).unsubscribe();
+  }
+  
+  private performStatusUpdate(newStatus: boolean): void {
+    this.isUpdatingStatus = true;
+    
+    this.gameGroupService.updateGameGroupStatus(this.gameGroupId, { isActive: newStatus }).subscribe({
+      next: () => {
+        
+        this.loadGameGroup();
+        this.isUpdatingStatus = false;
+      },
+      error: () => {
+        this.isUpdatingStatus = false;
+      }
+    });
+  }
+
+  
+  deleteGameGroup(): void {
+    if (this.isDeletingGroup) return;
+    
+    this.isDropdownOpen = false;
+    
+    this.confirmationModalService.showDanger(
+      'Excluir mesa de jogo',
+      'Esta ação não pode ser desfeita. Tem certeza que deseja excluir permanentemente esta mesa de jogo?',
+      () => {
+        this.performDelete();
+      }
+    );
+  }
+  
+  private performDelete(): void {
+    this.isDeletingGroup = true;
+    
+    this.gameGroupService.deleteGameGroup(this.gameGroupId).subscribe({
+      next: () => {
+        
+        window.location.href = '/game-groups/my-groups';
+      },
+      error: () => {
+        this.isDeletingGroup = false;
+      }
+    });
+  }
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    const dropdown = target.closest('.dropdown');
+    
+    if (!dropdown && this.isDropdownOpen) {
+      this.isDropdownOpen = false;
+    }
+  }
 
 }

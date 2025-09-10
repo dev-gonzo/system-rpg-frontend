@@ -3,7 +3,7 @@
 <div class="row" *ngIf="gameGroups().length > 0">
   <div *ngFor="let gameGroup of gameGroups()" class="col-12 col-md-6 col-lg-4 mb-3">
     <div class="card border-0 theme-surface">
-      <div class="card-body p-4">
+      <div class="card-body p-4" style="cursor: pointer;" (click)="navigateToDetail(gameGroup.id)">
         <div class="d-flex gap-3 mb-3">
           <div>
             <span class="icon-circle icon-circle-xl theme-secondary">

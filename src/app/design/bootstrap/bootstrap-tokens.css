@@ -203,6 +203,16 @@
   color: var(--color-secondary-contrast) !important;
 }
 
+.badge.bg-success {
+  background-color: var(--bs-success) !important;
+  color: var(--color-surface) !important;
+}
+
+.badge.bg-danger {
+  background-color: var(--bs-danger) !important;
+  color: var(--color-surface) !important;
+}
+
 .progress-bar {
   background-color: var(--color-primary) !important;
 }

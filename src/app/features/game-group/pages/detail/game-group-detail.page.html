@@ -4,17 +4,58 @@
       <div class="row">
         <div class="col-12 d-flex justify-content-between align-items-center">
           <h1 class="mb-2">{{ isEditingEssentialInfo ? currentCampaignName : gameGroup.campaignName }}</h1>
-          <app-tooltip 
-            [text]="isEditingEssentialInfo ? ('COMMON.CLOSE' | translate) : ('COMMON.EDIT' | translate)"
-            position="bottom"
-            [delay]="300">
-            <button
-              class="btn text-white p-2"
-              (click)="toggleEssentialInfoEdit()"
-            >
-              <mat-icon [svgIcon]="isEditingEssentialInfo ? 'mdi-close' : 'mdi-pencil'" class="icon-sm"></mat-icon>
-            </button>
-          </app-tooltip>
+          <div class="d-flex gap-2">
+            <app-tooltip 
+              [text]="isEditingEssentialInfo ? ('COMMON.CLOSE' | translate) : ('COMMON.EDIT' | translate)"
+              position="bottom"
+              [delay]="300">
+              <button
+                class="btn p-2"
+                (click)="toggleEssentialInfoEdit()"
+              >
+                <mat-icon [svgIcon]="isEditingEssentialInfo ? 'mdi-close' : 'mdi-pencil'" class="icon-sm"></mat-icon>
+              </button>
+            </app-tooltip>
+            
+            <div class="dropdown" *ngIf="!isEditingEssentialInfo">
+              <app-tooltip 
+                [text]="'COMMON.MORE_OPTIONS' | translate"
+                position="bottom"
+                [delay]="300">
+                <button
+                  class="btn p-2"
+                  type="button"
+                  (click)="toggleDropdown()"
+                  [attr.aria-expanded]="isDropdownOpen"
+                >
+                  <mat-icon svgIcon="mdi-dots-vertical" class="icon-sm"></mat-icon>
+                </button>
+              </app-tooltip>
+              <ul class="dropdown-menu" [class.show]="isDropdownOpen" style="right: 0; left: auto;">
+                <li>
+                  <button 
+                    class="dropdown-item text-warning"
+                    (click)="toggleGameGroupStatus()"
+                    [disabled]="isUpdatingStatus"
+                  >
+                    <mat-icon svgIcon="mdi-pause-circle" class="icon-sm me-2"></mat-icon>
+                    {{ gameGroup.isActive ? ('PAGE.GAME_GROUP.DETAIL.ACTIONS.DEACTIVATE' | translate) : ('PAGE.GAME_GROUP.DETAIL.ACTIONS.ACTIVATE' | translate) }}
+                  </button>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <button 
+                    class="dropdown-item text-danger"
+                    (click)="deleteGameGroup()"
+                    [disabled]="isDeletingGroup"
+                  >
+                    <mat-icon svgIcon="mdi-delete" class="icon-sm me-2"></mat-icon>
+                    {{ 'PAGE.GAME_GROUP.DETAIL.ACTIONS.DELETE' | translate }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -22,6 +63,9 @@
         <div class="col-12">
           <span class="badge bg-success mb-2" *ngIf="gameGroup.isActive">
             {{ "PAGE.GAME_GROUP.DETAIL.STATUS.ACTIVE" | translate }}
+          </span>
+          <span class="badge bg-danger mb-2" *ngIf="!gameGroup.isActive">
+            {{ "PAGE.GAME_GROUP.DETAIL.STATUS.INACTIVE" | translate }}
           </span>
           <p class="text-muted">
             {{ gameGroup.gameSystem }}
@@ -253,7 +297,7 @@
             position="bottom"
             [delay]="300">
             <button
-              class="btn text-white p-2"
+              class="btn p-2"
               (click)="toggleRulesEdit()"
             >
               <mat-icon [svgIcon]="isEditingRules ? 'mdi-close' : 'mdi-pencil'" class="icon-sm"></mat-icon>
@@ -300,7 +344,6 @@
             fieldName="themesContent"
             col="12"
             [rows]="3"
-            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
           
           <app-form-textarea
@@ -310,7 +353,6 @@
             fieldName="punctualityAttendance"
             col="12"
             [rows]="3"
-            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
           
           <app-form-textarea
@@ -320,7 +362,6 @@
             fieldName="houseRules"
             col="12"
             [rows]="4"
-            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
           
           <app-form-textarea
@@ -330,8 +371,27 @@
             fieldName="behavioralExpectations"
             col="12"
             [rows]="4"
-            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
+          
+          <div class="col-12 d-flex justify-content-end gap-2 mt-3">
+            <button 
+              type="button" 
+              class="btn btn-outline-secondary"
+              (click)="cancelRulesEdit()"
+              [disabled]="updateInProgress"
+            >
+              {{ 'COMMON.CANCEL' | translate }}
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-primary"
+              (click)="saveRulesChanges()"
+              [disabled]="updateInProgress || !hasRulesChanges()"
+            >
+              <span *ngIf="updateInProgress" class="spinner-border spinner-border-sm me-2" role="status"></span>
+              {{ 'COMMON.SAVE' | translate }}
+            </button>
+          </div>
         </div>
       </div>
     </div>

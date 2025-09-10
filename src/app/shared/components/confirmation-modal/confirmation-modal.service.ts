@@ -31,7 +31,7 @@ export class ConfirmationModalService {
       message: config.message,
       confirmText: config.confirmText ?? 'Confirmar',
       cancelText: config.cancelText ?? 'Cancelar',
-      confirmButtonClass: config.confirmButtonClass ?? 'btn-primary',
+      confirmButtonClass: config.confirmButtonClass ?? 'btn-success',
       cancelButtonClass: config.cancelButtonClass ?? 'btn-secondary',
       onConfirm: config.onConfirm,
       onCancel: config.onCancel

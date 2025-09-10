@@ -23,7 +23,7 @@ export class AccessibilityControlsComponent {
   languageService = inject(LanguageService);
   
   showLanguageDropdown = false;
-  dropdownPosition = 'end';
+  dropdownPosition = 'start';
 
   toggleTheme(): void {
     this.theme.toggleTheme();

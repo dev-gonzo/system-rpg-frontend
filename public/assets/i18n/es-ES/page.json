@@ -395,7 +395,8 @@
         "CURRENT_PARTICIPANTS": "Participantes Actuales",
         "CREATED_BY": "Creado por",
         "STATUS": {
-          "ACTIVE": "Activa"
+          "ACTIVE": "Activa",
+          "INACTIVE": "Inactiva"
         },
         "ADVENTURES": "Aventuras",
         "NO_ADVENTURES": "Ninguna aventura registrada.",
@@ -406,6 +407,12 @@
         "NO_DESCRIPTION": "Incluye la descripción de tu mesa, o ninguna descripción incluida",
         "DESCRIPTION_PLACEHOLDER": "Ingresa la descripción de tu Mesa",
         "DESCRIPTION_MARKDOWN_INFO": "Este campo acepta formato Markdown. Aprende más en: https://www.markdownguide.org/",
+        "ACTIONS": {
+          "ACTIVATE": "Activar Mesa",
+          "DEACTIVATE": "Desactivar Mesa",
+          "DELETE": "Eliminar Mesa"
+        },
+        "CONFIRM_DELETE": "¿Estás seguro de que quieres eliminar esta mesa? Esta acción no se puede deshacer.",
         "LABELS": {
           "CAMPAIGN_NAME": "Nombre de la Campaña",
           "GAME_SYSTEM": "Sistema de Juego",

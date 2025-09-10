@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { GameGroupApiService } from '@app/api/game-group/game-group.api.service';
 import { GameGroupResponseData } from '@app/api/game-group/game-group.api.types';
 import { ApiErrorResponse } from '@app/core/types';
@@ -23,6 +23,7 @@ export class GameGroupSearchPage implements OnInit {
   private readonly translate = inject(TranslateService);
   private readonly gameGroupApiService = inject(GameGroupApiService);
   private readonly toastService = inject(ToastService);
+  private readonly router = inject(Router);
 
   gameGroups = signal<GameGroupResponseData[]>([]);
   isLoading = signal<boolean>(false);
@@ -114,5 +115,9 @@ export class GameGroupSearchPage implements OnInit {
   private performSearch(searchTerm: string): void {
     this.currentSearchTerm.set(searchTerm);
     this.loadGameGroups(0, searchTerm);
+  }
+
+  public navigateToDetail(gameGroupId: string): void {
+    this.router.navigate(['/game-groups/detail', gameGroupId]);
   }
 }

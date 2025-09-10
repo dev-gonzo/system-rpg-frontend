@@ -427,7 +427,8 @@
         "CURRENT_PARTICIPANTS": "Current Participants",
         "CREATED_BY": "Created by",
         "STATUS": {
-          "ACTIVE": "Active"
+          "ACTIVE": "Active",
+          "INACTIVE": "Inactive"
         },
         "ADVENTURES": "Adventures",
         "NO_ADVENTURES": "No adventures registered.",
@@ -438,6 +439,12 @@
         "NO_DESCRIPTION": "Include your table description, or no description included",
         "DESCRIPTION_PLACEHOLDER": "Enter your table description",
         "DESCRIPTION_MARKDOWN_INFO": "This field accepts Markdown formatting. Learn more at: https://www.markdownguide.org/",
+        "ACTIONS": {
+          "ACTIVATE": "Activate Table",
+          "DEACTIVATE": "Deactivate Table",
+          "DELETE": "Delete Table"
+        },
+        "CONFIRM_DELETE": "Are you sure you want to delete this table? This action cannot be undone.",
         "LABELS": {
           "CAMPAIGN_NAME": "Campaign Name",
           "GAME_SYSTEM": "Game System",

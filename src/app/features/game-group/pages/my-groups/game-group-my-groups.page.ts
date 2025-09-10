@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { GameGroupApiService } from '@app/api/game-group/game-group.api.service';
 import { GameGroupResponseData } from '@app/api/game-group/game-group.api.types';
 import { ApiErrorResponse } from '@app/core/types';
@@ -21,6 +21,7 @@ export class GameGroupMyGroupsPage implements OnInit {
   private readonly translate = inject(TranslateService);
   private readonly gameGroupApiService = inject(GameGroupApiService);
   private readonly toastService = inject(ToastService);
+  private readonly router = inject(Router);
 
   gameGroups = signal<GameGroupResponseData[]>([]);
   isLoading = signal<boolean>(false);
@@ -71,5 +72,9 @@ export class GameGroupMyGroupsPage implements OnInit {
       default:
         return 'mdi-lock';
     }
+  }
+
+  public navigateToDetail(gameGroupId: string): void {
+    this.router.navigate(['/game-groups/detail', gameGroupId]);
   }
 }

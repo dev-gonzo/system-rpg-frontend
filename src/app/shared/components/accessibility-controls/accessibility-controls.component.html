@@ -18,7 +18,8 @@
 
     <div 
       *ngIf="showLanguageDropdown" 
-      [class]="'language-dropdown position-absolute top-100 mt-1 bg-white border rounded shadow-sm overflow-hidden dropdown-menu-' + dropdownPosition"
+      class="language-dropdown position-absolute top-100 mt-1 bg-white border rounded shadow-sm overflow-hidden"
+      style="right: 0; left: auto;"
       (click)="$event.stopPropagation()"
       (keydown)="onKeyDown($event, 'dropdown')">
       <div 

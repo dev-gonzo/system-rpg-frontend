@@ -24,6 +24,9 @@ import { DisableNativeTooltips } from './app/core/utils/disable-native-tooltips'
 import { MdiIconsService } from './app/core/services/mdi-icons.service';
 
 
+import 'bootstrap';
+
+
 export function initializeMdiIcons(mdiIconsService: MdiIconsService) {
   return () => {
     mdiIconsService.registerIcons();

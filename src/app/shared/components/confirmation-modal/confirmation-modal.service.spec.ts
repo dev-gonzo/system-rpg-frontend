@@ -34,7 +34,7 @@ describe('ConfirmationModalService', () => {
     expect(modal?.message).toBe('Test Message');
     expect(modal?.confirmText).toBe('Confirmar');
     expect(modal?.cancelText).toBe('Cancelar');
-    expect(modal?.confirmButtonClass).toBe('btn-primary');
+    expect(modal?.confirmButtonClass).toBe('btn-success');
     expect(modal?.cancelButtonClass).toBe('btn-secondary');
   });
 

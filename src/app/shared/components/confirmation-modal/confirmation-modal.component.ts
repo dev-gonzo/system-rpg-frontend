@@ -43,7 +43,7 @@ export class ConfirmationModalComponent {
 
   getConfirmButtonClasses(buttonClass?: string): string {
     const baseClasses = 'btn';
-    return `${baseClasses} ${buttonClass ?? 'btn-primary'}`;
+    return `${baseClasses} ${buttonClass ?? 'btn-success'}`;
   }
 
   getCancelButtonClasses(buttonClass?: string): string {

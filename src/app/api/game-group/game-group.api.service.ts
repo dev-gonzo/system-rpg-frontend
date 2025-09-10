@@ -82,4 +82,15 @@ export class GameGroupApiService {
       data,
     );
   }
+
+  updateGameGroupStatus(id: string, data: { isActive: boolean }): Observable<GameGroupResponse> {
+    return this.http.patch<GameGroupResponse>(
+      `${this.baseUrl}${this.basePath}/${id}/status`,
+      data,
+    );
+  }
+
+  deleteGameGroup(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}${this.basePath}/${id}`);
+  }
 }
