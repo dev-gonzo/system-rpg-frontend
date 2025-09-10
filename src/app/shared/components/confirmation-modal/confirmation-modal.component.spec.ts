@@ -57,7 +57,7 @@ describe('ConfirmationModalComponent', () => {
     });
     fixture.detectChanges();
 
-    const confirmButton = fixture.debugElement.query(By.css('.btn-primary'));
+    const confirmButton = fixture.debugElement.query(By.css('.btn-success'));
     confirmButton.nativeElement.click();
 
     expect(onConfirmSpy).toHaveBeenCalled();
