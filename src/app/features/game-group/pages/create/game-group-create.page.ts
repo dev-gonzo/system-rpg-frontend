@@ -200,8 +200,6 @@ export class GameGroupCreatePage extends TranslatedFormComponent implements OnIn
       gameSystem: formData.gameSystem,
       settingWorld: formData.settingWorld,
       shortDescription: formData.shortDescription,
-      description: formData.campaignOverview,
-      minPlayers: formData.minPlayers,
       maxPlayers: formData.maxPlayers,
 
       visibility: formData.visibilityGameGroup.toUpperCase() as 'PUBLIC' | 'FRIENDS' | 'PRIVATE',

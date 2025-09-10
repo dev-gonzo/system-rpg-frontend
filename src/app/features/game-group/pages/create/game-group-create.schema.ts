@@ -16,9 +16,6 @@ export const createGameGroupSchema = async (translate: TranslateService) => {
         .required(translate.instant('VALIDATION.SHORT_DESCRIPTION_REQUIRED'))
         .min(10, translate.instant('VALIDATION.SHORT_DESCRIPTION_MIN_LENGTH'))
         .max(200, translate.instant('VALIDATION.SHORT_DESCRIPTION_MAX_LENGTH')),
-      campaignOverview: yup
-        .string()
-        .max(1000, translate.instant('VALIDATION.CAMPAIGN_OVERVIEW_MAX_LENGTH')),
       gameSystem: yup
         .string()
         .required(translate.instant('VALIDATION.GAME_SYSTEM_REQUIRED'))
@@ -29,11 +26,6 @@ export const createGameGroupSchema = async (translate: TranslateService) => {
         .required(translate.instant('VALIDATION.SETTING_WORLD_REQUIRED'))
         .min(2, translate.instant('VALIDATION.SETTING_WORLD_MIN_LENGTH'))
         .max(100, translate.instant('VALIDATION.SETTING_WORLD_MAX_LENGTH')),
-      minPlayers: yup
-        .number()
-        .required(translate.instant('VALIDATION.MIN_PLAYERS_REQUIRED'))
-        .min(1, translate.instant('VALIDATION.MIN_PLAYERS_MIN'))
-        .max(10, translate.instant('VALIDATION.MIN_PLAYERS_MAX')),
       maxPlayers: yup
         .number()
         .required(translate.instant('VALIDATION.MAX_PLAYERS_REQUIRED'))

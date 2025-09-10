@@ -1,10 +1,8 @@
 export type GameGroupFormData = {
   campaignName: string;
   shortDescription: string;
-  campaignOverview?: string;
   gameSystem: string;
   settingWorld: string;
-  minPlayers: number;
   maxPlayers: number;
   local: string;
   
