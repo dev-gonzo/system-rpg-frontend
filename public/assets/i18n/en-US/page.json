@@ -280,6 +280,7 @@
           "SEARCH_TABLE": "Search game group...",
           "CREATE_TABLE": "Create New Game Group",
           "NO_TABLES_FOUND": "No game groups found",
+          "NO_TABLES_DESCRIPTION": "You are not participating in any game group yet. How about creating a new adventure?",
           "NO_GROUPS_MESSAGE": "You are not participating in any game group yet. How about creating a new adventure?",
         "CREATE_NEW_GROUP": "Create New Game Group",
           "LOADING": "Loading your game groups...",

@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MarkdownComponent, provideMarkdown } from 'ngx-markdown';
-import { Observable, map, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay, BehaviorSubject } from 'rxjs';
 
 import { InputComponent } from '@app/shared/components/form/input/input.component';
 import { NumberInputComponent } from '@app/shared/components/form/number-input/number-input.component';
@@ -49,7 +49,7 @@ export class GameGroupDetailPage implements OnInit {
   
   private gameGroupId!: string;
   private originalFormValues: Record<string, unknown> = {};
-  updateInProgress = false;
+  private updateInProgress = false;
   private updateTimeout: number | null = null;
   
   
@@ -57,7 +57,11 @@ export class GameGroupDetailPage implements OnInit {
   isDeletingGroup = false;
   isDropdownOpen = false;
 
-  gameGroup$!: Observable<GameGroupResponseData>;
+  private gameGroupSubject = new BehaviorSubject<GameGroupResponseData | null>(null);
+  gameGroup$ = this.gameGroupSubject.asObservable().pipe(
+    map(gameGroup => gameGroup!),
+    shareReplay(1)
+  );
   sortedParticipants$!: Observable<GameGroupMember[]>;
   descriptionControl = new FormControl('');
   isEditingDescription = false;
@@ -117,58 +121,7 @@ export class GameGroupDetailPage implements OnInit {
     return this.descriptionControl.value || '';
   }
   
-  get currentCampaignName(): string {
-    return this.essentialInfoForm.get('campaignName')?.value || '';
-  }
 
-  get currentThemesContent(): string {
-    const formValue = this.rulesForm.get('themesContent')?.value;
-    if (formValue !== null && formValue !== undefined) {
-      return formValue;
-    }
-    
-    let gameGroupValue = '';
-    this.gameGroup$.subscribe(gameGroup => {
-      gameGroupValue = gameGroup.themesContent || '';
-    }).unsubscribe();
-    return gameGroupValue;
-  }
-
-  get currentPunctualityAttendance(): string {
-    const formValue = this.rulesForm.get('punctualityAttendance')?.value;
-    if (formValue !== null && formValue !== undefined) {
-      return formValue;
-    }
-    let gameGroupValue = '';
-    this.gameGroup$.subscribe(gameGroup => {
-      gameGroupValue = gameGroup.punctualityAttendance || '';
-    }).unsubscribe();
-    return gameGroupValue;
-  }
-
-  get currentHouseRules(): string {
-    const formValue = this.rulesForm.get('houseRules')?.value;
-    if (formValue !== null && formValue !== undefined) {
-      return formValue;
-    }
-    let gameGroupValue = '';
-    this.gameGroup$.subscribe(gameGroup => {
-      gameGroupValue = gameGroup.houseRules || '';
-    }).unsubscribe();
-    return gameGroupValue;
-  }
-
-  get currentBehavioralExpectations(): string {
-    const formValue = this.rulesForm.get('behavioralExpectations')?.value;
-    if (formValue !== null && formValue !== undefined) {
-      return formValue;
-    }
-    let gameGroupValue = '';
-    this.gameGroup$.subscribe(gameGroup => {
-      gameGroupValue = gameGroup.behavioralExpectations || '';
-    }).unsubscribe();
-    return gameGroupValue;
-  }
 
   visibilityOptions = [
     { label: this.translate.instant('COMMON.VISIBILITY.PUBLIC'), value: 'public' },
@@ -286,90 +239,6 @@ export class GameGroupDetailPage implements OnInit {
       }, 100);
     }
   }
-
-  hasRulesChanges(): boolean {
-    const currentValues = {
-      themesContent: this.rulesForm.get('themesContent')?.value || '',
-      punctualityAttendance: this.rulesForm.get('punctualityAttendance')?.value || '',
-      houseRules: this.rulesForm.get('houseRules')?.value || '',
-      behavioralExpectations: this.rulesForm.get('behavioralExpectations')?.value || ''
-    };
-
-    return Object.keys(currentValues).some(key => 
-      this.hasValueChanged(this.originalFormValues[key], currentValues[key as keyof typeof currentValues])
-    );
-  }
-
-  saveRulesChanges(): void {
-    if (this.updateInProgress || !this.hasRulesChanges()) {
-      return;
-    }
-
-    this.updateInProgress = true;
-
-    const currentValues = {
-      themesContent: this.rulesForm.get('themesContent')?.value || '',
-      punctualityAttendance: this.rulesForm.get('punctualityAttendance')?.value || '',
-      houseRules: this.rulesForm.get('houseRules')?.value || '',
-      behavioralExpectations: this.rulesForm.get('behavioralExpectations')?.value || ''
-    };
-
-    const updateData = {} as GameGroupPartialUpdate;
-      
-      Object.keys(currentValues).forEach(key => {
-        if (this.hasValueChanged(this.originalFormValues[key], currentValues[key as keyof typeof currentValues])) {
-          Object.assign(updateData, { [key]: currentValues[key as keyof typeof currentValues] });
-        }
-      });
-
-    this.gameGroupService.update(this.gameGroupId, updateData).subscribe({
-      next: () => {
-        this.originalFormValues = { ...currentValues };
-        this.isEditingRules = false;
-        this.updateInProgress = false;
-        
-        setTimeout(() => {
-          if (this.rulesSection) {
-            this.rulesSection.nativeElement.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'start' 
-            });
-          }
-        }, 100);
-      },
-      error: () => {
-        this.updateInProgress = false;
-      }
-    });
-  }
-
-  cancelRulesEdit(): void {
-    this.gameGroup$.subscribe(gameGroup => {
-      const originalValues = {
-        themesContent: gameGroup.themesContent || '',
-        punctualityAttendance: gameGroup.punctualityAttendance || '',
-        houseRules: gameGroup.houseRules || '',
-        behavioralExpectations: gameGroup.behavioralExpectations || ''
-      };
-      
-      this.rulesForm.get('themesContent')?.setValue(originalValues.themesContent);
-      this.rulesForm.get('punctualityAttendance')?.setValue(originalValues.punctualityAttendance);
-      this.rulesForm.get('houseRules')?.setValue(originalValues.houseRules);
-      this.rulesForm.get('behavioralExpectations')?.setValue(originalValues.behavioralExpectations);
-      
-      this.originalFormValues = { ...originalValues };
-      this.isEditingRules = false;
-      
-      setTimeout(() => {
-        if (this.rulesSection) {
-          this.rulesSection.nativeElement.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-          });
-        }
-      }, 100);
-    });
-  }
   
   onFieldBlur(fieldName: string): void {
     if (!this.originalFormValues) {
@@ -481,6 +350,8 @@ export class GameGroupDetailPage implements OnInit {
         if (fieldName === 'description') {
           this.originalDescription = newValue as string;
         }
+        
+        this.updateLocalGameGroup(fieldName, newValue);
         this.updateInProgress = false;
       },
       error: () => {
@@ -488,6 +359,7 @@ export class GameGroupDetailPage implements OnInit {
           this.descriptionControl.setValue(this.originalDescription, { emitEvent: false });
         } else {
           this.essentialInfoForm.get(fieldName)?.setValue(this.originalFormValues[fieldName], { emitEvent: false });
+          this.rulesForm.get(fieldName)?.setValue(this.originalFormValues[fieldName], { emitEvent: false });
         }
         this.updateInProgress = false;
       }
@@ -495,34 +367,50 @@ export class GameGroupDetailPage implements OnInit {
   }
   
   private loadGameGroup(): void {
-    this.gameGroup$ = this.gameGroupService.getById(this.gameGroupId).pipe(
-      map(response => {
+    this.gameGroupService.getById(this.gameGroupId).subscribe({
+      next: (response) => {
         if (response.data) {
           const description = response.data.description || '';
           this.descriptionControl.setValue(description);
           this.originalDescription = description;
           this.originalFormValues['description'] = description;
-          return response.data;
-        }
-        throw new Error(this.translate.instant('COMMON.GAME_GROUP_NOT_FOUND'));
-      }),
-      shareReplay(1)
-    );
-    
-    this.sortedParticipants$ = this.gameGroup$.pipe(
-      map(gameGroup => {
-        if (!gameGroup.participants) {
-          return [];
-        }
-        
-        return gameGroup.participants.sort((a, b) => {
-          if (a.role === 'MASTER' && b.role !== 'MASTER') return -1;
-          if (b.role === 'MASTER' && a.role !== 'MASTER') return 1;
           
-          return a.username.localeCompare(b.username);
-        });
-      })
-    );
+          
+          this.gameGroupSubject.next(response.data);
+          
+          
+          this.sortedParticipants$ = this.gameGroup$.pipe(
+            map(gameGroup => {
+              if (!gameGroup.participants) {
+                return [];
+              }
+              
+              return gameGroup.participants.sort((a, b) => {
+                if (a.role === 'MASTER' && b.role !== 'MASTER') return -1;
+                if (b.role === 'MASTER' && a.role !== 'MASTER') return 1;
+                
+                return a.username.localeCompare(b.username);
+              });
+            })
+          );
+        } else {
+          throw new Error(this.translate.instant('COMMON.GAME_GROUP_NOT_FOUND'));
+        }
+      },
+      error: (_error: unknown) => {
+        
+        return;
+      }
+    });
+  }
+  
+  private updateLocalGameGroup(fieldName: string, newValue: unknown): void {
+    const currentGameGroup = this.gameGroupSubject.value;
+    if (currentGameGroup) {
+      const updatedGameGroup = { ...currentGameGroup };
+      (updatedGameGroup as Record<string, unknown>)[fieldName] = newValue;
+      this.gameGroupSubject.next(updatedGameGroup);
+    }
   }
 
   
@@ -554,10 +442,11 @@ export class GameGroupDetailPage implements OnInit {
     this.gameGroupService.updateGameGroupStatus(this.gameGroupId, { isActive: newStatus }).subscribe({
       next: () => {
         
-        this.loadGameGroup();
+        this.updateLocalGameGroup('isActive', newStatus);
         this.isUpdatingStatus = false;
       },
-      error: () => {
+      error: (_error: unknown) => {
+        
         this.isUpdatingStatus = false;
       }
     });
@@ -586,7 +475,8 @@ export class GameGroupDetailPage implements OnInit {
         
         window.location.href = '/game-groups/my-groups';
       },
-      error: () => {
+      error: (_error: unknown) => {
+        
         this.isDeletingGroup = false;
       }
     });

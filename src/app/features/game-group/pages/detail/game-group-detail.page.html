@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 d-flex justify-content-between align-items-center">
-          <h1 class="mb-2">{{ isEditingEssentialInfo ? currentCampaignName : gameGroup.campaignName }}</h1>
+          <h1 class="mb-2">{{ gameGroup.campaignName }}</h1>
           <div class="d-flex gap-2">
             <app-tooltip 
               [text]="isEditingEssentialInfo ? ('COMMON.CLOSE' | translate) : ('COMMON.EDIT' | translate)"
@@ -307,26 +307,26 @@
         
         <div *ngIf="!isEditingRules" class="col-12">
           <div *ngIf="gameGroup$ | async as gameGroup">
-            <div *ngIf="currentThemesContent || currentPunctualityAttendance || currentHouseRules || currentBehavioralExpectations; else noRules">
+            <div *ngIf="gameGroup.themesContent || gameGroup.punctualityAttendance || gameGroup.houseRules || gameGroup.behavioralExpectations; else noRules">
               
-              <div *ngIf="currentThemesContent" class="mb-3 mt-3">
+              <div *ngIf="gameGroup.themesContent" class="mb-3 mt-3">
                 <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.THEMES_CONTENT' | translate }}</h5>
-                <p class="text-muted">{{ currentThemesContent }}</p>
+                <p class="text-muted">{{ gameGroup.themesContent }}</p>
               </div>
               
-              <div *ngIf="currentPunctualityAttendance" class="mb-3">
+              <div *ngIf="gameGroup.punctualityAttendance" class="mb-3">
                 <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.PUNCTUALITY_ATTENDANCE' | translate }}</h5>
-                <p class="text-muted">{{ currentPunctualityAttendance }}</p>
+                <p class="text-muted">{{ gameGroup.punctualityAttendance }}</p>
               </div>
               
-              <div *ngIf="currentHouseRules" class="mb-3">
+              <div *ngIf="gameGroup.houseRules" class="mb-3">
                 <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.HOUSE_RULES' | translate }}</h5>
-                <p class="text-muted">{{ currentHouseRules }}</p>
+                <p class="text-muted">{{ gameGroup.houseRules }}</p>
               </div>
               
-              <div *ngIf="currentBehavioralExpectations" class="mb-3">
+              <div *ngIf="gameGroup.behavioralExpectations" class="mb-3">
                 <h5 class="fw-bold">{{ 'PAGE.GAME_GROUP.DETAIL.LABELS.BEHAVIORAL_EXPECTATIONS' | translate }}</h5>
-                <p class="text-muted">{{ currentBehavioralExpectations }}</p>
+                <p class="text-muted">{{ gameGroup.behavioralExpectations }}</p>
               </div>
             </div>
             
@@ -344,6 +344,7 @@
             fieldName="themesContent"
             col="12"
             [rows]="3"
+            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
           
           <app-form-textarea
@@ -353,6 +354,7 @@
             fieldName="punctualityAttendance"
             col="12"
             [rows]="3"
+            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
           
           <app-form-textarea
@@ -362,6 +364,7 @@
             fieldName="houseRules"
             col="12"
             [rows]="4"
+            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
           
           <app-form-textarea
@@ -371,27 +374,8 @@
             fieldName="behavioralExpectations"
             col="12"
             [rows]="4"
+            (blurEvent)="onFieldBlur($event)"
           ></app-form-textarea>
-          
-          <div class="col-12 d-flex justify-content-end gap-2 mt-3">
-            <button 
-              type="button" 
-              class="btn btn-outline-secondary"
-              (click)="cancelRulesEdit()"
-              [disabled]="updateInProgress"
-            >
-              {{ 'COMMON.CANCEL' | translate }}
-            </button>
-            <button 
-              type="button" 
-              class="btn btn-primary"
-              (click)="saveRulesChanges()"
-              [disabled]="updateInProgress || !hasRulesChanges()"
-            >
-              <span *ngIf="updateInProgress" class="spinner-border spinner-border-sm me-2" role="status"></span>
-              {{ 'COMMON.SAVE' | translate }}
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -250,6 +250,7 @@
         "CREATE_TABLE": "Crear Mesa",
         "NO_GROUPS_FOUND": "No se encontraron mesas",
         "NO_TABLES_FOUND": "No se encontraron mesas",
+        "NO_TABLES_DESCRIPTION": "Aún no participas en ninguna mesa. ¿Qué tal crear una nueva aventura?",
         "NO_GROUPS_MESSAGE": "Aún no participas en ninguna mesa. ¿Qué tal crear una nueva aventura?",
         "CREATE_NEW_GROUP": "Crear Nueva Mesa",
         "LOADING": "Cargando tus mesas...",

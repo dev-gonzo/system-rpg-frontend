@@ -58,8 +58,10 @@
 <div class="row" *ngIf="gameGroups().length === 0 && !isLoading()">
   <div class="col-12">
     <div class="card border-0">
-      <div class="card-body">
-        <p class="card-text">{{ 'PAGE.GAME_GROUP.MY_GROUPS.NO_TABLES_FOUND' | translate }}</p>
+      <div class="card-body text-center py-5">
+        <mat-icon role="img" svgIcon="mdi-magnify" class="mat-icon notranslate display-1 text-muted mb-3 mat-icon-no-color" aria-hidden="true"></mat-icon>
+        <h5 class="text-muted mb-3">{{ 'PAGE.GAME_GROUP.MY_GROUPS.NO_TABLES_FOUND' | translate }}</h5>
+        <div class="text-muted">{{ 'PAGE.GAME_GROUP.MY_GROUPS.NO_TABLES_DESCRIPTION' | translate }}</div>
       </div>
     </div>
   </div>
