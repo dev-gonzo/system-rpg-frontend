@@ -39,12 +39,15 @@
 
 
 
-  <app-form-input
+  <app-form-number-input
     [label]="'PAGE.GAME_GROUP.CREATE.FIELDS.MAX_PLAYERS' | translate"
-    [placeholder]="'PAGE.GAME_GROUP.CREATE.FIELDS.MAX_PLAYERS_PLACEHOLDER' | translate"
+    placeholder="6"
     [control]="$any(form.get('maxPlayers'))"
     fieldName="maxPlayers"
-    col="6"
-    type="number"
+    numberType="integer"
+    [min]="2"
+    [max]="20"
+    col="12"
+    colMd="4"
   />
 </div>

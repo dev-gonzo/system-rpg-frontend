@@ -137,7 +137,15 @@ export class NumberInputComponent extends ColumnHostClass {
   increment(): void {
     if (this.disabled) return;
     
-    const currentValue = this.control.value ?? 0;
+    let currentValue = this.control.value;
+    
+    
+    if (currentValue === null && this.min !== undefined) {
+      currentValue = this.min;
+    } else {
+      currentValue = currentValue ?? 0;
+    }
+    
     const newValue = currentValue + this.stepValue;
     
     if (this.isValidValue(newValue)) {
@@ -154,7 +162,15 @@ export class NumberInputComponent extends ColumnHostClass {
   decrement(): void {
     if (this.disabled) return;
     
-    const currentValue = this.control.value ?? 0;
+    let currentValue = this.control.value;
+    
+    
+    if (currentValue === null && this.min !== undefined) {
+      currentValue = this.min;
+    } else {
+      currentValue = currentValue ?? 0;
+    }
+    
     const newValue = currentValue - this.stepValue;
     
     if (this.isValidValue(newValue)) {

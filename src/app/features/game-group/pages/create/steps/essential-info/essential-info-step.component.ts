@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { TypedFormGroup } from '@app/core/types/forms';
 import { InputComponent } from '@app/shared/components/form/input/input.component';
+import { NumberInputComponent } from '@app/shared/components/form/number-input/number-input.component';
 import { TextareaComponent } from '@app/shared/components/form/textarea/textarea.component';
 
 import { GameGroupFormData } from '../../../../types/game-group-form.types';
@@ -18,6 +19,7 @@ import { GameGroupFormData } from '../../../../types/game-group-form.types';
     CommonModule,
     ReactiveFormsModule,
     InputComponent,
+    NumberInputComponent,
     TextareaComponent,
     TranslateModule,
     MatButtonModule,
