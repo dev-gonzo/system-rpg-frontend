@@ -58,7 +58,7 @@
           {{ gameGroup.shortDescription }}
         </p>
       </div>
-      <div class="card-footer d-flex justify-content-between">
+      <div class="card-footer d-flex justify-content-between" (click)="$event.stopPropagation()">
         <div class="avatar-group" *ngIf="gameGroup.participants && gameGroup.participants.length > 0">
           <app-tooltip 
             *ngFor="let participant of gameGroup.participants" 
