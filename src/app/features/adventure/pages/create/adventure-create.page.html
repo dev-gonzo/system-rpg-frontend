@@ -1,0 +1,29 @@
+<app-section-wrapper [title]="'Criar Aventura'">
+  <form [formGroup]="form" *ngIf="form">
+    <div class="row row-gap-3">
+      <app-form-input
+        [label]="'Título da Aventura'"
+        [placeholder]="'Ex: A Tumba Perdida'"
+        [control]="$any(form.get('title'))"
+        fieldName="title"
+        col="12"
+        colMd="6"
+      />
+
+      <app-form-textarea
+        [label]="'Descrição da Aventura'"
+        [placeholder]="'Descreva a história, objetivos, NPCs, locais etc.'"
+        [control]="$any(form.get('description'))"
+        fieldName="description"
+        col="12"
+        [rows]="6"
+      />
+
+      <div class="col-12 mt-3">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="form.invalid">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</app-section-wrapper>

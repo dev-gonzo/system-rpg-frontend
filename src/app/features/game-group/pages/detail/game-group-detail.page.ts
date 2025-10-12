@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MarkdownComponent, provideMarkdown } from 'ngx-markdown';
 import { Observable, map, shareReplay, BehaviorSubject } from 'rxjs';
@@ -15,6 +15,9 @@ import { TextareaComponent } from '@app/shared/components/form/textarea/textarea
 import { SectionWrapperComponent } from '@app/shared/components/section-wrapper/section-wrapper.component';
 import { TooltipComponent } from '@app/shared/components/tooltip/tooltip.component';
 import { ConfirmationModalService } from '@app/shared/components/confirmation-modal/confirmation-modal.service';
+import { ToastService } from '@app/shared/components/toast/toast.service';
+import { AdventureApiService } from '../../../../api/adventure/adventure.api.service';
+import { AdventureResponseData } from '../../../../api/adventure/adventure.api.types';
 import { GameGroupApiService } from '../../../../api/game-group/game-group.api.service';
 import { GameGroupMember, GameGroupResponseData } from '../../../../api/game-group/game-group.api.types';
 import { GameGroupPartialUpdate } from '../../types/game-group-update.types';
@@ -41,9 +44,12 @@ import { GameGroupPartialUpdate } from '../../types/game-group-update.types';
 })
 export class GameGroupDetailPage implements OnInit {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private gameGroupService = inject(GameGroupApiService);
   private translate = inject(TranslateService);
   private confirmationModalService = inject(ConfirmationModalService);
+  private toastService = inject(ToastService);
+  private adventureApiService = inject(AdventureApiService);
   
   @ViewChild('rulesSection') rulesSection!: ElementRef;
   
@@ -56,6 +62,7 @@ export class GameGroupDetailPage implements OnInit {
   isUpdatingStatus = false;
   isDeletingGroup = false;
   isDropdownOpen = false;
+  adventures: AdventureResponseData[] = [];
 
   private gameGroupSubject = new BehaviorSubject<GameGroupResponseData | null>(null);
   gameGroup$ = this.gameGroupSubject.asObservable().pipe(
@@ -94,6 +101,7 @@ export class GameGroupDetailPage implements OnInit {
     if (gameGroupId) {
       this.gameGroupId = gameGroupId;
       this.loadGameGroup();
+      this.loadAdventures();
     }
   }
 
@@ -105,6 +113,53 @@ export class GameGroupDetailPage implements OnInit {
       this.descriptionControl.setValue(this.originalDescription);
     }
     this.isEditingDescription = !this.isEditingDescription;
+  }
+
+  navigateToAdventureCreate(): void {
+    if (!this.gameGroupId) return;
+    this.router.navigate(['/game-groups', this.gameGroupId, 'adventures', 'create']);
+  }
+
+  loadAdventures(): void {
+    if (!this.gameGroupId) return;
+    this.adventureApiService
+      .listByGroup(this.gameGroupId)
+      .subscribe({
+        next: (response) => {
+          const data: unknown = response.data;
+          if (Array.isArray(data)) {
+            this.adventures = data as AdventureResponseData[];
+          } else {
+            const wrapper = data as { content?: AdventureResponseData[] };
+            this.adventures = wrapper?.content ?? [];
+          }
+        },
+        error: () => {
+          this.adventures = [];
+        },
+      });
+  }
+
+  editAdventure(adventure: AdventureResponseData): void {
+    this.router.navigate(['/adventures/update', adventure.id]);
+  }
+
+  deleteAdventure(adventure: AdventureResponseData): void {
+    this.confirmationModalService.showDanger(
+      'Excluir aventura',
+      'Esta ação não pode ser desfeita. Tem certeza que deseja excluir permanentemente esta aventura?',
+      () => {
+        this.adventureApiService.delete(adventure.id).subscribe({
+          next: () => {
+            this.toastService.success('Aventura excluída!');
+            this.loadAdventures();
+          },
+          error: () => {
+            this.toastService.danger('Falha ao excluir a aventura');
+          },
+        });
+      }
+    );
   }
 
   onDescriptionBlur(): void {
@@ -398,7 +453,6 @@ export class GameGroupDetailPage implements OnInit {
         }
       },
       error: (_error: unknown) => {
-        
         return;
       }
     });
@@ -446,7 +500,6 @@ export class GameGroupDetailPage implements OnInit {
         this.isUpdatingStatus = false;
       },
       error: (_error: unknown) => {
-        
         this.isUpdatingStatus = false;
       }
     });
@@ -476,7 +529,6 @@ export class GameGroupDetailPage implements OnInit {
         window.location.href = '/game-groups/my-groups';
       },
       error: (_error: unknown) => {
-        
         this.isDeletingGroup = false;
       }
     });

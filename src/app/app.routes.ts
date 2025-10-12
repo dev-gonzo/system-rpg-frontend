@@ -7,6 +7,7 @@ import { NOT_FOUND_ROUTES } from './features/not-found/not-found.routes';
 import { USERS_ROUTES } from './features/users/users.routes';
 import { DEMO_ROUTES } from './features/demo/demo.routes';
 import { GAME_GROUP_ROUTES } from './features/game-group/game-group.routes';
+import { ADVENTURE_ROUTES } from './features/adventure/adventures.routes';
 
 export const routes: Routes = [
    {
@@ -18,6 +19,7 @@ export const routes: Routes = [
   ...USERS_ROUTES,
   ...HOME_ROUTES,
   ...GAME_GROUP_ROUTES,
+  ...ADVENTURE_ROUTES,
   ...DEMO_ROUTES,
   ...NOT_FOUND_ROUTES,
   

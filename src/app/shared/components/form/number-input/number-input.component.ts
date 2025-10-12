@@ -139,7 +139,6 @@ export class NumberInputComponent extends ColumnHostClass {
     
     let currentValue = this.control.value;
     
-    
     if (currentValue === null && this.min !== undefined) {
       currentValue = this.min;
     } else {
@@ -163,7 +162,6 @@ export class NumberInputComponent extends ColumnHostClass {
     if (this.disabled) return;
     
     let currentValue = this.control.value;
-    
     
     if (currentValue === null && this.min !== undefined) {
       currentValue = this.min;

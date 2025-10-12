@@ -75,6 +75,6 @@ export class GameGroupMyGroupsPage implements OnInit {
   }
 
   public navigateToDetail(gameGroupId: string): void {
-    this.router.navigate(['/game-groups/detail', gameGroupId]);
+    this.router.navigate(['/game-groups', gameGroupId]);
   }
 }
