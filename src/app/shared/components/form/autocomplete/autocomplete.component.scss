@@ -23,3 +23,23 @@
     transform: translateY(-50%) rotate(180deg);
   }
 }
+.custom-select-dropdown {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+  border-color: var(--color-border) !important;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 1060;
+}
+
+.custom-select-option {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+  cursor: pointer;
+}
+
+.custom-select-option:hover,
+.custom-select-option:focus {
+  background-color: var(--color-surface) !important;
+  color: var(--color-primary) !important;
+}

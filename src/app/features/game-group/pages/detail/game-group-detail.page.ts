@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MarkdownComponent, provideMarkdown } from 'ngx-markdown';
-import { Observable, map, shareReplay, BehaviorSubject } from 'rxjs';
+import { Observable, map, shareReplay, BehaviorSubject, catchError, of } from 'rxjs';
 
 import { InputComponent } from '@app/shared/components/form/input/input.component';
 import { NumberInputComponent } from '@app/shared/components/form/number-input/number-input.component';
@@ -21,6 +21,9 @@ import { AdventureResponseData } from '../../../../api/adventure/adventure.api.t
 import { GameGroupApiService } from '../../../../api/game-group/game-group.api.service';
 import { GameGroupMember, GameGroupResponseData } from '../../../../api/game-group/game-group.api.types';
 import { GameGroupPartialUpdate } from '../../types/game-group-update.types';
+import { UsersApiService } from '../../../../api/users/users.api.service';
+import { AuthService } from '../../../../auth/service/auth.service';
+import { AuthResponse } from '../../../../api/auth/auth.api.types';
 
 @Component({
   standalone: true,
@@ -50,6 +53,8 @@ export class GameGroupDetailPage implements OnInit {
   private confirmationModalService = inject(ConfirmationModalService);
   private toastService = inject(ToastService);
   private adventureApiService = inject(AdventureApiService);
+  private usersApiService = inject(UsersApiService);
+  private authService = inject(AuthService);
   
   @ViewChild('rulesSection') rulesSection!: ElementRef;
   
@@ -73,6 +78,7 @@ export class GameGroupDetailPage implements OnInit {
   descriptionControl = new FormControl('');
   isEditingDescription = false;
   private originalDescription = '';
+  private currentUserId: string | null = null;
   
   
   isEditingEssentialInfo = false;
@@ -103,6 +109,9 @@ export class GameGroupDetailPage implements OnInit {
       this.loadGameGroup();
       this.loadAdventures();
     }
+
+    const user = this.authService.currentUser() as AuthResponse['user'] | null;
+    this.currentUserId = user?.id ?? null;
   }
 
   toggleDescriptionEdit(): void {
@@ -160,6 +169,147 @@ export class GameGroupDetailPage implements OnInit {
         });
       }
     );
+  }
+
+  openAddParticipantModal(): void {
+    if (!this.gameGroupId) return;
+    if (!this.canManageParticipants()) {
+      this.toastService.danger('Apenas o mestre pode incluir participantes.');
+      return;
+    }
+    this.confirmationModalService.show({
+      title: 'Incluir participante',
+      message: '',
+      confirmText: 'Incluir',
+      cancelText: 'Cancelar',
+      confirmButtonClass: 'btn-primary',
+      inputLabel: 'Usuário',
+      inputPlaceholder: 'Digite para buscar usuário',
+      inputMode: 'autocomplete',
+      onSearch: (query: string) => {
+        const term = (query ?? '').trim();
+        if (!term) return of([]);
+        return this.usersApiService.searchUsers({ q: term, size: 10 }).pipe(
+          map(resp => (resp.data?.content ?? []).map(u => ({
+            label: `${u.username}${(u.firstName || u.lastName) ? ' - ' + [u.firstName, u.lastName].filter(Boolean).join(' ') : ''}`,
+            value: u.id
+          }))),
+          catchError(err => {
+            if (err?.status === 403) {
+              this.toastService.danger('Sem permissão para buscar usuários.');
+            } else {
+              this.toastService.danger('Falha ao buscar usuários.');
+            }
+            return of([]);
+          })
+        );
+      },
+      onConfirm: (value?: string) => {
+        const userId = (value ?? '').trim();
+        if (!userId) {
+          this.toastService.danger('Selecione um usuário válido.');
+          return;
+        }
+        this.gameGroupService.addParticipant(this.gameGroupId, userId).subscribe({
+          next: () => {
+            this.toastService.success('Participante incluído com sucesso!');
+            this.loadGameGroup();
+          },
+          error: (err) => {
+            if (err?.status === 403) {
+              this.toastService.danger('Apenas o mestre pode incluir participantes.');
+            } else if (err?.status === 404) {
+              this.toastService.danger('Grupo ou usuário não encontrado.');
+            } else {
+              this.toastService.danger('Falha ao incluir participante.');
+            }
+          }
+        });
+      }
+    });
+  }
+
+  removeParticipant(participant: GameGroupMember): void {
+    if (!this.gameGroupId) return;
+    if (!this.canManageParticipants()) {
+      this.toastService.danger('Apenas o mestre pode remover participantes.');
+      return;
+    }
+    this.confirmationModalService.showDanger(
+      'Remover participante',
+      `Tem certeza que deseja remover ${participant.username}?`,
+      () => {
+        this.gameGroupService.removeParticipant(this.gameGroupId, participant.id).subscribe({
+          next: () => {
+            this.toastService.success('Participante removido.');
+            this.loadGameGroup();
+          },
+          error: (err) => {
+            if (err?.status === 403) {
+              this.toastService.danger('Apenas o mestre pode remover participantes.');
+            } else if (err?.status === 404) {
+              this.toastService.danger('Grupo ou usuário não encontrado.');
+            } else {
+              this.toastService.danger('Falha ao remover participante.');
+            }
+          }
+        });
+      }
+    );
+  }
+
+  deactivateParticipant(participant: GameGroupMember): void {
+    if (!this.gameGroupId) return;
+    if (!this.canManageParticipants()) {
+      this.toastService.danger('Apenas o mestre pode desativar participantes.');
+      return;
+    }
+    this.confirmationModalService.show(
+      {
+        title: 'Desativar participante',
+        message: `Deseja desativar ${participant.username}?`,
+        onConfirm: () => {
+          this.gameGroupService.getParticipantId(this.gameGroupId, participant.id).subscribe({
+            next: (participantId) => {
+              if (!participantId) {
+                this.toastService.danger('Participante não encontrado ou removido.');
+                return;
+              }
+              this.gameGroupService.deactivateParticipantById(this.gameGroupId, participantId).subscribe({
+                next: () => {
+                  this.toastService.success('Status do participante atualizado.');
+                  this.loadGameGroup();
+                },
+                error: (err) => {
+                  if (err?.status === 404) {
+                    this.toastService.danger('Participante não encontrado.');
+                  } else if (err?.status === 403) {
+                    this.toastService.danger('Apenas o mestre pode desativar participantes.');
+                  } else {
+                    this.toastService.danger('Falha ao desativar participante.');
+                  }
+                }
+              });
+            },
+            error: () => {
+              this.toastService.danger('Falha ao localizar participante.');
+            }
+          });
+        }
+      }
+    );
+  }
+
+  isCreator(): boolean {
+    const createdById = this.gameGroupSubject.value?.createdBy?.id || null;
+    return !!this.currentUserId && !!createdById && this.currentUserId === createdById;
+  }
+
+  canManageParticipants(): boolean {
+    const group = this.gameGroupSubject.value;
+    const currentUserId = this.currentUserId;
+    if (!group || !currentUserId) return false;
+    return (group.participants ?? []).some(p => p.id === currentUserId && p.role === 'MASTER');
   }
 
   onDescriptionBlur(): void {

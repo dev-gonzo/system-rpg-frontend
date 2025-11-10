@@ -1,8 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { API_URL } from '@app/core/tokens/api-base-url.token';
+import { BaseResponse } from '@app/core/types/base-response';
 import {
   GameGroupCreateRequest,
   GameGroupMyGroupsResponse,
@@ -92,5 +94,54 @@ export class GameGroupApiService {
 
   deleteGameGroup(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}${this.basePath}/${id}`);
+  }
+
+  addParticipant(groupId: string, userId: string): Observable<GameGroupResponse> {
+    
+    return this.http.post<GameGroupResponse>(
+      `${this.baseUrl}${this.basePath}/${groupId}/participants`,
+      { userId, gameGroupId: groupId },
+    );
+  }
+
+  removeParticipant(groupId: string, userId: string): Observable<GameGroupResponse> {
+    return this.http.delete<GameGroupResponse>(
+      `${this.baseUrl}${this.basePath}/${groupId}/participants/${userId}`,
+    );
+  }
+
+  deactivateParticipant(groupId: string, userId: string): Observable<GameGroupResponse> {
+    
+    return this.http.patch<GameGroupResponse>(
+      `${this.baseUrl}${this.basePath}/${groupId}/participants/${userId}/status`,
+      null,
+    );
+  }
+
+  
+  getParticipantId(groupId: string, userId: string): Observable<string | null> {
+    const params = new HttpParams()
+      .set('gameGroupId', groupId)
+      .set('userId', userId);
+    type ParticipantListItem = { id: string };
+    type ParticipantListResponse = BaseResponse<{ content: ParticipantListItem[] }> | { content: ParticipantListItem[] };
+    return this.http.get<ParticipantListResponse>(
+      `${this.baseUrl}/api/v1/game-group-participants`,
+      { params }
+    ).pipe(
+      map((resp) => {
+        const wrapper = resp as BaseResponse<{ content: ParticipantListItem[] }>;
+        const content = wrapper?.data?.content ?? (resp as { content?: ParticipantListItem[] })?.content ?? [];
+        return content && content.length > 0 ? content[0].id : null;
+      })
+    );
+  }
+
+  
+  deactivateParticipantById(groupId: string, participantId: string): Observable<GameGroupResponse> {
+    return this.http.patch<GameGroupResponse>(
+      `${this.baseUrl}${this.basePath}/${groupId}/participants/${participantId}/status`,
+      null,
+    );
   }
 }

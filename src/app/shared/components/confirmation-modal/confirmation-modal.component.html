@@ -19,9 +19,28 @@
         </div>
 
         <div class="modal-body">
-          <p>
-            {{ modal.message }}
-          </p>
+          @if (modal.inputLabel && (modal.inputMode ?? 'text') === 'text') {
+            <app-form-input
+              [label]="modal.inputLabel"
+              [placeholder]="modal.inputPlaceholder ?? ''"
+              [control]="$any(inputControl)"
+              [type]="modal.inputType ?? 'text'"
+              fieldName="modal-input"
+              col="12"
+            ></app-form-input>
+          } @else if (modal.inputLabel && (modal.inputMode ?? 'text') === 'autocomplete') {
+            <app-form-autocomplete
+              [label]="modal.inputLabel"
+              [placeholder]="modal.inputPlaceholder ?? ''"
+              [control]="$any(autocompleteControl)"
+              [options]="autocompleteOptions"
+              (searchTextChange)="handleSearch($event)"
+            ></app-form-autocomplete>
+          } @else {
+            <p>
+              {{ modal.message }}
+            </p>
+          }
         </div>
 
         <div class="modal-footer">

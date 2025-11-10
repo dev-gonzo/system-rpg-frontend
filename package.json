@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run lint && npm run test:coverage && npx ng serve",
+    "start": "npx ng serve",
     "build": "npm run verify && npx ng build",
     "build:coverage": "npm run lint && npm run test:coverage && npx ng build",
     "watch": "npx ng build --watch --configuration development",

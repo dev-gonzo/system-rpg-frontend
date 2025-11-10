@@ -267,13 +267,15 @@
             [delay]="300">
             <button
               class="btn btn-sm"
-              (click)="toggleDescriptionEdit()"
-              *ngIf="!isEditingDescription"
+              (click)="openAddParticipantModal()"
+              *ngIf="canManageParticipants()"
             >
-              <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+              <mat-icon svgIcon="mdi-plus"></mat-icon>
             </button>
           </app-tooltip>
         </div>
+
+        
 
         <div class="col-12 d-flex flex-column gap-3">
           <div 
@@ -290,16 +292,25 @@
                 {{ participant.role === 'MASTER' ? ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.MASTER' | translate) : ('PAGE.GAME_GROUP.MY_GROUPS.ROLE.PLAYER' | translate) }}
               </span>
             </div>
-            <div class="text-muted">
-              <app-tooltip
-                [text]="('COMMON.CREATED_AT' | translate) + ': ' + (participant.createdAt | date:'medium')"
-                position="left"
-                [autoCloseOnClick]="true"
-                [autoCloseDelay]="1500"
-                style="cursor: pointer; user-select: none;"
-              >
-                <mat-icon svgIcon="mdi-calendar" class="icon-sm" style="cursor: pointer; user-select: none;"></mat-icon>
-              </app-tooltip>
+            <div class="d-flex align-items-center gap-2">
+              <div class="text-muted">
+                <app-tooltip
+                  [text]="('COMMON.CREATED_AT' | translate) + ': ' + (participant.createdAt | date:'medium')"
+                  position="left"
+                  [autoCloseOnClick]="true"
+                  [autoCloseDelay]="1500"
+                  style="cursor: pointer; user-select: none;"
+                >
+                  <mat-icon svgIcon="mdi-calendar" class="icon-sm" style="cursor: pointer; user-select: none;"></mat-icon>
+                </app-tooltip>
+              </div>
+              <div class="d-flex align-items-center gap-1">
+                <app-tooltip [text]="'COMMON.DELETE' | translate" position="left" [delay]="300" *ngIf="participant.role !== 'MASTER'">
+                  <button class="btn btn-sm" (click)="removeParticipant(participant)">
+                    <mat-icon svgIcon="mdi-delete" class="icon-sm"></mat-icon>
+                  </button>
+                </app-tooltip>
+              </div>
             </div>
           </div>
           

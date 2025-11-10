@@ -3,6 +3,7 @@ import { BaseResponse, Role } from '../../core/types';
 import { HateoasLink } from '../../core/types/hateoas';
 
 export interface UserSearchParams {
+  q?: string;
   username?: string;
   firstName?: string;
   lastName?: string;

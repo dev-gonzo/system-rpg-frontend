@@ -43,6 +43,9 @@ export class UsersApiService {
   searchUsers(params: UserSearchParams): Observable<UserSearchResponse> {
     let httpParams = new HttpParams();
 
+    if (params.q) {
+      httpParams = httpParams.set('q', params.q);
+    }
     if (params.username) {
       httpParams = httpParams.set('username', params.username);
     }

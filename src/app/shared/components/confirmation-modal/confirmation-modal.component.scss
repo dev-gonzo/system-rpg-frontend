@@ -68,7 +68,7 @@
   display: flex;
   gap: 0.75rem;
   justify-content: flex-end;
-  border-top: 1px solid var(--color-surface-contrast);
+  border-top: 1px solid var(--color-border);
   
   .btn {
     min-width: 100px;
@@ -97,21 +97,27 @@
       font-size: 0.875rem;
     }
     
+    &.btn-primary {
+      color: #ffffff !important;
+    }
+    &.btn-secondary {
+      color: #ffffff !important;
+    }
     &.btn-success {
       background-color: var(--bs-success) !important;
       border-color: var(--bs-success) !important;
-      color: var(--color-surface) !important;
+      color: #ffffff !important;
       
       &:hover {
         background-color: color-mix(in srgb, var(--bs-success) 85%, black) !important;
         border-color: color-mix(in srgb, var(--bs-success) 85%, black) !important;
-        color: var(--color-surface) !important;
+        color: #ffffff !important;
       }
       
       &:active {
         background-color: color-mix(in srgb, var(--bs-success) 75%, black) !important;
         border-color: color-mix(in srgb, var(--bs-success) 75%, black) !important;
-        color: var(--color-surface) !important;
+        color: #ffffff !important;
       }
     }
   }

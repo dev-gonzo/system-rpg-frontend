@@ -135,6 +135,13 @@ body {
 .text-muted {
   color: var(--color-muted) !important;
 }
+app-form-wrapper label.form-label {
+  color: var(--color-surface-contrast) !important;
+}
+
+app-form-wrapper label.form-label.text-danger {
+  color: var(--color-error) !important;
+}
 
 .form-control::placeholder {
   color: var(--color-secondary) !important;

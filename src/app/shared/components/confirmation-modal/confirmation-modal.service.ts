@@ -8,8 +8,14 @@ export interface ConfirmationModalConfig {
   cancelText?: string;
   confirmButtonClass?: string;
   cancelButtonClass?: string;
-  onConfirm: () => void;
+  onConfirm: (value?: string) => void;
   onCancel?: () => void;
+  inputLabel?: string;
+  inputPlaceholder?: string;
+  inputType?: 'text' | 'email' | 'password' | 'number' | 'tel';
+  inputInitialValue?: string;
+  inputMode?: 'text' | 'autocomplete';
+  onSearch?: (query: string) => Promise<{ label: string; value: string | number }[]> | import('rxjs').Observable<{ label: string; value: string | number }[]> | { label: string; value: string | number }[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -34,7 +40,13 @@ export class ConfirmationModalService {
       confirmButtonClass: config.confirmButtonClass ?? 'btn-success',
       cancelButtonClass: config.cancelButtonClass ?? 'btn-secondary',
       onConfirm: config.onConfirm,
-      onCancel: config.onCancel
+      onCancel: config.onCancel,
+      inputLabel: config.inputLabel,
+      inputPlaceholder: config.inputPlaceholder,
+      inputType: config.inputType,
+      inputInitialValue: config.inputInitialValue,
+      inputMode: config.inputMode ?? 'text',
+      onSearch: config.onSearch
     };
     
     this.modal.set(modalConfig);
@@ -45,10 +57,10 @@ export class ConfirmationModalService {
     this.modal.set(null);
   }
 
-  confirm(): void {
+  confirm(value?: string): void {
     const currentModal = this.modal();
     if (currentModal) {
-      currentModal.onConfirm();
+      currentModal.onConfirm(value);
       this.hide();
     }
   }

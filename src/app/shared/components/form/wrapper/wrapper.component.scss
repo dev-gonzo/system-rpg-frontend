@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+label.form-label {
+  color: var(--color-surface-contrast) !important;
+}
+label.form-label.text-danger {
+  color: var(--color-error) !important;
+}
+.text-muted {
+  color: var(--color-muted) !important;
+}
+.invalid-feedback {
+  color: var(--color-error) !important;
+}

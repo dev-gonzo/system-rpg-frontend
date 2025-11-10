@@ -4,7 +4,9 @@ import {
   ElementRef,
   Input,
   OnInit,
-  ViewChild
+  ViewChild,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {
   FormControl,
@@ -34,6 +36,8 @@ export class AutocompleteComponent extends ColumnHostClass implements OnInit {
   @Input() placeholder = 'Digite para buscar...';
   @Input() id?: string;
   @Input() helper: string = '';
+
+  @Output() searchTextChange = new EventEmitter<string>();
 
   @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
 
@@ -70,6 +74,7 @@ export class AutocompleteComponent extends ColumnHostClass implements OnInit {
     if (input === null || input === undefined) {
       this.filteredOptions = [];
       this.showDropdown = true;
+      this.searchTextChange.emit('');
       return;
     }
 
@@ -78,6 +83,7 @@ export class AutocompleteComponent extends ColumnHostClass implements OnInit {
     );
 
     this.showDropdown = true;
+    this.searchTextChange.emit(input);
   }
 
   selectOption(option: AutocompleteOption): void {
@@ -90,6 +96,7 @@ export class AutocompleteComponent extends ColumnHostClass implements OnInit {
   onFocus(): void {
     this.filteredOptions = this.options;
     this.showDropdown = true;
+    this.searchTextChange.emit('');
   }
 
   onBlur(): void {
