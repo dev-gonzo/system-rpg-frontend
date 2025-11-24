@@ -153,6 +153,11 @@ export class GameGroupDetailPage implements OnInit {
     this.router.navigate(['/adventures/update', adventure.id]);
   }
 
+  openAdventure(adventure: AdventureResponseData): void {
+    if (!this.gameGroupId) return;
+    this.router.navigate(['/game-groups', this.gameGroupId, 'adventures', adventure.id]);
+  }
+
   deleteAdventure(adventure: AdventureResponseData): void {
     this.confirmationModalService.showDanger(
       'Excluir aventura',

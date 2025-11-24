@@ -15,6 +15,13 @@ export const ADVENTURE_ROUTES: Routes = [
           import('./pages/create/adventure-create.page').then(
             (m) => m.AdventureCreatePage,
           ),
+      },
+      {
+        path: ':adventureId',
+        loadComponent: () =>
+          import('./pages/detail/adventure-detail.page').then(
+            (m) => m.AdventureDetailPage,
+          ),
       }
     ],
   },

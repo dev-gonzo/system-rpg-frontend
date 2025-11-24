@@ -1,0 +1,102 @@
+<app-section-wrapper>
+  <div class="container py-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="m-0">Detalhe da Aventura</h2>
+      <button class="btn btn-outline-secondary" (click)="navigateBack()">
+        Voltar
+      </button>
+    </div>
+
+    <div *ngIf="isLoading(); else content">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+    </div>
+
+    <ng-template #content>
+      <div *ngIf="adventure(); else empty">
+        <div class="card border-0 theme-surface">
+          <div class="card-body">
+            <h3>{{ adventure()?.title }}</h3>
+            <div class="d-flex align-items-center gap-2 text-muted mt-1">
+              <span class="badge" [class.bg-success]="adventure()?.isActive" [class.bg-secondary]="!adventure()?.isActive">
+                {{ adventure()?.isActive ? 'Ativa' : 'Inativa' }}
+              </span>
+              <span>| {{ adventure()?.createdAt | date:'short' }}</span>
+            </div>
+            <p class="mt-3">{{ adventure()?.description }}</p>
+          </div>
+        </div>
+      </div>
+      <ng-template #empty>
+        <p class="text-muted">Aventura não encontrada.</p>
+      </ng-template>
+  </ng-template>
+  </div>
+</app-section-wrapper>
+
+<app-section-wrapper>
+  <div class="container py-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="m-0">Notas</h3>
+      <button class="btn btn-sm btn-outline-primary" (click)="toggleAddNote()">
+        {{ isAddingNote() ? 'Fechar' : 'Adicionar Nota' }}
+      </button>
+    </div>
+
+    <div *ngIf="isAddingNote()" class="card border-0 theme-surface mb-3">
+      <div class="card-body">
+        <form (ngSubmit)="submitNote()" [formGroup]="noteForm">
+          <div class="row row-gap-3">
+            <app-form-input
+              [label]="'Título'"
+              [placeholder]="'Informe o título da nota'"
+              [control]="$any(noteForm.get('title'))"
+              fieldName="title"
+              col="12"
+              colMd="6"
+            ></app-form-input>
+
+            <app-form-textarea
+              [label]="'Conteúdo'"
+              [placeholder]="'Descreva a nota'"
+              [control]="$any(noteForm.get('content'))"
+              fieldName="content"
+              col="12"
+              [rows]="6"
+              resize="vertical"
+            ></app-form-textarea>
+
+            <div class="col-12 d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-outline-secondary" (click)="toggleAddNote()">Cancelar</button>
+              <button type="submit" class="btn btn-primary" [disabled]="noteForm.invalid">
+                {{ editingNoteId ? 'Salvar alterações' : 'Criar nota' }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="notes().length > 0; else noNotes" class="d-flex flex-column gap-3">
+      <div class="w-100 border-1 border-bottom border-primary py-2 px-3 d-flex justify-content-between align-items-center"
+           *ngFor="let note of notes()">
+        <div>
+          <div class="fw-bold">{{ note.title }}</div>
+          <div class="text-muted small">{{ note.content }}</div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-sm" (click)="startEditNote(note)">
+            <mat-icon svgIcon="mdi-pencil" class="icon-sm"></mat-icon>
+          </button>
+          <button class="btn btn-sm" (click)="deleteNote(note)">
+            <mat-icon svgIcon="mdi-delete" class="icon-sm"></mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <ng-template #noNotes>
+      <p class="text-muted fst-italic">Nenhuma nota cadastrada.</p>
+    </ng-template>
+  </div>
+</app-section-wrapper>
